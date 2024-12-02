@@ -13,7 +13,9 @@
     <h3>Installed CLI Plugins</h3>
     <ul>
       <li>
-        <a href="">SampleQueryInfo</a>
+        <router-link to="/sample-query-info">
+          <a href="">SampleQueryInfo</a>
+        </router-link>
       </li>
       <li>
         <a href="">eslint</a>
