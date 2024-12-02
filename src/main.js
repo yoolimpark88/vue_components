@@ -1,7 +1,7 @@
 // src/main.js
 import { createApp } from "vue"; // Vue 3에서는 createApp을 사용합니다.
 import App from "./App.vue";
-import router from "./router";
+import router from "./router"; // router 설정 import
 
 import "@/style/tailwind.css";
 
@@ -9,7 +9,5 @@ import "@/style/tailwind.css";
 const app = createApp(App);
 
 // 플러그인 등록
-
 app.use(router);
-
 app.mount("#app");
