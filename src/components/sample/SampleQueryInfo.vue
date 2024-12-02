@@ -13,7 +13,6 @@
 
 <script>
 import ScQueryInfo from "@/components/common/ScQueryInfo.vue";
-//import ScQueryInfo from "../common/ScQueryInfo.vue";
 
 export default {
   name: "SampleQueryInfo",
