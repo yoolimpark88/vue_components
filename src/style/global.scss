@@ -16,6 +16,10 @@ body {
   background: rgb(226, 226, 226);
 }
 
+select {
+  outline: none;
+}
+
 #app {
   height: 100%;
 }
@@ -25,15 +29,24 @@ header {
   display: flex;
   position: relative;
   align-items: center;
+  height: 50px;
   background: vars.$SC-PRIMARY-COLOR-GREEN;
   color: vars.$SC-COLOR-WHITE;
-  padding: 10px;
+  padding: 0 20px;
   z-index: 3;
-  flex: 0 0 80px;
 }
 
-select {
-  outline: none;
+.main-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 10px 20px;
+  h1 {
+    border: 1px dashed red;
+    display: block;
+    position: relative;
+    font-size: 1.5rem;
+  }
 }
 
 // LNB
@@ -43,7 +56,17 @@ select {
   align-items: center;
   background: vars.$SC-PRIMARY-COLOR-DEEP-GREEN;
   color: vars.$SC-COLOR-WHITE;
-  padding: 10px;
+  width: 120px;
+  padding: 0 20px;
   z-index: 3;
-  flex: 0 0 80px;
+}
+
+// Footer
+footer {
+  background: vars.$SC-COLOR-GRAY-50;
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 30px;
+  padding: 0 20px;
 }

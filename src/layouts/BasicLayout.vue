@@ -1,11 +1,13 @@
 <template>
-  <div class="h-full p-2">
+  <div class="h-full">
     <!-- GNB -->
     <sc-gnb />
-    <div class="flex flex-1 h-[calc(100%-100px)]">
+    <div class="flex flex-1 h-[calc(100%-80px)]">
       <sc-lnb />
       <div class="main-container flex-grow">
-        <h1>{{ fileName }}</h1>
+        <div class="sc-breadcrumb">
+          <h1>{{ fileName }}</h1>
+        </div>
         <div>
           <!-- 서브페이지 컨텐츠 -->
           <router-view id="content" class="contents" />
