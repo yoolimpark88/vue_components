@@ -1,7 +1,7 @@
 <template>
   <div class="h-full">
     <router-view key="refreshKey"></router-view>
-    <teleport to="body"> 텔레포트 테스트 </teleport>
+    <teleport to="body"></teleport>
     <!-- <div class="button-container">
       <button @click="goToSampleQueryInfo">Query Info 페이지로 이동</button>
     </div> -->
