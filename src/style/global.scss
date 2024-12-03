@@ -1,5 +1,5 @@
 // global color 정의
-@import "./scss/abstracts/variables";
+@use "@/style/scss/abstracts/variables" as vars;
 
 html,
 body {
@@ -20,12 +20,13 @@ body {
   height: 100%;
 }
 
+// GNB
 header {
   display: flex;
   position: relative;
   align-items: center;
-  background: $SC-PRIMARY-COLOR-BLUE;
-  color: $SC-COLOR-WHITE;
+  background: vars.$SC-PRIMARY-COLOR-BLUE;
+  color: vars.$SC-COLOR-WHITE;
   padding: 10px;
   z-index: 3;
   flex: 0 0 80px;
@@ -33,4 +34,16 @@ header {
 
 select {
   outline: none;
+}
+
+// LNB
+.sc-lnb {
+  display: flex;
+  position: relative;
+  align-items: center;
+  background: vars.$SC-PRIMARY-COLOR-BLUE;
+  color: vars.$SC-COLOR-WHITE;
+  padding: 10px;
+  z-index: 3;
+  flex: 0 0 80px;
 }

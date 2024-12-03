@@ -4,12 +4,10 @@
     <sc-gnb />
     <h1>{{ fileName }}</h1>
 
-    <h3>Installed CLI Plugins</h3>
+    <h3>서브페이지로 이동</h3>
     <ul>
       <li>
-        <router-link to="/sample-query-info">
-          <a href="">SampleQueryInfo</a>
-        </router-link>
+        <button @click="goToSampleQueryInfo">SampleQueryInfo로 이동</button>
       </li>
       <li>
         <a href="">eslint</a>
@@ -20,11 +18,13 @@
 
 <script>
 import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router"; // useRouter 추가
 import ScGnb from "@/components/common/ScGnb.vue";
 
 export default {
   components: { ScGnb },
   setup() {
+    const router = useRouter(); // useRouter를 사용하여 router 객체 가져오기
     const fileName = ref("");
 
     const getFileName = () => {
@@ -43,14 +43,19 @@ export default {
       getFileName(); // 컴포넌트가 마운트된 후 파일명 추출
     });
 
+    const goToSampleQueryInfo = () => {
+      // useRouter로 가져온 router 객체 사용
+      router.push({ name: "sampleQueryInfo" });
+    };
+
     return {
       fileName,
+      goToSampleQueryInfo,
     };
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
   margin: 40px 0 0;

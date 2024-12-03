@@ -1,20 +1,20 @@
-@import "abstracts/variables"; // 모든 전역 변수, 함수
-@import "abstracts/mixins"; // 모든 mixin 및 표시자
+@use "abstracts/variables"; // 모든 전역 변수, 함수
+@use "abstracts/mixins"; // 모든 mixin 및 표시자
 
-//@import 'vendors/tailwind_custom'; // tailwindCSS 커스텀
+//@use 'vendors/tailwind_custom'; // tailwindCSS 커스텀
 
-@import "base/reset"; // CSS 초기화
-@import "base/typography"; // 폰트선언
+@use "base/reset"; // CSS 초기화
+@use "base/typography"; // 폰트선언
 
-// @import 'layout/grid'; // 리얼그리드 관련 CSS
-// @import 'layout/gnb'; // 헤더영역 (GNB + UserInfo)
-// @import 'layout/lnb'; // 좌측 사이드 메뉴
-// @import 'layout/rnb'; // 우측 사이트 메뉴
-// @import 'layout/footer'; // 푸터영역
-// @import 'layout/forms'; // 사이트 내 Form 각 컴포넌트.vue파일에 scoped로 사용함.
+// @use 'layout/grid'; // 리얼그리드 관련 CSS
+// @use 'layout/gnb'; // 헤더영역 (GNB + UserInfo)
+// @use 'layout/lnb'; // 좌측 사이드 메뉴
+// @use 'layout/rnb'; // 우측 사이트 메뉴
+// @use 'layout/footer'; // 푸터영역
+// @use 'layout/forms'; // 사이트 내 Form 각 컴포넌트.vue파일에 scoped로 사용함.
 
-// @import 'pages/main'; // 메인페이지
-// @import 'pages/sub'; // 서브페이지
+// @use 'pages/main'; // 메인페이지
+// @use 'pages/sub'; // 서브페이지
 
-// @import 'theme/theme'; // UI-Dev-theme
-// @import 'theme/admin'; // 관리자페이지
+// @use 'theme/theme'; // UI-Dev-theme
+// @use 'theme/admin'; // 관리자페이지

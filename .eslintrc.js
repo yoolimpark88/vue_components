@@ -1,25 +1,11 @@
 module.exports = {
-  parser: "vue-eslint-parser",
-  parserOptions: {
-    parser: "@babel/eslint-parser",
-    ecmaVersion: 2020,
-    sourceType: "module",
-  },
-  extends: ["eslint:recommended", "plugin:vue/recommended"],
-  plugins: ["vue"],
+  root: true,
   env: {
     node: true,
   },
-  // // 또는
-  // globals: {
-  //   process: true,
-  // },
-  settings: {
-    "import/resolver": {
-      alias: {
-        map: [["@", "./src"]],
-        extensions: [".js", ".vue", ".json"],
-      },
-    },
-  },
+  extends: [
+    "plugin:vue/vue3-essential",
+    "eslint:recommended",
+    "@vue/eslint-config-prettier/skip-formatting",
+  ],
 };

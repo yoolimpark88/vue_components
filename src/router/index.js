@@ -1,16 +1,26 @@
 // src/router/index.js
 import { createRouter, createWebHistory } from "vue-router";
-import SampleQueryInfo from "../components/sample/SampleQueryInfo.vue"; // SampleQueryInfo 컴포넌트 임포트
+import PortalLayout from "@/layouts/PortalLayout.vue"; // PortalLayout 컴포넌트
+import BasicLayout from "@/layouts/BasicLayout.vue"; // BasicLayout 컴포넌트
+import SampleQueryInfo from "@/components/sample/SampleQueryInfo.vue"; // SampleQueryInfo 컴포넌트
 
 const routes = [
   {
     path: "/",
-    component: () => import("@/layouts/PortalLayout.vue"),
+    name: "portal",
+    component: PortalLayout,
   },
   {
-    path: "/sample-query-info",
-    name: "SampleQueryInfo",
-    component: SampleQueryInfo,
+    path: "/basic-layout",
+    name: "basicLayout",
+    component: BasicLayout,
+    children: [
+      {
+        path: "sample-query-info",
+        name: "sampleQueryInfo",
+        component: SampleQueryInfo,
+      },
+    ],
   },
 ];
 
