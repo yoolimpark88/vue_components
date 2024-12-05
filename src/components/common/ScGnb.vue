@@ -2,7 +2,7 @@
   <header>
     <div class="sc-gnb flex-grow text-left">
       <router-link to="/">
-        <div>
+        <div class="w-fit">
           <img src="@/assets/img/logo-color.png" class="h-[30px]" />
         </div>
       </router-link>

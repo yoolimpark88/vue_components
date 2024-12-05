@@ -131,19 +131,42 @@ header {
     //border: 1px dashed red;
     display: block;
     position: relative;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 30px 0 0 0;
+    letter-spacing: -1px;
   }
-  .img-main {
-    display: block;
-    position: relative;
-    width: 300px;
+  .main-content-wrap {
+    .img-main {
+      display: block;
+      position: relative;
+      width: 50%;
+      border: 1px solid #ddd;
+      padding: 5px;
+    }
+    p {
+      display: block;
+      position: relative;
+      font-size: 0.75rem;
+      color: vars.$SC-COLOR-GRAY-50;
+      margin: 0 0 0 1rem;
+    }
   }
-  p {
-    display: block;
-    position: relative;
-    font-size: 0.5rem;
-    color: vars.$SC-COLOR-GRAY-50;
-    margin: 0 0 0 1rem;
+  .component-list-wrap {
+    h2 {
+      display: block;
+      position: relative;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 30px 0 0 0;
+      letter-spacing: -1px;
+    }
+    .items-list {
+      border: 1px dashed vars.$SC-PRIMARY-COLOR-GREEN;
+      border-radius: 10px;
+      margin: 10px 0 0 0;
+      padding: 10px;
+    }
   }
 }
 
@@ -167,5 +190,5 @@ footer {
   position: relative;
   height: 30px;
   padding: 0 20px;
-  font-size: 0.5rem;
+  font-size: 0.7rem;
 }

@@ -4,8 +4,8 @@
     <sc-gnb />
     <div class="flex flex-col flex-1 h-[calc(100%-80px)] bg-[#eee]">
       <div class="main-container">
-        <h1 class="font-bold">{{ fileName }}</h1>
-        <div class="flex mt-5">
+        <h1>{{ fileName }}</h1>
+        <div class="main-content-wrap flex mt-5">
           <img class="img-main" src="@/assets/img/img-main.webp" />
           <p>
             Vue was created by Evan You, while he was working at google on
@@ -17,25 +17,34 @@
             build an entire front-end using Vue and other supporting libraries.
           </p>
         </div>
-        <div>Component</div>
-        <ul>
-          <li>
-            <a @click="goToSampleModal">
-              <button @click="goToSampleModal">Modal</button>
-            </a>
-          </li>
-          <li>
-            <a @click="goToSampleQueryInfo">
-              <button @click="goToSampleQueryInfo">QueryInfo</button>
-            </a>
-          </li>
-          <li>
-            <a href="">eslint</a>
-          </li>
-        </ul>
+        <div class="component-list-wrap">
+          <h2>Components</h2>
+          <div class="items-list">
+            <ul>
+              <li>
+                <a @click="goToSampleModal">
+                  <button @click="goToSampleModal">Modal</button>
+                </a>
+              </li>
+              <li>
+                <a href="">Button</a>
+              </li>
+              <li>
+                <a href="">Checkbox</a>
+              </li>
+              <li>
+                <a href="">Radio</a>
+              </li>
+              <li>
+                <a @click="goToSampleQueryInfo">
+                  <button @click="goToSampleQueryInfo">QueryInfo</button>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
-
     <footer>Vue.js components @2024</footer>
   </div>
 </template>

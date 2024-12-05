@@ -98,21 +98,21 @@
   </teleport>
 </template>
 <script>
-import { useSlots } from 'vue';
+import { useSlots } from "vue";
 
 export default {
-  name: 'ScModal',
-  emits: ['opened', 'closed', 'closeIcon'],
+  name: "ScModal",
+  emits: ["opened", "closed", "closeIcon"],
   props: {
     title: {
       type: String,
-      default: '',
+      default: "",
     },
     size: {
       type: String,
-      default: '',
+      default: "",
       validator: (value) =>
-        ['', 'full', 'large', 'medium', 'small'].includes(value),
+        ["", "full", "large", "medium", "small"].includes(value),
     },
     width: {
       type: [String, Number],
@@ -162,7 +162,7 @@ export default {
       isOpen: false,
       isDragging: false,
       isResizing: false,
-      resizeDirection: '',
+      resizeDirection: "",
       startWidth: 0,
       startHeight: 0,
       startX: 0,
@@ -176,13 +176,16 @@ export default {
   computed: {
     customSize() {
       const style = {};
-      if (this.$util.isNotEmpty(this.width)) {
-        style.width = `${this.width}`.endsWith('px')
+      const isNotEmpty = (value) =>
+        value !== null && value !== undefined && value !== "";
+
+      if (isNotEmpty(this.width)) {
+        style.width = `${this.width}`.endsWith("px")
           ? this.width
           : `${this.width}px`;
       }
-      if (this.$util.isNotEmpty(this.height)) {
-        style.height = `${this.height}`.endsWith('px')
+      if (isNotEmpty(this.height)) {
+        style.height = `${this.height}`.endsWith("px")
           ? this.height
           : `${this.height}px`;
       }
@@ -191,24 +194,24 @@ export default {
   },
   methods: {
     open() {
-      this.$emit('opened');
+      this.$emit("opened");
       this.isOpen = true;
     },
     clickCloseIcon() {
-      this.$emit('closeIcon');
+      this.$emit("closeIcon");
       this.$nextTick(() => {
         this.close();
       });
     },
     close() {
-      this.$emit('closed');
+      this.$emit("closed");
       this.isOpen = false;
     },
     startDrag(event) {
       if (!this.$refs.dragContainer.contains(event.target)) return;
       if (this.noDrag) return;
       if (this.isResizing) return;
-      if (!event.target.classList.contains('drag-handle')) {
+      if (!event.target.classList.contains("drag-handle")) {
         return;
       }
       this.isDragging = true;
@@ -216,8 +219,8 @@ export default {
       this.dragPosition.x = event.clientX - this.$refs.dragContainer.offsetLeft;
       this.dragPosition.y = event.clientY - this.$refs.dragContainer.offsetTop;
 
-      document.addEventListener('mousemove', this.onDrag);
-      document.addEventListener('mouseup', this.stopDrag);
+      document.addEventListener("mousemove", this.onDrag);
+      document.addEventListener("mouseup", this.stopDrag);
     },
     stopDrag(event) {
       this.isDragging = false;
@@ -228,8 +231,8 @@ export default {
       this.startY =
         event.clientY - this.$refs.dragContainer.getBoundingClientRect().bottom;
 
-      document.removeEventListener('mousemove', this.onDrag);
-      document.removeEventListener('mouseup', this.stopDrag);
+      document.removeEventListener("mousemove", this.onDrag);
+      document.removeEventListener("mouseup", this.stopDrag);
     },
     onDrag(event) {
       // if (!this.$refs.dragContainer.contains(event.target)) return;
@@ -243,21 +246,21 @@ export default {
       this.$refs.dragContainer.style.width = `${this.$refs.dragContainer.offsetWidth}px`;
       this.$refs.dragContainer.style.height = `${this.$refs.dragContainer.offsetHeight}px`;
     },
-    startResize(event, resizeDirection = 'bottomRight') {
+    startResize(event, resizeDirection = "bottomRight") {
       if (!this.$refs.dragContainer.contains(event.target)) return;
       if (this.noResize) return;
       if (this.isDragging) return;
       // console.info('startResize', resizeDirection);
       this.isResizing = true;
-      this.$refs.dragContainer.classList.add('user-select-none');
+      this.$refs.dragContainer.classList.add("user-select-none");
       this.resizeDirection = resizeDirection;
       this.startWidth = this.$refs.dragContainer.offsetWidth;
       this.startHeight = this.$refs.dragContainer.offsetHeight;
       this.startX = event.clientX;
       this.startY = event.clientY;
 
-      document.addEventListener('mousemove', this.onResize);
-      document.addEventListener('mouseup', this.stopResize);
+      document.addEventListener("mousemove", this.onResize);
+      document.addEventListener("mouseup", this.stopResize);
     },
     onResize(event) {
       // if (!this.$refs.dragContainer.contains(event.target)) return;
@@ -278,11 +281,11 @@ export default {
       // width, height 최소 200 180
 
       switch (this.resizeDirection) {
-        case 'bottomRight':
+        case "bottomRight":
           $container.style.width = `${this.startWidth + deltaX}px`;
           $container.style.height = `${this.startHeight + deltaY}px`;
           break;
-        case 'topLeft':
+        case "topLeft":
           // 왼쪽상단 리사이즈 : 너비와 높이 감소 및 위치 조정
           newWidth = Math.max(this.startWidth - deltaX, minWidth);
           newHeight = Math.max(this.startHeight - deltaY, minHeight);
@@ -301,7 +304,7 @@ export default {
             $container.style.top = `${this.startY + deltaY}px`;
           }
           break;
-        case 'bottomLeft':
+        case "bottomLeft":
           // 왼쪽 하단 : 너비 감소 및 위치 조정 , 높이 증가
           newWidth = Math.max(this.startWidth - deltaX, minWidth);
           newHeight = Math.max(this.startHeight + deltaY, minHeight);
@@ -311,7 +314,7 @@ export default {
             $container.style.left = `${this.startX + deltaX}px`;
           }
           break;
-        case 'topRight':
+        case "topRight":
           // 오른쪽상단 : 높이 감소 및 위치 조정 , 너비 증가
           newWidth = Math.max(this.startWidth + deltaX, minWidth);
           newHeight = Math.max(this.startHeight - deltaY, minHeight);
@@ -321,25 +324,25 @@ export default {
             $container.style.top = `${this.startY + deltaY}px`;
           }
           break;
-        case 'top':
+        case "top":
           newHeight = Math.max(this.startHeight - deltaY, minHeight);
           $container.style.height = `${newHeight}px`;
           if (newHeight !== minHeight) {
             $container.style.top = `${this.startY + deltaY}px`;
           }
           break;
-        case 'left':
+        case "left":
           newWidth = Math.max(this.startWidth - deltaX, minWidth);
           $container.style.width = `${newWidth}px`;
           if (newWidth !== minWidth) {
             $container.style.left = `${this.startX + deltaX}px`;
           }
           break;
-        case 'bottom':
+        case "bottom":
           newHeight = Math.max(this.startHeight + deltaY, minHeight);
           $container.style.height = `${newHeight}px`;
           break;
-        case 'right':
+        case "right":
           newWidth = Math.max(this.startWidth + deltaX, minWidth);
           $container.style.width = `${newWidth}px`;
           break;
@@ -350,9 +353,9 @@ export default {
     stopResize() {
       // console.info('stopResize');
       this.isResizing = false;
-      this.$refs.dragContainer.classList.remove('user-select-none');
-      document.removeEventListener('mousemove', this.onResize);
-      document.removeEventListener('mouseup', this.stopResize);
+      this.$refs.dragContainer.classList.remove("user-select-none");
+      document.removeEventListener("mousemove", this.onResize);
+      document.removeEventListener("mouseup", this.stopResize);
     },
   },
   mounted() {},
