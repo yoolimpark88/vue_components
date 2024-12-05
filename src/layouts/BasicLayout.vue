@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-    <footer>logo</footer>
+    <footer>Vue.js components @2024</footer>
   </div>
 </template>
 

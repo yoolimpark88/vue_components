@@ -1,8 +1,10 @@
 <template>
   <header>
     <div class="sc-gnb flex-grow text-left">
-      <router-link to="@/components/sample/SampleQueryInfo.vue">
-        <div>ScGnb</div>
+      <router-link to="/">
+        <div>
+          <img src="@/assets/img/logo-color.png" class="h-[30px]" />
+        </div>
       </router-link>
     </div>
   </header>
