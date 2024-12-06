@@ -1,5 +1,5 @@
 // global color 정의
-@use "@/style/scss/abstracts/variables" as vars;
+//@use "@/style/scss/abstracts/variables" as vars;
 
 @font-face {
   font-family: "Noto Sans KR";
@@ -116,8 +116,8 @@ header {
   position: relative;
   align-items: center;
   height: 50px;
-  background: vars.$SC-PRIMARY-COLOR-GREEN;
-  color: vars.$SC-COLOR-WHITE;
+  background: $SC-PRIMARY-COLOR-GREEN;
+  color: $SC-COLOR-WHITE;
   padding: 0 20px;
   z-index: 3;
 }
@@ -132,24 +132,32 @@ header {
     display: block;
     position: relative;
     font-size: 2.5rem;
-    font-weight: 700;
+    font-weight: 300;
     margin: 30px 0 0 0;
-    letter-spacing: -1px;
+    letter-spacing: -0.05rem;
   }
   .main-content-wrap {
     .img-main {
       display: block;
       position: relative;
-      width: 50%;
-      border: 1px solid #ddd;
+      width: 100%;
+      border: 1px solid $SC-COLOR-GRAY-30;
       padding: 5px;
     }
-    p {
-      display: block;
-      position: relative;
-      font-size: 0.75rem;
-      color: vars.$SC-COLOR-GRAY-50;
+    .txt-main {
       margin: 0 0 0 1rem;
+      .tit {
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: $SC-PRIMARY-COLOR-DEEP-GREEN;
+        margin: 0 0 10px 0;
+      }
+      .txt {
+        display: block;
+        position: relative;
+        font-size: 0.6rem;
+        color: $SC-COLOR-GRAY-50;
+      }
     }
   }
   .component-list-wrap {
@@ -162,7 +170,7 @@ header {
       letter-spacing: -1px;
     }
     .items-list {
-      border: 1px dashed vars.$SC-PRIMARY-COLOR-GREEN;
+      border: 1px dashed $SC-PRIMARY-COLOR-GREEN;
       border-radius: 10px;
       margin: 10px 0 0 0;
       padding: 10px;
@@ -175,8 +183,8 @@ header {
   display: flex;
   position: relative;
   align-items: center;
-  background: vars.$SC-PRIMARY-COLOR-DEEP-GREEN;
-  color: vars.$SC-COLOR-WHITE;
+  background: $SC-PRIMARY-COLOR-DEEP-GREEN;
+  color: $SC-COLOR-WHITE;
   width: 120px;
   padding: 0 20px;
   z-index: 3;
@@ -184,7 +192,7 @@ header {
 
 // Footer
 footer {
-  background: vars.$SC-COLOR-GRAY-50;
+  background: $SC-COLOR-GRAY-50;
   display: flex;
   align-items: center;
   position: relative;

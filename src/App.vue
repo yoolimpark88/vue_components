@@ -31,8 +31,8 @@ export default {
 </script>
 
 <style lang="scss">
-@use "style/global.scss";
-@use "style/scss/main.scss";
+@import "style/global.scss";
+@import "style/scss/main.scss";
 
 .button-container {
   margin-top: 20px;

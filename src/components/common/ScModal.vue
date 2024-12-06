@@ -176,15 +176,15 @@ export default {
   computed: {
     customSize() {
       const style = {};
-      const isNotEmpty = (value) =>
-        value !== null && value !== undefined && value !== "";
+      //const isNotEmpty = (value) =>
+        //value !== null && value !== undefined && value !== "";
 
-      if (isNotEmpty(this.width)) {
+      if (this.$util.isNotEmpty(this.width)) {
         style.width = `${this.width}`.endsWith("px")
           ? this.width
           : `${this.width}px`;
       }
-      if (isNotEmpty(this.height)) {
+      if (this.$util.isNotEmpty(this.height)) {
         style.height = `${this.height}`.endsWith("px")
           ? this.height
           : `${this.height}px`;
