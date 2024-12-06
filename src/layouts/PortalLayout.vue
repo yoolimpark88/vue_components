@@ -1,8 +1,10 @@
 <template>
-  <div class="h-full">
+  <div class="flex flex-col h-full">
     <!-- GNB -->
     <sc-gnb />
-    <div class="flex flex-col flex-1 h-[calc(100%-80px)] bg-[#eee]">
+    <div
+      class="flex flex-col flex-1 h-[calc(100%-80px)] bg-[#eee] overflow-auto"
+    >
       <div class="main-container">
         <h1>{{ fileName }}</h1>
         <div class="main-content-wrap flex mt-5">
@@ -66,7 +68,9 @@
         </div>
       </div>
     </div>
-    <footer>Vue.js components @2024</footer>
+    <footer>
+      <div class="footer_inner">Vue.js components @2024</div>
+    </footer>
   </div>
 </template>
 

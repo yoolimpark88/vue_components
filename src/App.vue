@@ -2,30 +2,18 @@
   <div class="h-full">
     <router-view key="refreshKey"></router-view>
     <teleport to="body"></teleport>
-    <!-- <div class="button-container">
-      <button @click="goToSampleQueryInfo">Query Info 페이지로 이동</button>
-    </div> -->
   </div>
 </template>
 
 <script>
 import { mapState } from "pinia";
 import { useCommonStore } from "@/store/commonStore";
-//import { useRouter } from "vue-router";
-// import ScQueryInfo from "@/components/common/ScQueryInfo.vue";
 
 export default {
   name: "App",
-  components: {
-    //  ScQueryInfo
-  },
+
   computed: {
     ...mapState(useCommonStore, ["refreshKey"]), // Pinia 스토어의 상태를 Vue의 computed로 가져옵니다.
-  },
-  methods: {
-    goToSampleQueryInfo() {
-      this.$router.push({ name: "SampleQueryInfo" });
-    },
   },
 };
 </script>

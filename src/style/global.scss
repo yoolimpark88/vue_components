@@ -192,11 +192,15 @@ header {
 
 // Footer
 footer {
-  background: $SC-COLOR-GRAY-50;
-  display: flex;
-  align-items: center;
+  display: block;
   position: relative;
-  height: 30px;
-  padding: 0 20px;
-  font-size: 0.7rem;
+  .footer_inner {
+    background: $SC-COLOR-GRAY-50;
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 30px;
+    padding: 0 20px;
+    font-size: 0.7rem;
+  }
 }

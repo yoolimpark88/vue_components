@@ -5,7 +5,7 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        //additionalData: `@import "@/style/scss/abstracts/variables.scss";`,
+        additionalData: `@use "@/style/scss/abstracts/variables" as *;`,
         sassOptions: {
           quietDeps: true,
           quietDeprecationWarnings: true,
