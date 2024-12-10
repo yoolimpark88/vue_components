@@ -3,8 +3,7 @@
     <!-- GNB -->
     <sc-gnb />
     <div
-      class="flex flex-col flex-1 h-[calc(100%-80px)] bg-[#eee] overflow-auto"
-    >
+      class="flex flex-col flex-1 h-[calc(100%-80px)] bg-[#eee] overflow-auto">
       <div class="main-container">
         <h1>{{ fileName }}</h1>
         <div class="main-content-wrap flex mt-5">
@@ -44,25 +43,11 @@
           <h2>Components</h2>
           <div class="items-list">
             <ul>
-              <li>
-                <a @click="goToSampleModal">
-                  <button @click="goToSampleModal">Modal</button>
-                </a>
-              </li>
-              <li>
-                <a href="">Button</a>
-              </li>
-              <li>
-                <a href="">Checkbox</a>
-              </li>
-              <li>
-                <a href="">Radio</a>
-              </li>
-              <li>
-                <a @click="goToSampleQueryInfo">
-                  <button @click="goToSampleQueryInfo">QueryInfo</button>
-                </a>
-              </li>
+              <li @click="goToSampleModal">Modal</li>
+              <li @click="goToSampleButton">Button</li>
+              <li @click="goToSampleButton">Checkbox</li>
+              <li @click="goToSampleButton">Radio</li>
+              <li @click="goToSampleQueryInfo">QueryInfo</li>
             </ul>
           </div>
         </div>
@@ -106,6 +91,11 @@ export default {
       router.push({ name: "sampleModal" });
     };
 
+    const goToSampleButton = () => {
+      // useRouter로 가져온 router 객체 사용
+      router.push({ name: "sampleButton" });
+    };
+
     const goToSampleQueryInfo = () => {
       // useRouter로 가져온 router 객체 사용
       router.push({ name: "sampleQueryInfo" });
@@ -114,6 +104,7 @@ export default {
     return {
       fileName,
       goToSampleQueryInfo,
+      goToSampleButton,
       goToSampleModal,
     };
   },
@@ -132,6 +123,7 @@ h3 {
       li {
         display: inline-block;
         margin: 0 10px;
+        cursor: pointer;
         a {
           color: $SC-PRIMARY-COLOR-DEEP-GREEN;
         }

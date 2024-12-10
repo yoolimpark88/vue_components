@@ -13,8 +13,7 @@
           'no-scroll': noScroll,
           'blue-tit': blueTitle,
         },
-      ]"
-    >
+      ]">
       <div
         ref="dragContainer"
         class="sc-modal-container"
@@ -26,10 +25,9 @@
         :style="customSize"
         @mousedown="startDrag"
         @mouseup="stopDrag"
-        @mousemove="onDrag"
-      >
+        @mousemove="onDrag">
         <!-- 헤드-->
-        <div class="sc-modal-head drag-handle">
+        <div class="sc-modal-head drag-handle" @dblclick="toggleFullscreen">
           <span class="text-xl font-bold drag-handle">{{ title }}</span>
           <div class="flex items-center">
             <button @click="toggleFullscreen" class="mr-2">
@@ -39,13 +37,11 @@
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="w-6 h-6"
-              >
+                class="w-6 h-6">
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"
-                />
+                  d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
               </svg>
             </button>
             <button v-show="closeBtnShow" @click="clickCloseIcon">
@@ -55,13 +51,11 @@
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="w-6 h-6"
-              >
+                class="w-6 h-6">
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
+                  d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
@@ -80,36 +74,28 @@
         <!-- 리사이즈 핸들 -->
         <div
           class="resize-handle top"
-          @mousedown="(event) => startResize(event, 'top')"
-        ></div>
+          @mousedown="(event) => startResize(event, 'top')"></div>
         <div
           class="resize-handle left"
-          @mousedown="(event) => startResize(event, 'left')"
-        ></div>
+          @mousedown="(event) => startResize(event, 'left')"></div>
         <div
           class="resize-handle bottom"
-          @mousedown="(event) => startResize(event, 'bottom')"
-        ></div>
+          @mousedown="(event) => startResize(event, 'bottom')"></div>
         <div
           class="resize-handle right"
-          @mousedown="(event) => startResize(event, 'right')"
-        ></div>
+          @mousedown="(event) => startResize(event, 'right')"></div>
         <div
           class="resize-handle bottom-right"
-          @mousedown="(event) => startResize(event, 'bottomRight')"
-        ></div>
+          @mousedown="(event) => startResize(event, 'bottomRight')"></div>
         <div
           class="resize-handle top-left"
-          @mousedown="(event) => startResize(event, 'topLeft')"
-        ></div>
+          @mousedown="(event) => startResize(event, 'topLeft')"></div>
         <div
           class="resize-handle bottom-left"
-          @mousedown="(event) => startResize(event, 'bottomLeft')"
-        ></div>
+          @mousedown="(event) => startResize(event, 'bottomLeft')"></div>
         <div
           class="resize-handle top-right"
-          @mousedown="(event) => startResize(event, 'topRight')"
-        ></div>
+          @mousedown="(event) => startResize(event, 'topRight')"></div>
       </div>
       <!--// 리사이즈 핸들 -->
     </div>
@@ -201,9 +187,6 @@ export default {
   computed: {
     customSize() {
       const style = {};
-      //const isNotEmpty = (value) =>
-      //value !== null && value !== undefined && value !== "";
-
       if (this.$util.isNotEmpty(this.width)) {
         style.width = `${this.width}`.endsWith("px")
           ? this.width
@@ -236,9 +219,8 @@ export default {
         container.style.top = "0";
         container.style.left = "0";
 
-        // 리사이즈와 드래그 비활성화
-        container.classList.add("no-resize");
-        container.classList.add("no-drag");
+        // body 스크롤 비활성화
+        document.body.style.overflow = "hidden";
       } else {
         // 원래 크기로 복원
         container.style.width = this.originalSize.width;
@@ -246,9 +228,8 @@ export default {
         container.style.top = this.originalSize.top;
         container.style.left = this.originalSize.left;
 
-        // 리사이즈와 드래그 활성화
-        container.classList.remove("no-resize");
-        container.classList.remove("no-drag");
+        // body 스크롤 활성화
+        document.body.style.overflow = "visible";
       }
 
       this.isFullscreen = !this.isFullscreen;

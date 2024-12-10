@@ -4,6 +4,7 @@ import PortalLayout from "@/layouts/PortalLayout.vue"; // PortalLayout 컴포넌
 import BasicLayout from "@/layouts/BasicLayout.vue"; // BasicLayout 컴포넌트
 import SampleQueryInfo from "@/components/sample/SampleQueryInfo.vue"; // SampleQueryInfo 컴포넌트
 import SampleModal from "@/components/sample/SampleModal.vue"; // SampleModal 컴포넌트
+import SampleButton from "@/components/sample/SampleButton.vue"; // SampleButton 컴포넌트
 
 const routes = [
   {
@@ -25,6 +26,11 @@ const routes = [
         path: "sample-modal",
         name: "sampleModal",
         component: SampleModal,
+      },
+      {
+        path: "sample-button",
+        name: "sampleButton",
+        component: SampleButton,
       },
     ],
   },

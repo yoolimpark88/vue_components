@@ -11,4 +11,11 @@ export default defineConfig({
     },
     extensions: [".js", ".json", ".jsx", "jsx", ".mjs", ".ts", ".tsx", ".vue"],
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: "modern",
+      },
+    },
+  },
 });
