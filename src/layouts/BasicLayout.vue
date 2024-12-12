@@ -2,7 +2,7 @@
   <div class="h-full">
     <!-- GNB -->
     <sc-gnb />
-    <div class="flex flex-1 h-[calc(100%-80px)]">
+    <div class="flex flex-1 /*h-[calc(100%-80px)]*/">
       <sc-lnb />
       <div class="main-container flex-grow">
         <div class="sc-breadcrumb">

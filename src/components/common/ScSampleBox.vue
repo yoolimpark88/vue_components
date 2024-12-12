@@ -39,6 +39,7 @@ export default {
     font-size: 2rem;
     height: 40px;
     line-height: 40px;
+    margin: 0 0 10px 0;
   }
   .description {
     margin-bottom: 20px;
