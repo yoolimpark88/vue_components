@@ -1,5 +1,3 @@
-//ScCheckboxWrapper.vue //ScCheckboxWrapper.vue //ScCheckboxWrapper.vue
-
 <template>
   <div
     v-bind="$attrs"
@@ -17,7 +15,7 @@
 
 <script>
 import { computed, provide, ref, watch } from "vue";
-import { useValidation } from "@/hooks/common/useValidation";
+import { useValidation } from "@/hooks/common/useValidation.js";
 
 export default {
   name: "ScCheckboxWrapper",

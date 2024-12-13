@@ -1,5 +1,3 @@
-//ScCheckbox.vue //ScCheckbox.vue //ScCheckbox.vue
-
 <template>
   <label
     :class="[
@@ -28,7 +26,7 @@ export default {
   emits: ["update:modeValue", "change"],
   setup(props) {
     const defaultFunc = () => {};
-    const checkValues = inject("checkValues", ref([]));
+    const checkValues = inject("checkValues", ref([])); // provide된 값을 직접 inject
     const updateCheckedValues = inject("updateCheckedValues", defaultFunc);
 
     const isChecked = computed(() => {

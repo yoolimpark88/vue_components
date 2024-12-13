@@ -46,6 +46,7 @@
               <li @click="goToSampleModal">Modal</li>
               <li @click="goToSampleButton">Button</li>
               <li @click="goToSampleCheckbox">Checkbox</li>
+              <li @click="goToSampleCheckboxWrapper">CheckboxWrapper</li>
               <li @click="goToSampleButton">Radio</li>
               <li @click="goToSampleQueryInfo">QueryInfo</li>
             </ul>
@@ -101,6 +102,11 @@ export default {
       router.push({ name: "sampleCheckbox" });
     };
 
+    const goToSampleCheckboxWrapper = () => {
+      // useRouter로 가져온 router 객체 사용
+      router.push({ name: "sampleCheckboxWrapper" });
+    };
+
     const goToSampleQueryInfo = () => {
       // useRouter로 가져온 router 객체 사용
       router.push({ name: "sampleQueryInfo" });
@@ -112,6 +118,7 @@ export default {
       goToSampleButton,
       goToSampleModal,
       goToSampleCheckbox,
+      goToSampleCheckboxWrapper,
     };
   },
 };
