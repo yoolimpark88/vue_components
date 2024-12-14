@@ -1,5 +1,90 @@
 // global color 정의
-@import "./scss/abstracts/variables";
+//@use "@/style/scss/abstracts/variables" as vars;
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 100;
+  src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2)
+      format("woff2"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff)
+      format("woff"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf)
+      format("opentype");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 300;
+  src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff2)
+      format("woff2"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff)
+      format("woff"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.otf)
+      format("opentype");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 400;
+  src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2)
+      format("woff2"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff)
+      format("woff"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf)
+      format("opentype");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 500;
+  src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff2)
+      format("woff2"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff)
+      format("woff"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.otf)
+      format("opentype");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 700;
+  src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2)
+      format("woff2"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff)
+      format("woff"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf)
+      format("opentype");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 900;
+  src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2)
+      format("woff2"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff)
+      format("woff"),
+    url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf)
+      format("opentype");
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+textarea,
+select {
+  font-family: "Noto Sans KR", sans-serif;
+}
 
 html,
 body {
@@ -7,6 +92,7 @@ body {
   text-transform: none;
   box-shadow: none;
   box-sizing: border-box;
+  font-size: 16.5px;
   font-weight: 400;
   color: rgb(71, 71, 71);
   height: 100%;
@@ -16,21 +102,105 @@ body {
   background: rgb(226, 226, 226);
 }
 
+select {
+  outline: none;
+}
+
 #app {
   height: 100%;
 }
 
+// GNB
 header {
   display: flex;
   position: relative;
   align-items: center;
-  background: $SC-PRIMARY-COLOR-BLUE;
+  height: 50px;
+  background: $SC-PRIMARY-COLOR-GREEN;
   color: $SC-COLOR-WHITE;
-  padding: 10px;
+  padding: 0 20px;
   z-index: 3;
-  flex: 0 0 80px;
 }
 
-select {
-  outline: none;
+.main-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 10px 20px;
+  h1 {
+    //border: 1px dashed red;
+    display: block;
+    position: relative;
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin: 30px 0 0 0;
+    letter-spacing: -0.05rem;
+  }
+  .main-content-wrap {
+    .img-main {
+      display: block;
+      position: relative;
+      width: 100%;
+      border: 1px solid $SC-COLOR-GRAY-30;
+      padding: 5px;
+    }
+    .txt-main {
+      margin: 0 0 0 1rem;
+      .tit {
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: $SC-PRIMARY-COLOR-DEEP-GREEN;
+        margin: 0 0 10px 0;
+      }
+      .txt {
+        display: block;
+        position: relative;
+        font-size: 0.6rem;
+        color: $SC-COLOR-GRAY-50;
+      }
+    }
+  }
+  .component-list-wrap {
+    h2 {
+      display: block;
+      position: relative;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 30px 0 0 0;
+      letter-spacing: -1px;
+    }
+    .items-list {
+      border: 1px dashed $SC-PRIMARY-COLOR-GREEN;
+      border-radius: 10px;
+      margin: 10px 0 0 0;
+      padding: 10px;
+    }
+  }
+}
+
+// LNB
+.sc-lnb {
+  display: flex;
+  position: relative;
+  align-items: center;
+  background: $SC-PRIMARY-COLOR-DEEP-GREEN;
+  color: $SC-COLOR-WHITE;
+  width: 120px;
+  padding: 0 20px;
+  z-index: 3;
+}
+
+// Footer
+footer {
+  display: block;
+  position: relative;
+  .footer_inner {
+    background: $SC-COLOR-GRAY-50;
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 30px;
+    padding: 0 20px;
+    font-size: 0.7rem;
+  }
 }
