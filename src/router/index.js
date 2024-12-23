@@ -10,6 +10,7 @@ import SampleCheckboxWrapper from '@/components/sample/SampleCheckboxWrapper.vue
 import SampleFormBox from '@/components/sample/SampleFormBox.vue';
 import SampleFormItem from '@/components/sample/SampleFormItem.vue';
 import SampleTextField from '@/components/sample/SampleTextField.vue';
+import SampleTextArea from '@/components/sample/SampleTextArea.vue';
 
 const routes = [
   {
@@ -61,6 +62,11 @@ const routes = [
         path: 'sample-text-field',
         name: 'sampleTextField',
         component: SampleTextField,
+      },
+      {
+        path: 'sample-text-Area',
+        name: 'sampleTextArea',
+        component: SampleTextArea,
       },
     ],
   },

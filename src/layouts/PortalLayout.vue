@@ -44,6 +44,7 @@
               <li @click="goToSampleFormBox">FromBox</li>
               <li @click="goToSampleFormItem">FromItem</li>
               <li @click="goToSampleTextField">TextField</li>
+              <li @click="goToSampleTextArea">TextArea</li>
               <li @click="goToSampleQueryInfo">QueryInfo</li>
             </ul>
           </div>
@@ -108,6 +109,9 @@ export default {
     const goToSampleTextField = () => {
       router.push({ name: 'sampleTextField' });
     };
+    const goToSampleTextArea = () => {
+      router.push({ name: 'sampleTextArea' });
+    };
     return {
       fileName,
       goToSampleQueryInfo,
@@ -118,6 +122,7 @@ export default {
       goToSampleFormBox,
       goToSampleFormItem,
       goToSampleTextField,
+      goToSampleTextArea,
     };
   },
 };

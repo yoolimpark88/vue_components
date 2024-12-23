@@ -9,10 +9,6 @@
       </div>
       <div class="mt-5 text-sm">결과 : {{ value }}</div>
 
-      <sc-form-box>
-        <sc-form-item>test</sc-form-item>
-      </sc-form-box>
-
       <sc-code-highlight
         template='
   <sc-text-field placeholder="입력해주세요" v-model="value" />
@@ -148,7 +144,7 @@
       />
     </sc-sample-box>
 
-    <sc-sample-box>
+    <sc-sample-box title="mask">
       <template #description>
         <div>
           Mask 표현식입니다. #(숫자), A(대문자), a(소문자), N(숫자/대문자), n(숫자/소문자)와
@@ -160,8 +156,84 @@
         </div>
       </template>
       <sc-form-box col="1">
-        <sc-form-item label="숫자만 mask='number'"></sc-form-item>
+        <sc-form-item label="숫자만 mask='number'">
+          <div class="flex items-center gap-5">
+            <sc-text-field placeholder="숫자" v-model="mask.number" mask="number" />
+            <div class="text-sm">결과 : {{ mask.number }}</div>
+          </div>
+        </sc-form-item>
+        <sc-form-item label="영어/숫자만 mask='english'">
+          <div class="flex items-center gap-5">
+            <sc-text-field placeholder="알파벳, 숫자" v-model="mask.english" mask="english" />
+            <div class="text-sm">결과 : {{ mask.english }}</div>
+          </div>
+        </sc-form-item>
+        <sc-form-item label="한글/숫자만 mask='korean'">
+          <div class="flex items-center gap-5">
+            <sc-text-field placeholder="한글, 숫자" v-model="mask.korean" mask="korean" />
+            <div class="text-sm">결과 : {{ mask.korean }}</div>
+          </div>
+        </sc-form-item>
+        <sc-form-item label="정규식<br/>mask='/[0-9]+/'">
+          <div class="flex items-center gap-5">
+            <sc-text-field
+              placeholder="정규식 숫자만 /[0-9]+/"
+              v-model="mask.value1"
+              mask="/[0-9]+/"
+            />
+            <div class="결과">결과 : {{ mask.value1 }}</div>
+          </div>
+        </sc-form-item>
+        <sc-form-item label="표현식<br/>mask='####'">
+          <div class="flex items-center gap-5">
+            <sc-text-field placeholder="숫자 최대 4개" v-model="mask.value2" mask="####" />
+            <div class="text-sm">결과 : {{ mask.value2 }}</div>
+          </div>
+        </sc-form-item>
+        <sc-form-item label="표현식<br/>mask='aAaAaA'">
+          <div class="flex items-center gap-5">
+            <sc-text-field
+              placeholder="소문자, 대문자, 소문자, 대문자, 소문자, 대문자"
+              v-model="mask.value3"
+              mask="aAaAaA"
+            />
+            <div class="결과">결과 : {{ mask.value3 }}</div>
+          </div>
+        </sc-form-item>
+        <sc-form-item label="표현식<br/>mask=###aaa">
+          <div class="flex items-center gap-5">
+            <sc-text-field placeholder="숫자3개,소문자3개" v-model="mask.value4" mask="###aaa" />
+            <div class="text-sm">결과 : {{ mask.value4 }}</div>
+          </div>
+        </sc-form-item>
       </sc-form-box>
+
+      <sc-code-highlight
+        template='
+<sc-text-field placeholder="숫자" v-model="mask.number" mask="number" />
+<sc-text-field placeholder="알파벳, 숫자" v-model="mask.english" mask="english" />
+<sc-text-field placeholder="한글, 숫자" v-model="mask.korean" mask="korean" />
+<sc-text-field placeholder="정규식 숫자만 /[0-9]+/" v-model="mask.value1" mask="/[0-9]+/" />
+<sc-text-field placeholder="숫자 최대 4개" v-model="mask.value2" mask="####" />
+<sc-text-field placeholder="소문자, 대문자, 소문자, 대문자, 소문자, 대문자" v-model="mask.value3" mask="aAaAaA" />
+<sc-text-field placeholder="숫자3개,소문자3개" v-model="mask.value4" mask="###aaa" />
+'
+        script="export default {
+  data() {
+    return {
+      mask: {
+        number: '',
+        english: '',
+        korean: '',
+        value1: '',
+        value2: '',
+        value3: '',
+        value4: '',
+      },
+    };
+  },
+};"
+      />
     </sc-sample-box>
   </div>
 </template>
