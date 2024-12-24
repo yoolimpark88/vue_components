@@ -11,6 +11,7 @@ import SampleFormBox from '@/components/sample/SampleFormBox.vue';
 import SampleFormItem from '@/components/sample/SampleFormItem.vue';
 import SampleTextField from '@/components/sample/SampleTextField.vue';
 import SampleTextArea from '@/components/sample/SampleTextArea.vue';
+import SampleIcon from '@/components/sample/SampleIcon.vue';
 
 const routes = [
   {
@@ -67,6 +68,11 @@ const routes = [
         path: 'sample-text-Area',
         name: 'sampleTextArea',
         component: SampleTextArea,
+      },
+      {
+        path: 'sample-icon',
+        name: 'sampleIcon',
+        component: SampleIcon,
       },
     ],
   },
