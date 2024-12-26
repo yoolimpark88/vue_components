@@ -12,6 +12,7 @@ import SampleFormItem from '@/components/sample/SampleFormItem.vue';
 import SampleTextField from '@/components/sample/SampleTextField.vue';
 import SampleTextArea from '@/components/sample/SampleTextArea.vue';
 import SampleIcon from '@/components/sample/SampleIcon.vue';
+import SampleSearchBox from '@/components/sample/SampleSearchBox.vue';
 
 const routes = [
   {
@@ -73,6 +74,11 @@ const routes = [
         path: 'sample-icon',
         name: 'sampleIcon',
         component: SampleIcon,
+      },
+      {
+        path: 'sample-search-box',
+        name: 'sampleSearchBox',
+        component: SampleSearchBox,
       },
     ],
   },
