@@ -13,22 +13,80 @@
       />
     </sc-sample-box>
 
-    <!--<sc-sample-box title="Type">
+    <sc-sample-box title="Type">
       <template #description>아이콘 종류를 선택합니다.</template>
-      <sc-search-box></sc-search-box>
-    </sc-sample-box>-->
+      <sc-search-box>
+        <sc-search-item label="Search">
+          <sc-text-field
+            medium
+            searchable
+            clearable
+            v-model="searchText"
+            placeholder="Search icons..."
+          />
+        </sc-search-item>
+        <sc-search-item label="Color" span="2">
+          <div class="flex items-center">
+            <sc-radio v-model="isPreset" :value="true">Preset</sc-radio>
+            <sc-radio v-model="isPreset" :value="true">Code</sc-radio>
+            <sc-dropdown
+              :item="colors"
+              v-model="color"
+              medium
+              class="ml-3 w-[200px]"
+              :disabled="!isPreset"
+            />
+            <sc-text-field
+              :disabled="isPreset"
+              v-model="colorCode"
+              class="ml-3 w-[200px]"
+              placeholder="#000"
+              medium
+            />
+          </div>
+        </sc-search-item>
+        <sc-search-item label="Size">
+          <div class="flex items-center">
+            <sc-radio v-model="size" value="small">small</sc-radio>
+            <sc-radio v-model="size" value="medium">medium</sc-radio>
+            <sc-radio v-model="size" value="large">large</sc-radio>
+          </div>
+        </sc-search-item>
+      </sc-search-box>
+      <div class="mb-5"></div>
+      <div class="flex flex-wrap gap-5">
+        <div
+          class="sc-icon-sample cursor-pointer"
+          v-for="icon in filteredIcons"
+          :key="icon"
+          @click="copyIcon(icon)"
+          @mouseleave="resetCopyTooltip(icon)"
+        >
+          <sc-icon :type="icon" :size="size" :color="calcColor" />
+          <span class="icon-name">{{ icon }}</span>
+          <div class="copy">
+            <div v-if="tooltip[icon]" class="text-amber-400">Copied!</div>
+            <div v-else>Copy Icon</div>
+          </div>
+        </div>
+      </div>
+    </sc-sample-box>
   </div>
 </template>
 
 <script>
 import ScIcon from '@/components/common/ScIcon.vue';
 import ScSampleBox from '@/components/common/ScSampleBox.vue';
+import ScSearchBox from '@/components/common/ScSearchBox.vue';
+import ScSearchItem from '@/components/common/ScSearchItem.vue';
 import ScCodeHighlight from '@/components/common/ScCodeHighlight.vue';
 
 export default {
   name: 'SampleIcon',
   components: {
     ScIcon,
+    ScSearchBox,
+    ScSearchItem,
     ScSampleBox,
     ScCodeHighlight,
   },

@@ -47,6 +47,7 @@
               <li @click="goToSampleTextArea">TextArea</li>
               <li @click="goToSampleSearchBox">SearchBox</li>
               <li @click="goToSampleIcon">Icon</li>
+              <li @click="goToSampleDropdown">Dropdown</li>
               <li @click="goToSampleQueryInfo">QueryInfo</li>
             </ul>
           </div>
@@ -120,6 +121,9 @@ export default {
     const goToSampleIcon = () => {
       router.push({ name: 'sampleIcon' });
     };
+    const goToSampleDropdown = () => {
+      router.push({ name: 'sampleDropdown' });
+    };
     return {
       fileName,
       goToSampleQueryInfo,
@@ -133,6 +137,7 @@ export default {
       goToSampleTextArea,
       goToSampleSearchBox,
       goToSampleIcon,
+      goToSampleDropdown,
     };
   },
 };
