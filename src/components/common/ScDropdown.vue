@@ -54,7 +54,7 @@
           ]"
         >
           <span v-if="searchText.trim() === ''">{{ toText(item) }}</span>
-          <span v-if="searchText.trim() === ''" v-html="toTextSearch(item)"></span>
+          <span v-if="searchText.trim() !== ''" v-html="toTextSearch(item)"></span>
         </div>
       </div>
     </div>
@@ -241,9 +241,9 @@ export default {
         this.selectItem(this.filteredItems[0]);
         this.onSearchFocus(false);
       }
-      // 키모드로 이동하여 준선택 단계
+      // 키보드로 이동하여 준선택 단계
       else if (this.searchSelectedIdx !== -1) {
-        this.selectItem(this.filteredItem[this.searchSelectedIdx]);
+        this.selectItem(this.filteredItems[this.searchSelectedIdx]);
         this.onSearchFocus(false);
       }
     },
