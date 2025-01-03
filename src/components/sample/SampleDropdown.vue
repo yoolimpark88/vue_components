@@ -108,6 +108,118 @@
 };"
       />
     </sc-sample-box>
+
+    <sc-sample-box title="item 항목이 Object 형태인 경우">
+      <template v-slot:description>
+        item의 키 값인 value와 라벨 값인 text로 select 영역을 만듭니다.
+      </template>
+      <div class="w-[150px]">
+        <sc-dropdown :items="items" v-model="value" @change="onChange" />
+      </div>
+      <div class="mt-5 text-sm">결과 : {{ value }}</div>
+
+      <sc-code-highlight
+        template='<div class="w-[150px]">
+  <sc-dropdown :items="items" v-model="value" @change="onChange" />
+</div>
+<div class="mt-5 text-sm">결과 : {{ value }}</div>'
+        script="export default {
+  date() {
+    return {
+      items: [
+        { value: 'dropdown1', text: '드롭다운1' },
+        { value: 'dropdown2', text: '드롭다운2' },
+        { value: 'dropdown3', text: '드롭다운3' },
+        { value: 'dropdown4', text: '드롭다운4' },
+        { value: 'dropdown5', text: '드롭다운5' },
+      ],
+      value: '',
+    };
+  },
+};"
+      />
+    </sc-sample-box>
+
+    <sc-sample-box title="item의 Custom Key 사용">
+      <template v-slot:description>
+        기본 키값이 아닌 custom하게 Object의 키 값을 지정할 수 있습니다. 아래 예제는 key, code 라벨
+        값은 name으로 지정했습니다.
+      </template>
+      <div class="w-[150px]">
+        <sc-dropdown
+          :items="items2"
+          v-model="value2"
+          item-value="code"
+          item-text="name"
+          @change="onChange"
+        />
+      </div>
+      <div class="mt-5 text-sm">결과 : {{ value2 }}</div>
+
+      <sc-code-highlight
+        template='<div class="w-[150px]">
+  <sc-dropdown
+    :items="items2"
+    v-model="value2"
+    item-value="code"
+    item-text="name"
+    @change="onChange"
+  />
+</div>
+<div class="mt-5 text-sm">결과 : {{ value2 }}</div>'
+        script="export default {
+  date() {
+    return {
+      items2: [
+        { code: 'A', name: 'A CODE' },
+        { code: 'B', name: 'B CODE' },
+        { code: 'C', name: 'C CODE' },
+      ],
+      value2: '',
+    };
+  },
+};"
+      />
+    </sc-sample-box>
+
+    <sc-sample-box title="searchable">
+      <template v-slot:description>
+        <div>:searchable - 선택 가능한 항목을 검색 가능</div>
+        <div>- 키보드 Up, Down, Enter키를 이용하여 선택 가능</div>
+        <div>- 검색어를 입력하여 조건이 한개인 경우 Enter키로 선택</div>
+      </template>
+      <div class="w-[150px]">
+        <sc-dropdown
+          :items="simpleItems"
+          v-model="dfValue1"
+          searchable
+          default-value
+          @change="onChange"
+        />
+      </div>
+      <div class="mt-5 text-sm">결과 : {{ dfValue1 }}</div>
+
+      <sc-code-highlight
+        template='<div class="w-[150px]">
+  <sc-dropdown
+    :items="simpleItems"
+    v-model="dfValue1"
+    searchable
+    default-value
+    @change="onChange"
+  />
+</div>
+<div class="mt-5 text-sm">결과 : {{ dfValue1 }}</div>'
+        script="export default {
+  date() {
+    return {
+      simpleItems: ['item1', 'item2', 'item3', 'item4', 'item5', 'item6', 'item7'],
+      dfValue1: '',
+    };
+  },
+};"
+      />
+    </sc-sample-box>
   </div>
 </template>
 

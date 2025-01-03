@@ -48,6 +48,8 @@
               <li @click="goToSampleSearchBox">SearchBox</li>
               <li @click="goToSampleIcon">Icon</li>
               <li @click="goToSampleDropdown">Dropdown</li>
+              <li @click="goToSampleMultiDropdown">MultiDropdown</li>
+              <li @click="goToSampleRadio">Radio</li>
               <li @click="goToSampleQueryInfo">QueryInfo</li>
             </ul>
           </div>
@@ -124,6 +126,12 @@ export default {
     const goToSampleDropdown = () => {
       router.push({ name: 'sampleDropdown' });
     };
+    const goToSampleMultiDropdown = () => {
+      router.push({ name: 'sampleMultiDropdown' });
+    };
+    const goToSampleRadio = () => {
+      router.push({ name: 'sampleRadio' });
+    };
     return {
       fileName,
       goToSampleQueryInfo,
@@ -138,6 +146,8 @@ export default {
       goToSampleSearchBox,
       goToSampleIcon,
       goToSampleDropdown,
+      goToSampleMultiDropdown,
+      goToSampleRadio,
     };
   },
 };
@@ -154,7 +164,7 @@ h3 {
       padding: 0;
       li {
         display: inline-block;
-        margin: 0 10px;
+        margin: 5px 10px;
         cursor: pointer;
         a {
           color: $SC-PRIMARY-COLOR-DEEP-GREEN;
