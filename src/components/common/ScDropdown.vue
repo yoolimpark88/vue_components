@@ -418,7 +418,7 @@ export default {
   left: -1px;
   border: 1px solid $SC-PRIMARY-COLOR-LIGHT-BLUE;
   background-color: $SC-COLOR-WHITE;
-  width: calc(100% - 2px);
+  width: calc(100% + 2px);
   overflow-y: auto; // dropdown의 옵션값들이 모달창 밖에서 보여지지 않는 부분 보완.
   div {
     cursor: pointer;
