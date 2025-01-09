@@ -14,6 +14,9 @@ import SampleTextArea from '@/components/sample/SampleTextArea.vue';
 import SampleIcon from '@/components/sample/SampleIcon.vue';
 import SampleSearchBox from '@/components/sample/SampleSearchBox.vue';
 import SampleDropdown from '@/components/sample/SampleDropdown.vue';
+import SampleMultiDropdown from '@/components/sample/SampleMultiDropdown.vue';
+import SampleRadio from '@/components/sample/SampleRadio.vue';
+import SampleToggleButton from '@/components/sample/SampleToggleButton.vue';
 
 const routes = [
   {
@@ -85,6 +88,21 @@ const routes = [
         path: 'sample-dropdown',
         name: 'sampleDropdown',
         component: SampleDropdown,
+      },
+      {
+        path: 'sample-multi-dropdown',
+        name: 'sampleMultiDropdown',
+        component: SampleMultiDropdown,
+      },
+      {
+        path: 'sample-radio',
+        name: 'sampleRadio',
+        component: SampleRadio,
+      },
+      {
+        path: 'sample-toggle-button',
+        name: 'sampleToggleButton',
+        component: SampleToggleButton,
       },
     ],
   },
