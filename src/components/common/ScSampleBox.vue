@@ -12,14 +12,14 @@
 </template>
 
 <script>
-import { useSlots } from "vue";
+import { useSlots } from 'vue';
 
 export default {
-  name: "ScSampleBox",
+  name: 'ScSampleBox',
   props: {
     title: {
       type: String,
-      default: "Basic Usage",
+      default: 'Basic Usage',
     },
   },
   setup() {
@@ -35,6 +35,8 @@ export default {
 .sc-sample-box {
   border: 2px solid $SC-COLOR-GRAY-60;
   padding: 20px;
+  width: 100%;
+  max-width: 1700px;
   .title {
     font-size: 2rem;
     height: 40px;

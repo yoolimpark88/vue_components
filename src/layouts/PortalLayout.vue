@@ -51,6 +51,7 @@
               <li @click="goToSampleMultiDropdown">MultiDropdown</li>
               <li @click="goToSampleRadio">Radio</li>
               <li @click="goToSampleToggleButton">ToggleButton</li>
+              <li @click="goToSampleTab">Tab</li>
               <li @click="goToSampleQueryInfo">QueryInfo</li>
             </ul>
           </div>
@@ -136,6 +137,9 @@ export default {
     const goToSampleToggleButton = () => {
       router.push({ name: 'sampleToggleButton' });
     };
+    const goToSampleTab = () => {
+      router.push({ name: 'sampleTab' });
+    };
     return {
       fileName,
       goToSampleQueryInfo,
@@ -153,6 +157,7 @@ export default {
       goToSampleMultiDropdown,
       goToSampleRadio,
       goToSampleToggleButton,
+      goToSampleTab,
     };
   },
 };
