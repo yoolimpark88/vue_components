@@ -201,10 +201,10 @@ export default {
       height: 40px;
       max-width: 250px;
       &.active {
-        background-color: $SC-PRIMARY-HOVER-COLOR-LIGHT-BLUE;
+        background-color: $SC-PRIMARY-COLOR-LIGHT-BLUE;
         color: $SC-COLOR-WHITE;
         &:hover {
-          background-color: $SC-PRIMARY-COLOR-LIGHT-BLUE;
+          background-color: $SC-PRIMARY-HOVER-COLOR-LIGHT-BLUE;
         }
         &:after {
           content: '';

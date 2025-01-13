@@ -63,8 +63,7 @@
           :key="idx"
           :label="`TAB Navigation ${idx + 1}`"
           :idx="idx"
-        >
-          탭 {{ idx + 1 }}
+          >탭 {{ idx + 1 }} 내용
         </sc-tab-content>
       </sc-tab-box>
 

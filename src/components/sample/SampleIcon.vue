@@ -2,9 +2,9 @@
   <div>
     <sc-sample-box>
       <template #description>type과 color를 지정합니다</template>
-      <sc-icon type="star_01" color="yellow" />
-      <sc-icon type="star_01" color="yellow" />
-      <sc-icon type="star_01" color="yellow" />
+      <sc-icon type="star" color="yellow" />
+      <sc-icon type="star" color="yellow" />
+      <sc-icon type="star" color="yellow" />
 
       <sc-code-highlight
         template='<sc-icon type="star" color="yellow" />
@@ -28,9 +28,9 @@
         <sc-search-item label="Color" span="2">
           <div class="flex items-center">
             <sc-radio v-model="isPreset" :value="true">Preset</sc-radio>
-            <sc-radio v-model="isPreset" :value="true">Code</sc-radio>
+            <sc-radio v-model="isPreset" :value="false">Code</sc-radio>
             <sc-dropdown
-              :item="colors"
+              :items="colors"
               v-model="color"
               medium
               class="ml-3 w-[200px]"
@@ -65,7 +65,7 @@
           <sc-icon :type="icon" :size="size" :color="calcColor" />
           <span class="icon-name">{{ icon }}</span>
           <div class="copy">
-            <div v-if="tooltip[icon]" class="text-amber-400">Copied!</div>
+            <div v-if="tooltips[icon]" class="text-amber-400">Copied!</div>
             <div v-else>Copy Icon</div>
           </div>
         </div>
@@ -76,28 +76,34 @@
 
 <script>
 import ScIcon from '@/components/common/ScIcon.vue';
+import ScRadio from '@/components/common/ScRadio.vue';
+import ScTextField from '@/components/common/ScTextField.vue';
 import ScSampleBox from '@/components/common/ScSampleBox.vue';
 import ScSearchBox from '@/components/common/ScSearchBox.vue';
 import ScSearchItem from '@/components/common/ScSearchItem.vue';
 import ScCodeHighlight from '@/components/common/ScCodeHighlight.vue';
+import ScDropdown from '@/components/common/ScDropdown.vue';
 
 export default {
   name: 'SampleIcon',
   components: {
     ScIcon,
+    ScRadio,
+    ScTextField,
     ScSearchBox,
     ScSearchItem,
     ScSampleBox,
     ScCodeHighlight,
+    ScDropdown,
   },
   methods: {
     copyIcon(icon) {
       const text = `<sc-icon type="${icon}" color="${this.calcColor}" size="${this.size}" />`;
       this.$util.copyToClipboard(text);
-      this.tooltip[icon] = true;
+      this.tooltips[icon] = true;
     },
     resetCopyTooltip(icon) {
-      this.tooltip[icon] = false;
+      this.tooltips[icon] = false;
     },
   },
   computed: {
@@ -118,8 +124,8 @@ export default {
       colors: ['blue', 'light-blue', 'dark-gray'],
       color: 'dark-gray',
       colorCode: '#17B675',
-      tooltip: {},
-      icons: ['star_01'],
+      tooltips: {},
+      icons: ['star', 'chevron-right', 'chevron-left'],
     };
   },
 };
@@ -153,6 +159,7 @@ export default {
     left: 5px;
     right: 5px;
     bottom: 5px;
+    display: none;
     background: $SC-PRIMARY-COLOR-COOL-GRAY;
     font-size: 12px;
     color: $SC-COLOR-WHITE;
