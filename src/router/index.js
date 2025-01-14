@@ -18,6 +18,8 @@ import SampleMultiDropdown from '@/components/sample/SampleMultiDropdown.vue';
 import SampleRadio from '@/components/sample/SampleRadio.vue';
 import SampleToggleButton from '@/components/sample/SampleToggleButton.vue';
 import SampleTab from '@/components/sample/SampleTab.vue';
+import SampleTag from '@/components/sample/SampleTag.vue';
+import SampleBadge from '@/components/sample/SampleBadge.vue';
 
 const routes = [
   {
@@ -109,6 +111,16 @@ const routes = [
         path: 'sample-tab',
         name: 'sampleTab',
         component: SampleTab,
+      },
+      {
+        path: 'sample-tag',
+        name: 'sampleTag',
+        component: SampleTag,
+      },
+      {
+        path: 'sample-badge',
+        name: 'sampleBadge',
+        component: SampleBadge,
       },
     ],
   },

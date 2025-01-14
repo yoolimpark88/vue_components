@@ -52,6 +52,8 @@
               <li @click="goToSampleRadio">Radio</li>
               <li @click="goToSampleToggleButton">ToggleButton</li>
               <li @click="goToSampleTab">Tab</li>
+              <li @click="goToSampleTag">Tag</li>
+              <li @click="goToSampleBadge">Badge</li>
               <li @click="goToSampleQueryInfo">QueryInfo</li>
             </ul>
           </div>
@@ -140,6 +142,12 @@ export default {
     const goToSampleTab = () => {
       router.push({ name: 'sampleTab' });
     };
+    const goToSampleBadge = () => {
+      router.push({ name: 'sampleBadge' });
+    };
+    const goToSampleTag = () => {
+      router.push({ name: 'sampleTag' });
+    };
     return {
       fileName,
       goToSampleQueryInfo,
@@ -158,6 +166,8 @@ export default {
       goToSampleRadio,
       goToSampleToggleButton,
       goToSampleTab,
+      goToSampleTag,
+      goToSampleBadge,
     };
   },
 };
