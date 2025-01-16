@@ -37,24 +37,40 @@
           <h2>Components</h2>
           <div class="items-list">
             <ul>
-              <li @click="goToSampleModal">Modal</li>
               <li @click="goToSampleButton">Button</li>
+              <li @click="goToSampleBadge">Badge</li>
               <li @click="goToSampleCheckbox">Checkbox</li>
               <li @click="goToSampleCheckboxWrapper">CheckboxWrapper</li>
-              <li @click="goToSampleFormBox">FromBox</li>
-              <li @click="goToSampleFormItem">FromItem</li>
-              <li @click="goToSampleTextField">TextField</li>
-              <li @click="goToSampleTextArea">TextArea</li>
-              <li @click="goToSampleSearchBox">SearchBox</li>
-              <li @click="goToSampleIcon">Icon</li>
               <li @click="goToSampleDropdown">Dropdown</li>
               <li @click="goToSampleMultiDropdown">MultiDropdown</li>
+              <li @click="goToSampleIcon">Icon</li>
+              <li @click="goToSampleInputChip">inputChip</li>
               <li @click="goToSampleRadio">Radio</li>
+              <li @click="goToSampleTable">Table</li>
+              <li @click="goToSampleTextArea">TextArea</li>
+              <li @click="goToSampleTextField">TextField</li>
               <li @click="goToSampleToggleButton">ToggleButton</li>
+            </ul>
+          </div>
+          <h2>Components.exp</h2>
+          <div class="items-list">
+            <ul>
+              <li><span>*</span>Accordion</li>
+              <li><span>*</span>File Form</li>
+              <li><span>*</span>ColorPicker</li>
+              <li><span>*</span>DatePicker</li>
+              <li><span>*</span>DateRangePicker</li>
+              <li @click="goToSampleFormBox">FormBox</li>
+              <li @click="goToSampleFormItem">FormItem</li>
+              <li @click="goToSampleModal">Modal</li>
+              <li><span>*</span>pagination</li>
+              <li @click="goToSampleQueryInfo">QueryInfo</li>
+              <li><span>*</span>ScrollSpy</li>
+              <li @click="goToSampleSearchBox">SearchBox</li>
               <li @click="goToSampleTab">Tab</li>
               <li @click="goToSampleTag">Tag</li>
-              <li @click="goToSampleBadge">Badge</li>
-              <li @click="goToSampleQueryInfo">QueryInfo</li>
+              <li><span>*</span>Tree</li>
+              <li><span>*</span>Validator</li>
             </ul>
           </div>
         </div>
@@ -85,7 +101,7 @@ export default {
       if (parts.length > 0) {
         fileName.value = parts.pop(); // 마지막 부분이 파일명
       } else {
-        fileName.value = 'Thinking in components with Vue.js'; // 예시: 루트 경로일 경우 "홈페이지"로 표시
+        fileName.value = 'Use in components with Vue.js 3.x'; // 예시: 루트 경로일 경우 "홈페이지"로 표시
       }
     };
 
@@ -148,6 +164,12 @@ export default {
     const goToSampleTag = () => {
       router.push({ name: 'sampleTag' });
     };
+    const goToSampleInputChip = () => {
+      router.push({ name: 'sampleInputChip' });
+    };
+    const goToSampleTable = () => {
+      router.push({ name: 'sampleTable' });
+    };
     return {
       fileName,
       goToSampleQueryInfo,
@@ -168,6 +190,8 @@ export default {
       goToSampleTab,
       goToSampleTag,
       goToSampleBadge,
+      goToSampleInputChip,
+      goToSampleTable,
     };
   },
 };
@@ -184,10 +208,14 @@ h3 {
       padding: 0;
       li {
         display: inline-block;
-        margin: 5px 10px;
+        margin: 10px 15px;
         cursor: pointer;
         a {
           color: $SC-PRIMARY-COLOR-DEEP-GREEN;
+        }
+        span {
+          color: red;
+          font-size: 20px;
         }
       }
     }

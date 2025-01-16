@@ -20,6 +20,8 @@ import SampleToggleButton from '@/components/sample/SampleToggleButton.vue';
 import SampleTab from '@/components/sample/SampleTab.vue';
 import SampleTag from '@/components/sample/SampleTag.vue';
 import SampleBadge from '@/components/sample/SampleBadge.vue';
+import SampleInputChip from '@/components/sample/SampleInputChip.vue';
+import SampleTable from '@/components/sample/SampleTable.vue';
 
 const routes = [
   {
@@ -121,6 +123,16 @@ const routes = [
         path: 'sample-badge',
         name: 'sampleBadge',
         component: SampleBadge,
+      },
+      {
+        path: 'sample-input-chip',
+        name: 'sampleInputChip',
+        component: SampleInputChip,
+      },
+      {
+        path: 'sample-table',
+        name: 'sampleTable',
+        component: SampleTable,
       },
     ],
   },
