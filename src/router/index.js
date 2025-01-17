@@ -22,6 +22,7 @@ import SampleTag from '@/components/sample/SampleTag.vue';
 import SampleBadge from '@/components/sample/SampleBadge.vue';
 import SampleInputChip from '@/components/sample/SampleInputChip.vue';
 import SampleTable from '@/components/sample/SampleTable.vue';
+import SampleAccordion from '@/components/sample/SampleAccordion.vue';
 
 const routes = [
   {
@@ -133,6 +134,11 @@ const routes = [
         path: 'sample-table',
         name: 'sampleTable',
         component: SampleTable,
+      },
+      {
+        path: 'sample-accordion',
+        name: 'sampleAccordion',
+        component: SampleAccordion,
       },
     ],
   },

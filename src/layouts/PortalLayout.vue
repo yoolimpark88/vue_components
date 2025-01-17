@@ -6,8 +6,8 @@
       <div class="main-container">
         <h1>{{ fileName }}</h1>
         <div class="main-content-wrap flex mt-5">
-          <div>
-            <img class="img-main" src="@/assets/img/img-main.webp" />
+          <div class="img-main">
+            <img src="@/assets/img/img-main.webp" />
           </div>
           <div class="txt-main">
             <p class="tit">Vite</p>
@@ -55,7 +55,7 @@
           <h2>Components.exp</h2>
           <div class="items-list">
             <ul>
-              <li><span>*</span>Accordion</li>
+              <li @click="goToSampleAccordion"><span>*</span>Accordion</li>
               <li><span>*</span>File Form</li>
               <li><span>*</span>ColorPicker</li>
               <li><span>*</span>DatePicker</li>
@@ -71,6 +71,28 @@
               <li @click="goToSampleTag">Tag</li>
               <li><span>*</span>Tree</li>
               <li><span>*</span>Validator</li>
+            </ul>
+          </div>
+          <h2>Util</h2>
+          <div class="items-list">
+            <ul>
+              <li><span>*</span>Alert</li>
+              <li><span>*</span>Confirm</li>
+              <li><span>*</span>Tooltip</li>
+              <li><span>*</span>Clipboard</li>
+              <li><span>*</span>Number</li>
+              <li><span>*</span>Locale</li>
+              <li><span>*</span>i18n</li>
+              <li><span>*</span>Color</li>
+            </ul>
+          </div>
+          <h2>Template</h2>
+          <div class="items-list">
+            <ul>
+              <li><span>*</span>Infobox</li>
+              <li><span>*</span>Grid</li>
+              <li><span>*</span>ModalTemplate</li>
+              <li><span>*</span>Popup</li>
             </ul>
           </div>
         </div>
@@ -170,6 +192,9 @@ export default {
     const goToSampleTable = () => {
       router.push({ name: 'sampleTable' });
     };
+    const goToSampleAccordion = () => {
+      router.push({ name: 'sampleAccordion' });
+    };
     return {
       fileName,
       goToSampleQueryInfo,
@@ -192,12 +217,26 @@ export default {
       goToSampleBadge,
       goToSampleInputChip,
       goToSampleTable,
+      goToSampleAccordion,
     };
   },
 };
 </script>
 
 <style scoped lang="scss">
+.main-container {
+  .main-content-wrap {
+    display: flex;
+    position: relative;
+    width: 100%;
+    .img-main {
+      width: 30%;
+    }
+    .txt-main {
+      width: 70%;
+    }
+  }
+}
 h3 {
   margin: 40px 0 0;
 }
@@ -208,7 +247,7 @@ h3 {
       padding: 0;
       li {
         display: inline-block;
-        margin: 10px 15px;
+        margin: 7px 15px;
         cursor: pointer;
         a {
           color: $SC-PRIMARY-COLOR-DEEP-GREEN;
