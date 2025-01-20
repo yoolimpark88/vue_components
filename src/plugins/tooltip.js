@@ -12,8 +12,8 @@ export default {
       VueTippy, // optional
       {
         defaultProps,
-        directive: 'tippy',
-        //directive: 'tooltip',
+        //directive: 'tippy',
+        directive: 'tooltip',
         component: 'tippy',
       },
     );

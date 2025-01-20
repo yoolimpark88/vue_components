@@ -1,27 +1,9 @@
 import { useTippy, roundArrow } from 'vue-tippy';
 import { uniqueId } from 'lodash';
-import 'tippy.js/dist/tippy.css';
 
 let tooltip = {};
 
-const defaultProps = {
-  delay: [0, null],
-  allowHTML: true,
-};
-
 export default {
-  install(app) {
-    app.use(
-      VueTippy, // optional
-      {
-        defaultProps,
-        derective: 'tippy',
-        derective: 'tooltip',
-        component: 'tippy',
-      },
-    );
-  },
-
   mounted(el, binding) {
     const uuid = uniqueId('tooltip-');
     el._uid = uuid;
@@ -42,7 +24,7 @@ export default {
 
     const option = {
       placement,
-      time,
+      theme,
       content: binding.value,
     };
 
