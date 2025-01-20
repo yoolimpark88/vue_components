@@ -55,8 +55,8 @@
           <h2>Components.exp</h2>
           <div class="items-list">
             <ul>
-              <li @click="goToSampleAccordion"><span>*</span>Accordion</li>
-              <li><span>*</span>File Form</li>
+              <li @click="goToSampleAccordion">Accordion</li>
+              <li @click="goToSampleFileForm">File Form</li>
               <li><span>*</span>ColorPicker</li>
               <li><span>*</span>DatePicker</li>
               <li><span>*</span>DateRangePicker</li>
@@ -78,7 +78,7 @@
             <ul>
               <li><span>*</span>Alert</li>
               <li><span>*</span>Confirm</li>
-              <li><span>*</span>Tooltip</li>
+              <li @click="goToSampleTooltip">Tooltip</li>
               <li><span>*</span>Clipboard</li>
               <li><span>*</span>Number</li>
               <li><span>*</span>Locale</li>
@@ -195,6 +195,12 @@ export default {
     const goToSampleAccordion = () => {
       router.push({ name: 'sampleAccordion' });
     };
+    const goToSampleFileForm = () => {
+      router.push({ name: 'sampleFileForm' });
+    };
+    const goToSampleTooltip = () => {
+      router.push({ name: 'sampleTooltip' });
+    };
     return {
       fileName,
       goToSampleQueryInfo,
@@ -218,6 +224,8 @@ export default {
       goToSampleInputChip,
       goToSampleTable,
       goToSampleAccordion,
+      goToSampleFileForm,
+      goToSampleTooltip,
     };
   },
 };

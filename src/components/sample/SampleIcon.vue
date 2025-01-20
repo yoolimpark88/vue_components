@@ -125,7 +125,17 @@ export default {
       color: 'dark-gray',
       colorCode: '#17B675',
       tooltips: {},
-      icons: ['star', 'chevron-right', 'chevron-left', 'close_01', 'rstr-btn', 'mx-btn'],
+      icons: [
+        'star',
+        'chevron-right',
+        'chevron-left',
+        'close_01',
+        'rstr-btn',
+        'mx-btn',
+        'plus',
+        'minus',
+        'infomation-circle',
+      ],
     };
   },
 };

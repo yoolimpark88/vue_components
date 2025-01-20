@@ -23,6 +23,8 @@ import SampleBadge from '@/components/sample/SampleBadge.vue';
 import SampleInputChip from '@/components/sample/SampleInputChip.vue';
 import SampleTable from '@/components/sample/SampleTable.vue';
 import SampleAccordion from '@/components/sample/SampleAccordion.vue';
+import SampleFileForm from '@/components/sample/SampleFileForm.vue';
+import SampleTooltip from '@/components/sample/utils/SampleTooltip.vue';
 
 const routes = [
   {
@@ -139,6 +141,16 @@ const routes = [
         path: 'sample-accordion',
         name: 'sampleAccordion',
         component: SampleAccordion,
+      },
+      {
+        path: 'sample-file-form',
+        name: 'sampleFileForm',
+        component: SampleFileForm,
+      },
+      {
+        path: 'sample-tooltip',
+        name: 'sampleTooltip',
+        component: SampleTooltip,
       },
     ],
   },
