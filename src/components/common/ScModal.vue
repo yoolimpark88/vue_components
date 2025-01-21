@@ -401,7 +401,7 @@ export default {
       width: fit-content;
       max-width: 900px;
       max-height: calc(100% - 60px);
-      .sc-modal-heade {
+      .sc-modal-head {
         button:first-of-type {
           display: none;
         }

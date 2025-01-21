@@ -76,8 +76,8 @@
           <h2>Util</h2>
           <div class="items-list">
             <ul>
-              <li @click="goToSampleAlert"><span>*</span>Alert</li>
-              <li><span>*</span>Confirm</li>
+              <li @click="goToSampleAlert">Alert</li>
+              <li @click="goToSampleConfirm">Confirm</li>
               <li @click="goToSampleTooltip">Tooltip</li>
               <li><span>*</span>Clipboard</li>
               <li><span>*</span>Number</li>
@@ -204,6 +204,9 @@ export default {
     const goToSampleAlert = () => {
       router.push({ name: 'sampleAlert' });
     };
+    const goToSampleConfirm = () => {
+      router.push({ name: 'sampleConfirm' });
+    };
     return {
       fileName,
       goToSampleQueryInfo,
@@ -230,6 +233,7 @@ export default {
       goToSampleFileForm,
       goToSampleTooltip,
       goToSampleAlert,
+      goToSampleConfirm,
     };
   },
 };

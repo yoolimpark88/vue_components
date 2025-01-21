@@ -26,6 +26,7 @@ import SampleAccordion from '@/components/sample/SampleAccordion.vue';
 import SampleFileForm from '@/components/sample/SampleFileForm.vue';
 import SampleTooltip from '@/components/sample/utils/SampleTooltip.vue';
 import SampleAlert from '@/components/sample/utils/SampleAlert.vue';
+import SampleConfirm from '@/components/sample/utils/SampleConfirm.vue';
 
 const routes = [
   {
@@ -157,6 +158,11 @@ const routes = [
         path: 'sample-alert',
         name: 'sampleAlert',
         component: SampleAlert,
+      },
+      {
+        path: 'sample-confirm',
+        name: 'sampleConfirm',
+        component: SampleConfirm,
       },
     ],
   },
