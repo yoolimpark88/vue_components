@@ -76,7 +76,7 @@
           <h2>Util</h2>
           <div class="items-list">
             <ul>
-              <li><span>*</span>Alert</li>
+              <li @click="goToSampleAlert"><span>*</span>Alert</li>
               <li><span>*</span>Confirm</li>
               <li @click="goToSampleTooltip">Tooltip</li>
               <li><span>*</span>Clipboard</li>
@@ -201,6 +201,9 @@ export default {
     const goToSampleTooltip = () => {
       router.push({ name: 'sampleTooltip' });
     };
+    const goToSampleAlert = () => {
+      router.push({ name: 'sampleAlert' });
+    };
     return {
       fileName,
       goToSampleQueryInfo,
@@ -226,6 +229,7 @@ export default {
       goToSampleAccordion,
       goToSampleFileForm,
       goToSampleTooltip,
+      goToSampleAlert,
     };
   },
 };

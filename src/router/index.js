@@ -25,6 +25,7 @@ import SampleTable from '@/components/sample/SampleTable.vue';
 import SampleAccordion from '@/components/sample/SampleAccordion.vue';
 import SampleFileForm from '@/components/sample/SampleFileForm.vue';
 import SampleTooltip from '@/components/sample/utils/SampleTooltip.vue';
+import SampleAlert from '@/components/sample/utils/SampleAlert.vue';
 
 const routes = [
   {
@@ -151,6 +152,11 @@ const routes = [
         path: 'sample-tooltip',
         name: 'sampleTooltip',
         component: SampleTooltip,
+      },
+      {
+        path: 'sample-alert',
+        name: 'sampleAlert',
+        component: SampleAlert,
       },
     ],
   },
