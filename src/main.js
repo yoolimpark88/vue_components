@@ -6,6 +6,7 @@ import router from './router'; // router 설정 import
 import { registerPlugins } from '@/plugins';
 
 import '@/style/tailwind.css';
+import '@/style/tooltip.scss';
 
 // Vue 인스턴스 생성 및 마운트
 const app = createApp(App);
