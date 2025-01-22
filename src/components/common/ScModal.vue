@@ -13,50 +13,30 @@
           'no-scroll': noScroll,
           'blue-tit': blueTitle,
         },
-      ]">
+      ]"
+    >
       <div
         ref="dragContainer"
         class="sc-modal-container"
-        :class="[
-          'sc-modal-container',
-          size,
-          { 'shadow-xl': transparent, transparent },
-        ]"
+        :class="['sc-modal-container', size, { 'shadow-xl': transparent, transparent }]"
         :style="customSize"
         @mousedown="startDrag"
         @mouseup="stopDrag"
-        @mousemove="onDrag">
+        @mousemove="onDrag"
+      >
         <!-- 헤드-->
         <div class="sc-modal-head drag-handle" @dblclick="toggleFullscreen">
           <span class="text-xl font-bold drag-handle">{{ title }}</span>
           <div class="flex items-center">
-            <button @click="toggleFullscreen" class="mr-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="w-6 h-6">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
-              </svg>
+            <button @click="toggleFullscreen" class="flex mr-3">
+              <sc-icon
+                :type="isFullscreen ? 'rstr-btn' : 'mx-btn'"
+                color="dark-gray"
+                custom-size="19"
+              />
             </button>
-            <button v-show="closeBtnShow" @click="clickCloseIcon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="w-6 h-6">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M6 18L18 6M6 6l12 12" />
-              </svg>
+            <button v-show="closeBtnShow" @click="clickCloseIcon" class="flex">
+              <sc-icon type="close_01" color="dark-gray" custom-size="18" />
             </button>
           </div>
         </div>
@@ -72,51 +52,51 @@
         <div class="sc-modal-drag-handler"></div>
 
         <!-- 리사이즈 핸들 -->
-        <div
-          class="resize-handle top"
-          @mousedown="(event) => startResize(event, 'top')"></div>
-        <div
-          class="resize-handle left"
-          @mousedown="(event) => startResize(event, 'left')"></div>
+        <div class="resize-handle top" @mousedown="(event) => startResize(event, 'top')"></div>
+        <div class="resize-handle left" @mousedown="(event) => startResize(event, 'left')"></div>
         <div
           class="resize-handle bottom"
-          @mousedown="(event) => startResize(event, 'bottom')"></div>
-        <div
-          class="resize-handle right"
-          @mousedown="(event) => startResize(event, 'right')"></div>
+          @mousedown="(event) => startResize(event, 'bottom')"
+        ></div>
+        <div class="resize-handle right" @mousedown="(event) => startResize(event, 'right')"></div>
         <div
           class="resize-handle bottom-right"
-          @mousedown="(event) => startResize(event, 'bottomRight')"></div>
+          @mousedown="(event) => startResize(event, 'bottomRight')"
+        ></div>
         <div
           class="resize-handle top-left"
-          @mousedown="(event) => startResize(event, 'topLeft')"></div>
+          @mousedown="(event) => startResize(event, 'topLeft')"
+        ></div>
         <div
           class="resize-handle bottom-left"
-          @mousedown="(event) => startResize(event, 'bottomLeft')"></div>
+          @mousedown="(event) => startResize(event, 'bottomLeft')"
+        ></div>
         <div
           class="resize-handle top-right"
-          @mousedown="(event) => startResize(event, 'topRight')"></div>
+          @mousedown="(event) => startResize(event, 'topRight')"
+        ></div>
       </div>
       <!--// 리사이즈 핸들 -->
     </div>
   </teleport>
 </template>
 <script>
-import { useSlots } from "vue";
+import { useSlots } from 'vue';
+import ScIcon from '@/components/common/ScIcon.vue';
 
 export default {
-  name: "ScModal",
-  emits: ["opened", "closed", "closeIcon"],
+  name: 'ScModal',
+  components: { ScIcon },
+  emits: ['opened', 'closed', 'closeIcon'],
   props: {
     title: {
       type: String,
-      default: "",
+      default: '',
     },
     size: {
       type: String,
-      default: "",
-      validator: (value) =>
-        ["", "full", "large", "medium", "small"].includes(value),
+      default: '',
+      validator: (value) => ['', 'full', 'large', 'medium', 'small'].includes(value),
     },
     width: {
       type: [String, Number],
@@ -173,7 +153,7 @@ export default {
       isOpen: false,
       isDragging: false,
       isResizing: false,
-      resizeDirection: "",
+      resizeDirection: '',
       startWidth: 0,
       startHeight: 0,
       startX: 0,
@@ -187,20 +167,22 @@ export default {
   computed: {
     customSize() {
       const style = {};
-      if (this.$util.isNotEmpty(this.width)) {
-        style.width = `${this.width}`.endsWith("px")
-          ? this.width
-          : `${this.width}px`;
-      }
-      if (this.$util.isNotEmpty(this.height)) {
-        style.height = `${this.height}`.endsWith("px")
-          ? this.height
-          : `${this.height}px`;
+      if (this.isFullscreen) {
+        style.width = '100vw';
+        style.height = '100vh';
+      } else {
+        if (this.$util.isNotEmpty(this.width)) {
+          style.width = `${this.width}`.endsWith('px') ? this.width : `${this.width}px`;
+        }
+        if (this.$util.isNotEmpty(this.height)) {
+          style.height = `${this.height}`.endsWith('px') ? this.height : `${this.height}px`;
+        }
       }
       return style;
     },
   },
   methods: {
+    // 전체화면 toggle
     toggleFullscreen() {
       const container = this.$refs.dragContainer;
 
@@ -214,13 +196,13 @@ export default {
         };
 
         // 전체화면으로 변경
-        container.style.width = "100vw";
-        container.style.height = "100vh";
-        container.style.top = "0";
-        container.style.left = "0";
+        container.style.width = '100vw';
+        container.style.height = '100vh';
+        container.style.top = '0';
+        container.style.left = '0';
 
         // body 스크롤 비활성화
-        document.body.style.overflow = "hidden";
+        document.body.style.overflow = 'hidden';
       } else {
         // 원래 크기로 복원
         container.style.width = this.originalSize.width;
@@ -229,30 +211,30 @@ export default {
         container.style.left = this.originalSize.left;
 
         // body 스크롤 활성화
-        document.body.style.overflow = "visible";
+        document.body.style.overflow = 'visible';
       }
 
       this.isFullscreen = !this.isFullscreen;
     },
     open() {
-      this.$emit("opened");
+      this.$emit('opened');
       this.isOpen = true;
     },
     clickCloseIcon() {
-      this.$emit("closeIcon");
+      this.$emit('closeIcon');
       this.$nextTick(() => {
         this.close();
       });
     },
     close() {
-      this.$emit("closed");
+      this.$emit('closed');
       this.isOpen = false;
     },
     startDrag(event) {
       if (!this.$refs.dragContainer.contains(event.target)) return;
       if (this.noDrag) return;
       if (this.isResizing) return;
-      if (!event.target.classList.contains("drag-handle")) {
+      if (!event.target.classList.contains('drag-handle')) {
         return;
       }
       this.isDragging = true;
@@ -260,20 +242,18 @@ export default {
       this.dragPosition.x = event.clientX - this.$refs.dragContainer.offsetLeft;
       this.dragPosition.y = event.clientY - this.$refs.dragContainer.offsetTop;
 
-      document.addEventListener("mousemove", this.onDrag);
-      document.addEventListener("mouseup", this.stopDrag);
+      document.addEventListener('mousemove', this.onDrag);
+      document.addEventListener('mouseup', this.stopDrag);
     },
     stopDrag(event) {
       this.isDragging = false;
 
       // 리사이즈 핸들의 초기 위치 저장
-      this.startX =
-        event.clientX - this.$refs.dragContainer.getBoundingClientRect().right;
-      this.startY =
-        event.clientY - this.$refs.dragContainer.getBoundingClientRect().bottom;
+      this.startX = event.clientX - this.$refs.dragContainer.getBoundingClientRect().right;
+      this.startY = event.clientY - this.$refs.dragContainer.getBoundingClientRect().bottom;
 
-      document.removeEventListener("mousemove", this.onDrag);
-      document.removeEventListener("mouseup", this.stopDrag);
+      document.removeEventListener('mousemove', this.onDrag);
+      document.removeEventListener('mouseup', this.stopDrag);
     },
     onDrag(event) {
       // if (!this.$refs.dragContainer.contains(event.target)) return;
@@ -287,21 +267,21 @@ export default {
       this.$refs.dragContainer.style.width = `${this.$refs.dragContainer.offsetWidth}px`;
       this.$refs.dragContainer.style.height = `${this.$refs.dragContainer.offsetHeight}px`;
     },
-    startResize(event, resizeDirection = "bottomRight") {
+    startResize(event, resizeDirection = 'bottomRight') {
       if (!this.$refs.dragContainer.contains(event.target)) return;
       if (this.noResize) return;
       if (this.isDragging) return;
       // console.info('startResize', resizeDirection);
       this.isResizing = true;
-      this.$refs.dragContainer.classList.add("user-select-none");
+      this.$refs.dragContainer.classList.add('user-select-none');
       this.resizeDirection = resizeDirection;
       this.startWidth = this.$refs.dragContainer.offsetWidth;
       this.startHeight = this.$refs.dragContainer.offsetHeight;
       this.startX = event.clientX;
       this.startY = event.clientY;
 
-      document.addEventListener("mousemove", this.onResize);
-      document.addEventListener("mouseup", this.stopResize);
+      document.addEventListener('mousemove', this.onResize);
+      document.addEventListener('mouseup', this.stopResize);
     },
     onResize(event) {
       // if (!this.$refs.dragContainer.contains(event.target)) return;
@@ -322,22 +302,16 @@ export default {
       // width, height 최소 200 180
 
       switch (this.resizeDirection) {
-        case "bottomRight":
+        case 'bottomRight':
           $container.style.width = `${this.startWidth + deltaX}px`;
           $container.style.height = `${this.startHeight + deltaY}px`;
           break;
-        case "topLeft":
+        case 'topLeft':
           // 왼쪽상단 리사이즈 : 너비와 높이 감소 및 위치 조정
           newWidth = Math.max(this.startWidth - deltaX, minWidth);
           newHeight = Math.max(this.startHeight - deltaY, minHeight);
-          $container.style.width = `${Math.max(
-            this.startWidth - deltaX,
-            minWidth
-          )}px`;
-          $container.style.height = `${Math.max(
-            this.startHeight - deltaY,
-            minHeight
-          )}px`;
+          $container.style.width = `${Math.max(this.startWidth - deltaX, minWidth)}px`;
+          $container.style.height = `${Math.max(this.startHeight - deltaY, minHeight)}px`;
           if (newWidth !== minWidth) {
             $container.style.left = `${this.startX + deltaX}px`;
           }
@@ -345,7 +319,7 @@ export default {
             $container.style.top = `${this.startY + deltaY}px`;
           }
           break;
-        case "bottomLeft":
+        case 'bottomLeft':
           // 왼쪽 하단 : 너비 감소 및 위치 조정 , 높이 증가
           newWidth = Math.max(this.startWidth - deltaX, minWidth);
           newHeight = Math.max(this.startHeight + deltaY, minHeight);
@@ -355,7 +329,7 @@ export default {
             $container.style.left = `${this.startX + deltaX}px`;
           }
           break;
-        case "topRight":
+        case 'topRight':
           // 오른쪽상단 : 높이 감소 및 위치 조정 , 너비 증가
           newWidth = Math.max(this.startWidth + deltaX, minWidth);
           newHeight = Math.max(this.startHeight - deltaY, minHeight);
@@ -365,25 +339,25 @@ export default {
             $container.style.top = `${this.startY + deltaY}px`;
           }
           break;
-        case "top":
+        case 'top':
           newHeight = Math.max(this.startHeight - deltaY, minHeight);
           $container.style.height = `${newHeight}px`;
           if (newHeight !== minHeight) {
             $container.style.top = `${this.startY + deltaY}px`;
           }
           break;
-        case "left":
+        case 'left':
           newWidth = Math.max(this.startWidth - deltaX, minWidth);
           $container.style.width = `${newWidth}px`;
           if (newWidth !== minWidth) {
             $container.style.left = `${this.startX + deltaX}px`;
           }
           break;
-        case "bottom":
+        case 'bottom':
           newHeight = Math.max(this.startHeight + deltaY, minHeight);
           $container.style.height = `${newHeight}px`;
           break;
-        case "right":
+        case 'right':
           newWidth = Math.max(this.startWidth + deltaX, minWidth);
           $container.style.width = `${newWidth}px`;
           break;
@@ -394,9 +368,9 @@ export default {
     stopResize() {
       // console.info('stopResize');
       this.isResizing = false;
-      this.$refs.dragContainer.classList.remove("user-select-none");
-      document.removeEventListener("mousemove", this.onResize);
-      document.removeEventListener("mouseup", this.stopResize);
+      this.$refs.dragContainer.classList.remove('user-select-none');
+      document.removeEventListener('mousemove', this.onResize);
+      document.removeEventListener('mouseup', this.stopResize);
     },
   },
   mounted() {},
@@ -427,6 +401,11 @@ export default {
       width: fit-content;
       max-width: 900px;
       max-height: calc(100% - 60px);
+      .sc-modal-head {
+        button:first-of-type {
+          display: none;
+        }
+      }
       .sc-modal-body {
         width: 100%;
         padding: 20px;
@@ -459,16 +438,16 @@ export default {
   }
   &.blue-tit {
     .sc-modal-container {
-      //border: 1px solid #fff;
+      //border: 1px solid $SC-COLOR-WHITE;
       overflow: unset;
       .sc-modal-head {
-        background-color: #2584da;
+        background-color: $SC-PRIMARY-COLOR-BLUE;
         span {
-          color: #fff;
+          color: $SC-COLOR-WHITE;
           font-weight: 300;
         }
         svg {
-          color: #fff;
+          color: $SC-COLOR-WHITE;
         }
       }
     }
@@ -480,14 +459,14 @@ export default {
   overflow: hidden; // 드롭박스의 select 값들이 모달창 밖에서 보여지지 않는 부분 수정.
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  background-color: $SC-COLOR-WHITE;
   min-height: 210px;
 
   &:has(.overflow) {
     overflow: visible;
   }
   &.transparent {
-    border: 1px solid #eee;
+    border: 1px solid $SC-COLOR-GRAY-20;
   }
 
   &.full {
@@ -540,8 +519,8 @@ export default {
       bottom: 0;
       left: 0;
       right: 0;
-      background: #fff;
-      border-top: 1px solid #f5f5f5;
+      background: $SC-COLOR-WHITE;
+      border-top: 1px solid $SC-COLOR-GRAY-10;
       display: flex;
       align-items: center;
       justify-content: flex-end;
@@ -561,7 +540,7 @@ export default {
     position: absolute;
     right: 1px;
     bottom: 1px;
-    //background: url('@/assets/img/svg/ico-drag-handler.svg');
+    background: url('@/assets/img/svg/ico-drag-handler.svg');
     width: 8px;
     height: 8px;
   }

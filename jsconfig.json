@@ -15,5 +15,9 @@
       "dom.iterable",
       "scripthost"
     ]
+  },
+  "vueCompilerOptions": {
+    "target": "ESNext",
+    "strictTemplates": true
   }
 }

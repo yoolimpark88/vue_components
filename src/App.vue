@@ -6,26 +6,21 @@
 </template>
 
 <script>
-import { mapState } from "pinia";
-import { useCommonStore } from "@/store/commonStore";
+import { mapState } from 'pinia';
+import { useCommonStore } from '@/store/commonStore';
 
 export default {
-  name: "App",
+  name: 'App',
 
   computed: {
-    ...mapState(useCommonStore, ["refreshKey"]), // Pinia 스토어의 상태를 Vue의 computed로 가져옵니다.
+    ...mapState(useCommonStore, ['refreshKey']), // Pinia 스토어의 상태를 Vue의 computed로 가져옵니다.
   },
 };
 </script>
 
 <style lang="scss">
-@import "style/global.scss";
-@import "style/scss/main.scss";
-
-.button-container {
-  margin-top: 20px;
-  text-align: center;
-}
+@import 'style/global.scss';
+@import 'style/scss/main.scss';
 
 button {
   padding: 10px 20px;
