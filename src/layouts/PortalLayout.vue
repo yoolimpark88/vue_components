@@ -57,9 +57,9 @@
             <ul>
               <li @click="goToSampleAccordion">Accordion</li>
               <li @click="goToSampleFileForm">File Form</li>
-              <li @click="goToSampleColorPicker"><span>*</span>ColorPicker</li>
-              <li @click="goToSampleDatePicker"><span>*</span>DatePicker</li>
-              <li><span>*</span>DateRangePicker</li>
+              <li @click="goToSampleColorPicker">ColorPicker</li>
+              <li @click="goToSampleDatepicker">Datepicker</li>
+              <li @click="goToSampleDateRangePicker">DateRangePicker</li>
               <li @click="goToSampleFormBox">FormBox</li>
               <li @click="goToSampleFormItem">FormItem</li>
               <li @click="goToSampleModal">Modal</li>
@@ -210,8 +210,11 @@ export default {
     const goToSampleColorPicker = () => {
       router.push({ name: 'sampleColorPicker' });
     };
-    const goToSampleDatePicker = () => {
-      router.push({ name: 'sampleDatePicker' });
+    const goToSampleDatepicker = () => {
+      router.push({ name: 'sampleDatepicker' });
+    };
+    const goToSampleDateRangePicker = () => {
+      router.push({ name: 'sampleDateRangePicker' });
     };
     return {
       fileName,
@@ -241,7 +244,8 @@ export default {
       goToSampleAlert,
       goToSampleConfirm,
       goToSampleColorPicker,
-      goToSampleDatePicker,
+      goToSampleDatepicker,
+      goToSampleDateRangePicker,
     };
   },
 };

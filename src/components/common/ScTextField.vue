@@ -1,5 +1,5 @@
 <template>
-  <div :class="['sc-textfield-container', size, customProps, { invalid: !invalid }]">
+  <div :class="['sc-textfield-container', size, customProps, { invalid: !isValid }]">
     <input
       ref="scInput"
       v-bind="$attrs"
@@ -12,7 +12,7 @@
       @keyup.esc="clear"
       @keyup.enter="search"
       class="sc-textfield block w-full py-1.5 pl-2.5 pr-2.5 text-gray-900 placeholder:text-gray-400 focus:ring-0"
-      v-shake="inValid"
+      v-shake="isValid"
       :class="[size, customProps, { rounded }]"
       :style="customRightPadding"
     />
@@ -27,8 +27,11 @@
           class="w-[20px] h-[20px]"
           :class="[size, customProps]"
         >
-          <line class="cls-1" x1="7" x2="25" y1="7" y2="25" />
-          <line class="cls-1" x1="7" x2="25" y1="25" y2="7" />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z"
+          />
         </svg>
       </button>
       <button
@@ -38,9 +41,8 @@
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          fill="#959595"
           viewBox="0 0 20 20"
-          stroke-width="1.5"
+          fill="#959595"
           class="w-[20px] h-[20px]"
           :class="[size, customProps]"
         >
@@ -52,14 +54,15 @@
       <button v-if="searchable" class="icon-button clear-button" @click="search">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          fill="#959595"
           viewBox="0 0 20 20"
-          stroke-width="1.5"
+          fill="#959595"
           class="w-[20px] h-[20px]"
           :class="[size, customProps]"
         >
           <path
+            fill-rule="evenodd"
             d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+            clip-rule="evenodd"
           />
         </svg>
       </button>
@@ -83,7 +86,7 @@ export default {
     },
   },
   setup(props) {
-    // modelValue를 ref로 감싸서 반응형으로 만듦
+    // modelValue를 ref로 감싸서 반응형으로 만듬
     const valueModel = ref(props.modelValue);
     const { isValid, validate, errorMessage, checkedValidate } = useValidation(
       props.rules,
@@ -99,6 +102,7 @@ export default {
         }
       },
     );
+
     return {
       isValid,
       errorMessage,
@@ -148,7 +152,7 @@ export default {
     },
     size: {
       type: String,
-      default: 'small',
+      default: 'small', // '', 'small', 'medium'
       validator: (value) => ['', 'small', 'medium'].includes(value),
     },
     small: {
@@ -184,6 +188,7 @@ export default {
       } else if (this.clearable || this.searchable) {
         rightPadding += 20;
       }
+
       return {
         'padding-right': `${rightPadding}px`,
       };
@@ -205,13 +210,15 @@ export default {
     },
     applyMask(value) {
       if (value === '') return '';
-      let regex = new RegExp(' ');
+      let regex = new RegExp('');
       // 정규식
-      if (this.mask.startsWith('/') && this.mask.endWith('/')) {
+      if (this.mask.startsWith('/') && this.mask.endsWith('/')) {
         const regParts = this.mask.match(/^\/(.*?)\/([gim]*)$/);
         if (regParts) {
+          // the parsed pattern had delimiters and modifiers. handle them.
           regex = new RegExp(regParts[1], regParts[2]);
         } else {
+          // we got pattern string without delimiters
           regex = new RegExp(this.mask);
         }
       } else {
@@ -231,6 +238,7 @@ export default {
             return this.checkMask(value);
         }
       }
+
       const array = regex.exec(value);
       if (array !== null) {
         return array.join('');
@@ -247,11 +255,13 @@ export default {
       while (maskIndex < this.mask.length && valueIndex < value.length) {
         const maskChar = this.mask[maskIndex];
         const valueChar = value[valueIndex];
+
         const result = this.isMaskChar(maskChar, valueChar);
         maskedValue += result;
         valueIndex++;
         maskIndex++;
       }
+
       return maskedValue;
     },
     isMaskChar(maskChar, valueChar) {
@@ -279,7 +289,7 @@ export default {
           result = valueChar.toUpperCase();
           break;
         case 'n':
-          // a(소문자)
+          // n(숫자/소문자)
           isValid = /[a-zA-Z0-9]/.test(valueChar);
           result = valueChar.toLowerCase();
           break;
@@ -328,14 +338,16 @@ export default {
     display: flex;
     align-items: center;
   }
+
   &.small .icon-button-container {
     height: 100%;
     top: 0;
-    right: 6px;
+    right: 12px;
     button + button {
       margin-left: 2px;
     }
   }
+
   &.medium .icon-button-container {
     height: 100%;
     top: 0;
@@ -347,19 +359,23 @@ export default {
   .sc-textfield {
     border: 1px solid $SC-COLOR-GRAY-30;
     width: 100%;
+
     &.rounded {
       border-radius: 15px;
     }
+
     &.small {
       height: 26px;
       line-height: 24px;
-      font-size: 12px;
+      font-size: $SC-FONT-SIZE-BODY-1;
     }
+
     &.medium {
       height: 32px;
       line-height: 30px;
       font-size: 14px;
     }
+
     &:focus,
     &:hover {
       outline: none;
@@ -367,15 +383,16 @@ export default {
     }
     // 비활성화
     &:disabled {
-      border-color: $SC-COLOR-GRAY-30;
-      background: $SC-COLOR-GRAY-20;
-      color: $SC-COLOR-GRAY-50;
+      border-color: $SC-COLOR-GRAY-20;
+      background-color: $SC-COLOR-GRAY-10;
+      color: $SC-COLOR-GRAY-40;
     }
-    // readOnly인 경우
+    //read only 일때
     &[readonly] {
-      border-color: transparent;
+      background-color: #fafafa;
+      border-color: $SC-COLOR-GRAY-20;
       color: $SC-COLOR-GRAY-80;
-      font-weight: 500;
+      font-weight: 300;
     }
   }
   .icon-button-container {
@@ -393,6 +410,7 @@ export default {
     }
   }
 }
+
 // invalid
 .invalid {
   input,
@@ -400,11 +418,13 @@ export default {
   input:hover {
     border-color: $COLOR-STATUS-ERROR;
   }
+
   input.shake {
     animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   }
+
   .error {
-    background: $COLOR-STATUS-ERROR;
+    background-color: $COLOR-STATUS-ERROR;
     position: absolute;
     left: 0;
     right: 0;
@@ -413,7 +433,7 @@ export default {
     line-height: 16px;
 
     .message {
-      font-size: 12px;
+      font-size: $SC-FONT-SIZE-BODY-1;
       color: $SC-COLOR-WHITE;
       padding: 0 4px;
     }

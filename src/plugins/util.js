@@ -76,18 +76,135 @@ const copyToClipboard = async (text, successFn = () => {}) => {
   }
 };
 
+const escapeHtml = (unsafe) => {
+  return unsafe
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+};
+
+const getLocale = () => {
+  return i18n.global.locale.value.toUpperCase();
+};
+
+const addComma = (num) => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
+
+const isKo = (locale) => {
+  locale = locale || i18n.global.locale.value;
+  return ['ko_KR', 'ko'].includes(locale);
+};
+
+const isEn = (locale) => {
+  locale = locale || i18n.global.locale.value;
+  return ['en_US', 'en'].includes(locale);
+};
+
+const isCh = (locale) => {
+  locale = locale || i18n.global.locale.value;
+  return ['zh_CN', 'zh', 'cn', 'tw', 'zh-CN', 'zh-TW', 'zh_TW'].includes(locale);
+};
+
+const nl2br = (input) => {
+  if (input == null) {
+    return '';
+  }
+  if (input.indexOf('<br>') < 0) {
+    return input;
+  }
+
+  input = input.replaceAll('<br>', '\n');
+  return input;
+};
+
+const nl2br3 = (input) => {
+  if (input == null) {
+    return '';
+  }
+  if (input.indexOf('|') < 0) {
+    return input;
+  }
+
+  input = input.replaceAll('|', '\r\n');
+  return input;
+};
+
+const tagReplace = (input) => {
+  if (input == null) {
+    return '';
+  }
+  if (input.indexOf('&lt;') < 0 || input.indexOf('&gt;') < 0) {
+    return input;
+  }
+  if (input.indexOf('&lt;') >= 0) {
+    input = input.replaceAll('&lt;', '<');
+  }
+  if (input.indexOf('&gt;') >= 0) {
+    input = input.replaceAll('&gt;', '>');
+  }
+  return input;
+};
+
+export const existMSGKey = (msgKey) => {
+  return i18n.global.t(msgKey) !== msgKey;
+};
+
+export const koreanUseYn = (str) => {
+  let chk = false;
+  for (let i = 0; i < str.length; i++) {
+    let chr = str.charCodeAt(i);
+    if (chr < 46 || chr > 90) {
+      chk = true;
+    }
+  }
+  return chk;
+};
+
+export const getByte = (str) => {
+  if (str === undefined || str === null || str === '') {
+    return 0;
+  }
+  str = str.trim();
+  let rbyte = 0;
+  let one_char = '';
+
+  for (var i = 0; i < str.length; i++) {
+    one_char = str.charAt(i);
+
+    if (escape(one_char).length > 4) {
+      rbyte += 2; //한글 2Byte
+    } else {
+      rbyte++; //그 외 문자 1Byte
+    }
+  }
+
+  return rbyte;
+};
+
 export default {
   install(app) {
     app.config.globalProperties.$util = {
       isEmpty,
-      showConfirm,
+      isNotEmpty,
+      copyToClipboard,
+      escapeHtml,
+      addComma,
+      isKo,
+      isEn,
+      isCh,
       showAlert,
       alert: showAlert,
       confirm: showConfirm,
-      copyToClipboard,
-      isNotEmpty(value) {
-        return value !== null && value !== undefined && value !== '';
-      },
+      locale: getLocale,
+      existMSGKey,
+      nl2br,
+      nl2br3,
+      tagReplace,
+      koreanUseYn,
+      getByte,
     };
   },
 };
