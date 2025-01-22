@@ -27,6 +27,8 @@ import SampleFileForm from '@/components/sample/SampleFileForm.vue';
 import SampleTooltip from '@/components/sample/utils/SampleTooltip.vue';
 import SampleAlert from '@/components/sample/utils/SampleAlert.vue';
 import SampleConfirm from '@/components/sample/utils/SampleConfirm.vue';
+import SampleColorPicker from '@/components/sample/SampleColorPicker.vue';
+import SampleDatePicker from '@/components/sample/SampleDatePicker.vue';
 
 const routes = [
   {
@@ -163,6 +165,16 @@ const routes = [
         path: 'sample-confirm',
         name: 'sampleConfirm',
         component: SampleConfirm,
+      },
+      {
+        path: 'sample-color-picker',
+        name: 'sampleColorPicker',
+        component: SampleColorPicker,
+      },
+      {
+        path: 'sample-date-picker',
+        name: 'sampleDatePicker',
+        component: SampleDatePicker,
       },
     ],
   },
