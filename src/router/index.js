@@ -33,6 +33,9 @@ import SampleDateRangePicker from '@/components/sample/SampleDateRangePicker.vue
 import SampleClipboard from '@/components/sample/utils/SampleClipboard.vue';
 import SampleNumber from '@/components/sample/utils/SampleNumber.vue';
 import SampleLocale from '@/components/sample/utils/SampleLocale.vue';
+import SampleI18n from '@/components/sample/utils/Samplei18n.vue';
+import SampleColor from '@/components/sample/utils/SampleColor.vue';
+import SamplePagination from '@/components/sample/SamplePagination.vue';
 
 const routes = [
   {
@@ -199,6 +202,21 @@ const routes = [
         path: 'sample-locale',
         name: 'sampleLocale',
         component: SampleLocale,
+      },
+      {
+        path: 'sample-i18n',
+        name: 'sampleI18n',
+        component: SampleI18n,
+      },
+      {
+        path: 'sample-color',
+        name: 'sampleColor',
+        component: SampleColor,
+      },
+      {
+        path: 'sample-pagination', // sub 상단 헤더 title
+        name: 'samplePagination',
+        component: SamplePagination,
       },
     ],
   },

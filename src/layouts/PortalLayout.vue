@@ -63,7 +63,7 @@
               <li @click="goToSampleFormBox">FormBox</li>
               <li @click="goToSampleFormItem">FormItem</li>
               <li @click="goToSampleModal">Modal</li>
-              <li><span>*</span>pagination</li>
+              <li @click="goToSamplePagination">Pagination</li>
               <li @click="goToSampleQueryInfo">QueryInfo</li>
               <li><span>*</span>ScrollSpy</li>
               <li @click="goToSampleSearchBox">SearchBox</li>
@@ -82,8 +82,8 @@
               <li @click="goToSampleClipboard">Clipboard</li>
               <li @click="goToSampleNumber">Number</li>
               <li @click="goToSampleLocale">Locale</li>
-              <li><span>*</span>i18n</li>
-              <li><span>*</span>Color</li>
+              <li @click="goToSampleI18n">i18n</li>
+              <li @click="goToSampleColor">Color</li>
             </ul>
           </div>
           <h2>Template</h2>
@@ -225,6 +225,15 @@ export default {
     const goToSampleLocale = () => {
       router.push({ name: 'sampleLocale' });
     };
+    const goToSampleI18n = () => {
+      router.push({ name: 'sampleI18n' });
+    };
+    const goToSampleColor = () => {
+      router.push({ name: 'sampleColor' });
+    };
+    const goToSamplePagination = () => {
+      router.push({ name: 'samplePagination' });
+    };
     return {
       fileName,
       goToSampleQueryInfo,
@@ -258,6 +267,9 @@ export default {
       goToSampleClipboard,
       goToSampleNumber,
       goToSampleLocale,
+      goToSampleI18n,
+      goToSampleColor,
+      goToSamplePagination,
     };
   },
 };
