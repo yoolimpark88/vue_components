@@ -30,6 +30,8 @@ import SampleConfirm from '@/components/sample/utils/SampleConfirm.vue';
 import SampleColorPicker from '@/components/sample/SampleColorPicker.vue';
 import SampleDatepicker from '@/components/sample/SampleDatepicker.vue';
 import SampleDateRangePicker from '@/components/sample/SampleDateRangePicker.vue';
+import SampleClipboard from '@/components/sample/utils/SampleClipboard.vue';
+import SampleNumber from '@/components/sample/utils/SampleNumber.vue';
 
 const routes = [
   {
@@ -181,6 +183,16 @@ const routes = [
         path: 'sample-date-range-picker', //SampleDateRangePicker
         name: 'sampleDateRangePicker',
         component: SampleDateRangePicker,
+      },
+      {
+        path: 'sample-clipboard',
+        name: 'sampleClipboard',
+        component: SampleClipboard,
+      },
+      {
+        path: 'sample-number',
+        name: 'sampleNumber',
+        component: SampleNumber,
       },
     ],
   },

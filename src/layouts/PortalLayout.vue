@@ -79,8 +79,8 @@
               <li @click="goToSampleAlert">Alert</li>
               <li @click="goToSampleConfirm">Confirm</li>
               <li @click="goToSampleTooltip">Tooltip</li>
-              <li><span>*</span>Clipboard</li>
-              <li><span>*</span>Number</li>
+              <li @click="goToSampleClipboard">Clipboard</li>
+              <li @click="goToSampleNumber">Number</li>
               <li><span>*</span>Locale</li>
               <li><span>*</span>i18n</li>
               <li><span>*</span>Color</li>
@@ -216,6 +216,12 @@ export default {
     const goToSampleDateRangePicker = () => {
       router.push({ name: 'sampleDateRangePicker' });
     };
+    const goToSampleClipboard = () => {
+      router.push({ name: 'sampleClipboard' });
+    };
+    const goToSampleNumber = () => {
+      router.push({ name: 'sampleNumber' });
+    };
     return {
       fileName,
       goToSampleQueryInfo,
@@ -246,6 +252,8 @@ export default {
       goToSampleColorPicker,
       goToSampleDatepicker,
       goToSampleDateRangePicker,
+      goToSampleClipboard,
+      goToSampleNumber,
     };
   },
 };
