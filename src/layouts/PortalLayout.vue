@@ -81,7 +81,7 @@
               <li @click="goToSampleTooltip">Tooltip</li>
               <li @click="goToSampleClipboard">Clipboard</li>
               <li @click="goToSampleNumber">Number</li>
-              <li><span>*</span>Locale</li>
+              <li @click="goToSampleLocale">Locale</li>
               <li><span>*</span>i18n</li>
               <li><span>*</span>Color</li>
             </ul>
@@ -222,6 +222,9 @@ export default {
     const goToSampleNumber = () => {
       router.push({ name: 'sampleNumber' });
     };
+    const goToSampleLocale = () => {
+      router.push({ name: 'sampleLocale' });
+    };
     return {
       fileName,
       goToSampleQueryInfo,
@@ -254,6 +257,7 @@ export default {
       goToSampleDateRangePicker,
       goToSampleClipboard,
       goToSampleNumber,
+      goToSampleLocale,
     };
   },
 };

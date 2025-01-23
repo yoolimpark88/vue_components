@@ -32,6 +32,7 @@ import SampleDatepicker from '@/components/sample/SampleDatepicker.vue';
 import SampleDateRangePicker from '@/components/sample/SampleDateRangePicker.vue';
 import SampleClipboard from '@/components/sample/utils/SampleClipboard.vue';
 import SampleNumber from '@/components/sample/utils/SampleNumber.vue';
+import SampleLocale from '@/components/sample/utils/SampleLocale.vue';
 
 const routes = [
   {
@@ -193,6 +194,11 @@ const routes = [
         path: 'sample-number',
         name: 'sampleNumber',
         component: SampleNumber,
+      },
+      {
+        path: 'sample-locale',
+        name: 'sampleLocale',
+        component: SampleLocale,
       },
     ],
   },
