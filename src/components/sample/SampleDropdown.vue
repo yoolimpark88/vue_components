@@ -76,21 +76,21 @@
     <sc-sample-box title="borderless">
       <template v-slot:description>테두리 없애기</template>
       <div class="w-[100px]">
-        <sc-dropdown :items="pageItems" v-model="pageValue" boderless />
+        <sc-dropdown :items="pageItems" v-model="pageValue" borderless />
       </div>
 
       <div class="w-[80px] mt-5">
-        <sc-dropdown :items="pageItems" v-model="pageValue" small boderless />
+        <sc-dropdown :items="pageItems" v-model="pageValue" small borderless />
       </div>
 
       <div class="mt-5 text-sm">결과 : {{ pageValue }}</div>
 
       <sc-code-highlight
         template='<div class="w-[100px]">
-  <sc-dropdown :items="pageItems" v-model="pageValue" boderless/>
+  <sc-dropdown :items="pageItems" v-model="pageValue" borderless/>
 </div>
 <div class="w-[80px] mt-5">
-  <sc-dropdown :items="pageItems" v-model="pageValue" small boderless/>
+  <sc-dropdown :items="pageItems" v-model="pageValue" small borderless/>
 </div>
 <div class="mt-5 text-sm">결과 : {{ pageValue }}</div>'
         script="export default {
