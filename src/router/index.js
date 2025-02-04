@@ -30,6 +30,13 @@ import SampleConfirm from '@/components/sample/utils/SampleConfirm.vue';
 import SampleColorPicker from '@/components/sample/SampleColorPicker.vue';
 import SampleDatepicker from '@/components/sample/SampleDatepicker.vue';
 import SampleDateRangePicker from '@/components/sample/SampleDateRangePicker.vue';
+import SampleClipboard from '@/components/sample/utils/SampleClipboard.vue';
+import SampleNumber from '@/components/sample/utils/SampleNumber.vue';
+import SampleLocale from '@/components/sample/utils/SampleLocale.vue';
+import SampleI18n from '@/components/sample/utils/Samplei18n.vue';
+import SampleColor from '@/components/sample/utils/SampleColor.vue';
+import SamplePagination from '@/components/sample/SamplePagination.vue';
+import SampleScrollSpy from '@/components/sample/SampleScrollSpy.vue';
 
 const routes = [
   {
@@ -181,6 +188,41 @@ const routes = [
         path: 'sample-date-range-picker', //SampleDateRangePicker
         name: 'sampleDateRangePicker',
         component: SampleDateRangePicker,
+      },
+      {
+        path: 'sample-clipboard',
+        name: 'sampleClipboard',
+        component: SampleClipboard,
+      },
+      {
+        path: 'sample-number',
+        name: 'sampleNumber',
+        component: SampleNumber,
+      },
+      {
+        path: 'sample-locale',
+        name: 'sampleLocale',
+        component: SampleLocale,
+      },
+      {
+        path: 'sample-i18n',
+        name: 'sampleI18n',
+        component: SampleI18n,
+      },
+      {
+        path: 'sample-color',
+        name: 'sampleColor',
+        component: SampleColor,
+      },
+      {
+        path: 'sample-pagination', // sub 상단 헤더 title
+        name: 'samplePagination',
+        component: SamplePagination,
+      },
+      {
+        path: 'sample-scroll-spy', // sub 상단 헤더 title
+        name: 'sampleScrollSpy',
+        component: SampleScrollSpy,
       },
     ],
   },

@@ -63,9 +63,9 @@
               <li @click="goToSampleFormBox">FormBox</li>
               <li @click="goToSampleFormItem">FormItem</li>
               <li @click="goToSampleModal">Modal</li>
-              <li><span>*</span>pagination</li>
+              <li @click="goToSamplePagination">Pagination</li>
               <li @click="goToSampleQueryInfo">QueryInfo</li>
-              <li><span>*</span>ScrollSpy</li>
+              <li @click="goToSampleScrollSpy">ScrollSpy</li>
               <li @click="goToSampleSearchBox">SearchBox</li>
               <li @click="goToSampleTab">Tab</li>
               <li @click="goToSampleTag">Tag</li>
@@ -79,11 +79,11 @@
               <li @click="goToSampleAlert">Alert</li>
               <li @click="goToSampleConfirm">Confirm</li>
               <li @click="goToSampleTooltip">Tooltip</li>
-              <li><span>*</span>Clipboard</li>
-              <li><span>*</span>Number</li>
-              <li><span>*</span>Locale</li>
-              <li><span>*</span>i18n</li>
-              <li><span>*</span>Color</li>
+              <li @click="goToSampleClipboard">Clipboard</li>
+              <li @click="goToSampleNumber">Number</li>
+              <li @click="goToSampleLocale">Locale</li>
+              <li @click="goToSampleI18n">i18n</li>
+              <li @click="goToSampleColor">Color</li>
             </ul>
           </div>
           <h2>Template</h2>
@@ -216,6 +216,27 @@ export default {
     const goToSampleDateRangePicker = () => {
       router.push({ name: 'sampleDateRangePicker' });
     };
+    const goToSampleClipboard = () => {
+      router.push({ name: 'sampleClipboard' });
+    };
+    const goToSampleNumber = () => {
+      router.push({ name: 'sampleNumber' });
+    };
+    const goToSampleLocale = () => {
+      router.push({ name: 'sampleLocale' });
+    };
+    const goToSampleI18n = () => {
+      router.push({ name: 'sampleI18n' });
+    };
+    const goToSampleColor = () => {
+      router.push({ name: 'sampleColor' });
+    };
+    const goToSamplePagination = () => {
+      router.push({ name: 'samplePagination' });
+    };
+    const goToSampleScrollSpy = () => {
+      router.push({ name: 'sampleScrollSpy' });
+    };
     return {
       fileName,
       goToSampleQueryInfo,
@@ -246,6 +267,13 @@ export default {
       goToSampleColorPicker,
       goToSampleDatepicker,
       goToSampleDateRangePicker,
+      goToSampleClipboard,
+      goToSampleNumber,
+      goToSampleLocale,
+      goToSampleI18n,
+      goToSampleColor,
+      goToSamplePagination,
+      goToSampleScrollSpy,
     };
   },
 };
