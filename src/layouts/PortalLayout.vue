@@ -65,7 +65,7 @@
               <li @click="goToSampleModal">Modal</li>
               <li @click="goToSamplePagination">Pagination</li>
               <li @click="goToSampleQueryInfo">QueryInfo</li>
-              <li><span>*</span>ScrollSpy</li>
+              <li @click="goToSampleScrollSpy">ScrollSpy</li>
               <li @click="goToSampleSearchBox">SearchBox</li>
               <li @click="goToSampleTab">Tab</li>
               <li @click="goToSampleTag">Tag</li>
@@ -234,6 +234,9 @@ export default {
     const goToSamplePagination = () => {
       router.push({ name: 'samplePagination' });
     };
+    const goToSampleScrollSpy = () => {
+      router.push({ name: 'sampleScrollSpy' });
+    };
     return {
       fileName,
       goToSampleQueryInfo,
@@ -270,6 +273,7 @@ export default {
       goToSampleI18n,
       goToSampleColor,
       goToSamplePagination,
+      goToSampleScrollSpy,
     };
   },
 };

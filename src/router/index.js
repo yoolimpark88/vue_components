@@ -36,6 +36,7 @@ import SampleLocale from '@/components/sample/utils/SampleLocale.vue';
 import SampleI18n from '@/components/sample/utils/Samplei18n.vue';
 import SampleColor from '@/components/sample/utils/SampleColor.vue';
 import SamplePagination from '@/components/sample/SamplePagination.vue';
+import SampleScrollSpy from '@/components/sample/SampleScrollSpy.vue';
 
 const routes = [
   {
@@ -217,6 +218,11 @@ const routes = [
         path: 'sample-pagination', // sub 상단 헤더 title
         name: 'samplePagination',
         component: SamplePagination,
+      },
+      {
+        path: 'sample-scroll-spy', // sub 상단 헤더 title
+        name: 'sampleScrollSpy',
+        component: SampleScrollSpy,
       },
     ],
   },
