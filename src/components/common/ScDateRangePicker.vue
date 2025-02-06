@@ -71,6 +71,7 @@ import moment from 'moment';
 import ScTextField from '@/components/common/ScTextField.vue';
 import ScButton from '@/components/common/ScButton.vue';
 import { onMounted, ref, useSlots } from 'vue';
+import { computed } from 'vue';
 
 export default {
   name: 'ScDateRangePicker',
@@ -146,7 +147,8 @@ export default {
   },
   setup(props) {
     const slots = useSlots();
-    const { modelValue, modelType, inputType } = props;
+    // const { modelValue, modelType, inputType } = props;
+    const { modelValue, modelType, inputType } = computed(() => props);
     const [start, end] = modelValue;
 
     const toDate = (date, format = modelType) => {

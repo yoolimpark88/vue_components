@@ -6,6 +6,7 @@
 
 <script>
 import { provide, ref } from 'vue';
+import { computed } from 'vue';
 
 export default {
   name: 'ScAccordionWrapper',
@@ -17,7 +18,7 @@ export default {
     },
   },
   setup(props, { emit }) {
-    const { single } = props;
+    const { single } = computed(() => props);
     const items = ref([]);
     const addAccordionItem = (item) => {
       items.value.push(item);

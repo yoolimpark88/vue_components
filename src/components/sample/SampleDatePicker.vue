@@ -184,7 +184,7 @@ data() {
 
 <script>
 import ScSampleBox from '@/components/common/ScSampleBox.vue';
-import ScDatepicker from '@/components/common/ScDatepicker.vue';
+import ScDatepicker from '@/components/common/ScDatePicker.vue';
 import ScCodeHighlight from '@/components/common/ScCodeHighlight.vue';
 
 export default {
