@@ -1,0 +1,13 @@
+.sc-main-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height:100vh;
+  h2.sc-breadcrumb {
+    color: $SC-COLOR-TYPE2-GRAY-100;
+    font-size: $SC-FONT-SIZE-TYPE2-H2;
+    font-weight: $SC-FONT-WEIGHT-TYPE2-H2;
+    height: 98px;
+    padding: 30px 50px;
+  }
+}
