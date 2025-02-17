@@ -36,7 +36,7 @@ export default {
   border: 2px solid $SC-COLOR-GRAY-60;
   padding: 20px;
   width: 100%;
-  max-width: 1700px;
+  max-width: 1520px;
   .title {
     font-size: 2rem;
     height: 40px;
@@ -50,6 +50,11 @@ export default {
   }
   .sc-sample-box + .sc-sample-box {
     margin: 20px 0;
+  }
+  &.my-5 {
+    &:first-child {
+      margin-top:0;
+    }
   }
 }
 </style>

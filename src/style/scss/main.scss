@@ -5,6 +5,7 @@
 
 @import "base/reset"; // CSS 초기화
 @import "base/typography"; // 폰트선언
+@import "base/common"; // Common scss
 
 // @use 'layout/grid'; // 리얼그리드 관련 CSS
 // @use 'layout/gnb'; // 헤더영역 (GNB + UserInfo)
@@ -18,3 +19,7 @@
 
 // @use 'theme/theme'; // UI-Dev-theme
 // @use 'theme/admin'; // 관리자페이지
+
+@import "pages/home";
+@import "pages/body"; 
+@import "components/lnbTree"; // Component lnbTree

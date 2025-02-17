@@ -149,7 +149,8 @@ export default {
     const slots = useSlots();
     // const { modelValue, modelType, inputType } = props;
     const { modelValue, modelType, inputType } = computed(() => props);
-    const [start, end] = modelValue;
+    // const [start, end] = modelValue;
+    const [start, end] = Array.isArray(modelValue) ? modelValue : [null, null]; //오류 발생 개선
 
     const toDate = (date, format = modelType) => {
       if (date === null || date === '') return null;
