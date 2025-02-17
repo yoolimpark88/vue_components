@@ -1,6 +1,6 @@
 <template>
 	<div :class="['sc-lnb-Tree', { 'collapsed': isCollapsed }]">
-    <button :class="['sc-lnb-toggle-btn', { 'collapsed': isCollapsed }]" @click="toggleMenu"></button>
+    <button v-if="showLnbToggleBtn" :class="['sc-lnb-toggle-btn', { 'collapsed': isCollapsed }]" @click="toggleMenu"></button>
     <h1 class="sc-lnb-logo">UI Docs.</h1>
     <ul class="sc-lnb-list">
       <li v-for="(menu, index) in menus" :key="index">
@@ -28,6 +28,12 @@
 
 <script>
 export default {
+  props: {
+    showLnbToggleBtn: {
+      type: Boolean,
+      default: true, // 기본값을 설정
+    },
+  },
   data() {
     return {
       isCollapsed: false,

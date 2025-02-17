@@ -1,7 +1,7 @@
 <template>
   <div class="h-full">
     <div class="flex flex-1 /*h-[calc(100%-80px)]*/">
-      <ScLnbTree @navigate="handleNavigation" />
+      <ScLnbTree @navigate="handleNavigation" :showLnbToggleBtn="isLnbToggleBtnVisible" />
       <div class="sc-main-container flex-grow">
         <h2 class="sc-breadcrumb">
           {{ fileName }}
@@ -22,6 +22,11 @@ import ScLnbTree from "@/components/layout/ScLnbTree.vue";
 
 export default {
   components: { ScLnbTree },
+  data() {
+    return {
+      isLnbToggleBtnVisible: true,
+    };
+  },
   setup() {
     const fileName = ref(""); 
     const route = useRoute();

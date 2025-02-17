@@ -36,7 +36,7 @@ export default {
   border: 2px solid $SC-COLOR-GRAY-60;
   padding: 20px;
   width: 100%;
-  max-width: 1520px;
+  max-width: 1532px;
   .title {
     font-size: 2rem;
     height: 40px;
