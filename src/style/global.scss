@@ -1,5 +1,11 @@
 // global color 정의
 //@use "@/style/scss/abstracts/variables" as vars;
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  src: url("https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;700;900&display=swap");
+}
 
 @font-face {
   font-family: "Noto Sans KR";
@@ -83,12 +89,12 @@ h6,
 input,
 textarea,
 select {
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: "Inter", "Noto Sans KR", sans-serif;
 }
 
 html,
 body {
-  font-family: "Noto Sans KR", Arial, sans-serif !important;
+  font-family: "Inter", "Noto Sans KR", Arial, sans-serif !important;
   text-transform: none;
   box-shadow: none;
   box-sizing: border-box;

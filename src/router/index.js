@@ -39,201 +39,8 @@ import SampleI18n from '@/components/sample/utils/Samplei18n.vue';
 import SampleColor from '@/components/sample/utils/SampleColor.vue';
 import SamplePagination from '@/components/sample/SamplePagination.vue';
 import SampleScrollSpy from '@/components/sample/SampleScrollSpy.vue';
-
-// const routes = [
-//   {
-//     path: '/',
-//     name: 'portal',
-//     component: PortalLayout,
-//   },
-//   {
-//     path: '/dashboard-layout',
-//     name: 'dashboardLayout',
-//     component: DashboardLayout,
-//   },
-//   {
-//     path: '/basic-layout',
-//     name: 'basicLayout',
-//     component: BasicLayout,
-//     children: [
-//       {
-//         path: 'sample-query-info',
-//         name: 'sampleQueryInfo',
-//         component: SampleQueryInfo,
-//       },
-//       {
-//         path: 'sample-modal',
-//         name: 'sampleModal',
-//         component: SampleModal,
-//       },
-//       {
-//         path: 'sample-button',
-//         name: 'sampleButton',
-//         component: SampleButton,
-//       },
-//       {
-//         path: 'sample-ckeckbox',
-//         name: 'sampleCheckbox',
-//         component: SampleCheckbox,
-//       },
-//       {
-//         path: 'sample-ckeckbox-wrapper',
-//         name: 'sampleCheckboxWrapper',
-//         component: SampleCheckboxWrapper,
-//       },
-//       {
-//         path: 'sample-form-box',
-//         name: 'sampleFormBox',
-//         component: SampleFormBox,
-//       },
-//       {
-//         path: 'sample-form-item',
-//         name: 'sampleFormItem',
-//         component: SampleFormItem,
-//       },
-//       {
-//         path: 'sample-text-field',
-//         name: 'sampleTextField',
-//         component: SampleTextField,
-//       },
-//       {
-//         path: 'sample-text-Area',
-//         name: 'sampleTextArea',
-//         component: SampleTextArea,
-//       },
-//       {
-//         path: 'sample-icon',
-//         name: 'sampleIcon',
-//         component: SampleIcon,
-//       },
-//       {
-//         path: 'sample-search-box',
-//         name: 'sampleSearchBox',
-//         component: SampleSearchBox,
-//       },
-//       {
-//         path: 'sample-dropdown',
-//         name: 'sampleDropdown',
-//         component: SampleDropdown,
-//       },
-//       {
-//         path: 'sample-multi-dropdown',
-//         name: 'sampleMultiDropdown',
-//         component: SampleMultiDropdown,
-//       },
-//       {
-//         path: 'sample-radio',
-//         name: 'sampleRadio',
-//         component: SampleRadio,
-//       },
-//       {
-//         path: 'sample-toggle-button',
-//         name: 'sampleToggleButton',
-//         component: SampleToggleButton,
-//       },
-//       {
-//         path: 'sample-tab',
-//         name: 'sampleTab',
-//         component: SampleTab,
-//       },
-//       {
-//         path: 'sample-tag',
-//         name: 'sampleTag',
-//         component: SampleTag,
-//       },
-//       {
-//         path: 'sample-badge',
-//         name: 'sampleBadge',
-//         component: SampleBadge,
-//       },
-//       {
-//         path: 'sample-input-chip',
-//         name: 'sampleInputChip',
-//         component: SampleInputChip,
-//       },
-//       {
-//         path: 'sample-table',
-//         name: 'sampleTable',
-//         component: SampleTable,
-//       },
-//       {
-//         path: 'sample-accordion',
-//         name: 'sampleAccordion',
-//         component: SampleAccordion,
-//       },
-//       {
-//         path: 'sample-file-form',
-//         name: 'sampleFileForm',
-//         component: SampleFileForm,
-//       },
-//       {
-//         path: 'sample-tooltip',
-//         name: 'sampleTooltip',
-//         component: SampleTooltip,
-//       },
-//       {
-//         path: 'sample-alert',
-//         name: 'sampleAlert',
-//         component: SampleAlert,
-//       },
-//       {
-//         path: 'sample-confirm',
-//         name: 'sampleConfirm',
-//         component: SampleConfirm,
-//       },
-//       {
-//         path: 'sample-color-picker',
-//         name: 'sampleColorPicker',
-//         component: SampleColorPicker,
-//       },
-//       {
-//         path: 'sample-datepicker',
-//         name: 'sampleDatepicker',
-//         component: SampleDatepicker,
-//       },
-//       {
-//         path: 'sample-date-range-picker', //SampleDateRangePicker
-//         name: 'sampleDateRangePicker',
-//         component: SampleDateRangePicker,
-//       },
-//       {
-//         path: 'sample-clipboard',
-//         name: 'sampleClipboard',
-//         component: SampleClipboard,
-//       },
-//       {
-//         path: 'sample-number',
-//         name: 'sampleNumber',
-//         component: SampleNumber,
-//       },
-//       {
-//         path: 'sample-locale',
-//         name: 'sampleLocale',
-//         component: SampleLocale,
-//       },
-//       {
-//         path: 'sample-i18n',
-//         name: 'sampleI18n',
-//         component: SampleI18n,
-//       },
-//       {
-//         path: 'sample-color',
-//         name: 'sampleColor',
-//         component: SampleColor,
-//       },
-//       {
-//         path: 'sample-pagination', // sub 상단 헤더 title
-//         name: 'samplePagination',
-//         component: SamplePagination,
-//       },
-//       {
-//         path: 'sample-scroll-spy', // sub 상단 헤더 title
-//         name: 'sampleScrollSpy',
-//         component: SampleScrollSpy,
-//       },
-//     ],
-//   },
-// ];
+import SampleTree from '@/components/sample/SampleTree.vue';
+import SampleValidator from '@/components/sample/SampleValidator.vue';
 
 const routes = [
   {
@@ -243,8 +50,8 @@ const routes = [
     children: [
       {
         path: '',
-        name: 'heme',
-        component: SampleButton,
+        name: 'home',
+        component: SampleAccordion,
       },
       {
         path: 'sample-button',
@@ -412,14 +219,24 @@ const routes = [
         component: SampleColor,
       },
       {
-        path: 'sample-pagination', // sub 상단 헤더 title
+        path: 'sample-pagination',
         name: 'samplePagination',
         component: SamplePagination,
       },
       {
-        path: 'sample-scroll-spy', // sub 상단 헤더 title
+        path: 'sample-scroll-spy',
         name: 'sampleScrollSpy',
         component: SampleScrollSpy,
+      },
+      {
+        path: 'sample-tree', 
+        name: 'sampleTree',
+        component: SampleTree,
+      },
+      {
+        path: 'sample-validator',
+        name: 'sampleValidator',
+        component: SampleValidator,
       },
     ],
   },

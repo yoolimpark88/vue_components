@@ -2,9 +2,28 @@
   overflow: auto;
   height: calc(100% - 98px);
   padding: 0 50px;
-  .sc-desc-area {
-    .sc-desc {
-      
+  .demo-description {
+    .description-wrap {
+      margin-bottom:35px;
+      .title {
+        font-size: $SC-FONT-SIZE-TYPE2-BODY-4;
+        font-weight: $SC-FONT-WEIGHT-TYPE2-BODY-4;
+        letter-spacing: 0.5px;
+      }
+      .box {
+        padding-top:10px;
+        .list {
+          font-size: $SC-FONT-SIZE-TYPE2-BODY-2;
+          color: $SC-COLOR-TYPE2-GRAY-80;
+        }
+      }
+    }    
+  }
+  .sc-sample-box {
+    .title {
+      + .sc-detail-accordion-wrapper {
+        margin-top:10px;
+      }
     }
   }
 }

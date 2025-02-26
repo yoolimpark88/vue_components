@@ -8,7 +8,7 @@
     >
       <slot></slot>
     </div>
-    <div class="resizer-horizontal" @mousedown="mouseDownHandler" ref="horizontalResizer"></div>
+    <!-- <div class="resizer-horizontal" @mousedown="mouseDownHandler" ref="horizontalResizer"></div> -->
     <div class="action-bar bottom" v-if="slots['action-bar']">
       <slot
         name="action-bar"
@@ -143,9 +143,9 @@ export default {
   justify-content: flex-end;
   align-items: center;
   padding-right: 20px;
-  border: 1px solid $SC-COLOR-GRAY-20;
+  border: 1px solid $SC-COLOR-TYPE2-GRAY-30;
   border-top: 0 none;
-  background-color: $SC-COLOR-GRAY-10;
+  background-color: $SC-COLOR-TYPE2-WHITE;
 }
 
 // resize
@@ -155,7 +155,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f0f0f0;
+  background-color: #fff;
   color: #000;
 }
 

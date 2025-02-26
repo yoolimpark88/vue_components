@@ -1,18 +1,26 @@
 <template>
   <div>
-    <sc-sample-box>
-      <sc-pagination v-model="page" @change="onPageChange" />
-      <div class="w-[250px] inline-grid grid-cols-2 gap-2 mt-[50px]">
-        <div>rowPerPage</div>
-        <sc-text-field v-model.number="page.rowsPerPage" />
-        <div>currentPage</div>
-        <sc-text-field v-model.number="page.currentPage" />
-        <div>totalItems</div>
-        <sc-text-field v-model="page.totalItems" type="number" />
-      </div>
-
-      <sc-code-highlight
-        template='<sc-pagination v-model="page" @change="onPageChange" />
+    <sc-detail-tab-box @click="onClick">
+      <sc-detail-tab-content label="Preview" :idx="1">
+        <!-- Basig Usage -->
+        <sc-sample-box>
+          <ScDetailAccordionWrapper>
+            <ScDetailAccordion title="Demo" init-show>
+              <template #demo>
+                <sc-pagination v-model="page" @change="onPageChange" />
+                <div class="w-[250px] inline-grid grid-cols-2 gap-2 mt-[50px]">
+                  <div>rowPerPage</div>
+                  <sc-text-field v-model.number="page.rowsPerPage" />
+                  <div>currentPage</div>
+                  <sc-text-field v-model.number="page.currentPage" />
+                  <div>totalItems</div>
+                  <sc-text-field v-model="page.totalItems" type="number" />
+                </div>
+              </template>
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Template">
+              <sc-code-highlight
+              template='<sc-pagination v-model="page" @change="onPageChange" />
 <div class="w-[250px] inline-grid grid-cols-2 gap-2 mt-[50px]">
   <div>rowPerPage</div>
   <sc-text-field v-model.number="page.rowsPerPage" />
@@ -21,7 +29,11 @@
   <div>totalItems</div>
   <sc-text-field v-model="page.totalItems" type="number" />
 </div>'
-        script="export default {
+              />
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Script">
+              <sc-code-highlight
+              script="export default {
   data() {
     return {
       page: {
@@ -37,8 +49,13 @@
     },
   },
 };"
-      />
-    </sc-sample-box>
+              />
+            </ScDetailAccordion>
+          </ScDetailAccordionWrapper>
+        </sc-sample-box>
+        <!-- //Basig Usage -->
+      </sc-detail-tab-content>
+    </sc-detail-tab-box>
   </div>
 </template>
 
@@ -46,11 +63,15 @@
 import ScSampleBox from '@/components/common/ScSampleBox.vue';
 import ScPagination from '@/components/common/ScPagination.vue';
 import ScCodeHighlight from '@/components/common/ScCodeHighlight.vue';
-import ScTextField from '../common/ScTextField.vue';
+import ScTextField from '@/components/common/ScTextField.vue';
+import ScDetailTabBox from '@/components/layout/ScDetailTabBox.vue';
+import ScDetailTabContent from '@/components/layout/ScDetailTabContent.vue';
+import ScDetailAccordionWrapper from '@/components/layout/ScDetailAccordionWrapper.vue';
+import ScDetailAccordion from '@/components/layout/ScDetailAccordion.vue';
 
 export default {
   name: 'SamplePagination',
-  components: { ScCodeHighlight, ScSampleBox, ScPagination, ScTextField },
+  components: { ScCodeHighlight, ScSampleBox, ScPagination, ScTextField, ScDetailTabBox, ScDetailTabContent, ScDetailAccordionWrapper, ScDetailAccordion },
   data() {
     return {
       page: {

@@ -1,35 +1,79 @@
 <template>
   <div>
-    <sc-sample-box>
-      <sc-text-area v-model="text" />
-
-      <sc-code-highlight
-        template='
+    <sc-detail-tab-box @click="onClick">
+      <sc-detail-tab-content label="Preview" :idx="1">       
+        <!-- Basig Usage -->
+        <sc-sample-box>
+          <ScDetailAccordionWrapper>
+            <ScDetailAccordion title="Demo" init-show>
+              <template #demo>
+                <sc-text-area v-model="text" />
+              </template>
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Template" >
+              <sc-code-highlight
+              template='
   <sc-text-area v-model="text" />'
-        script="export default {
+                />
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Script" >
+              <sc-code-highlight
+              script="export default {
   data() {
     return {
       text: '안\n녕\n하\n세\n요\n',
     };
   },
 };"
-      />
-    </sc-sample-box>
-
-    <sc-sample-box title="disabled">
-      <sc-text-area v-model="text" disabled />
-      <sc-code-highlight template='<sc-text-area v-model="text" disabled />' />
-    </sc-sample-box>
-
-    <sc-sample-box title="rows">
-      <sc-text-area v-model="text" row="5" />
-      <sc-code-highlight template='<sc-text-area v-model="text" row="5" />' />
-    </sc-sample-box>
-
-    <sc-sample-box title="maxlength">
-      <sc-text-area v-model="text2" maxlength="300" rows="12" />
-      <sc-code-highlight template='<sc-text-area v-model="text2" maxlength="300" rows="12" />' />
-    </sc-sample-box>
+                />
+            </ScDetailAccordion>
+          </ScDetailAccordionWrapper>
+        </sc-sample-box>
+        <!-- //Basig Usage -->
+        <!-- disabled -->
+        <sc-sample-box title="disabled">
+          <ScDetailAccordionWrapper>
+            <ScDetailAccordion title="Demo" init-show>
+              <template #demo>
+                <sc-text-area v-model="text" disabled />
+              </template>
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Template" >
+              <sc-code-highlight template='<sc-text-area v-model="text" disabled />' />
+            </ScDetailAccordion>
+          </ScDetailAccordionWrapper>
+        </sc-sample-box>
+        <!-- //disabled -->
+        <!-- rows -->
+        <sc-sample-box title="rows">
+          <ScDetailAccordionWrapper>
+            <ScDetailAccordion title="Demo" init-show>
+              <template #demo>
+                <sc-text-area v-model="text" row="5" />
+              </template>
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Template" >
+              <sc-code-highlight template='<sc-text-area v-model="text" row="5" />' />
+            </ScDetailAccordion>
+          </ScDetailAccordionWrapper>
+        </sc-sample-box>
+        <!-- //rows -->
+        <!-- maxlength -->
+        <sc-sample-box title="maxlength">
+          <ScDetailAccordionWrapper>
+            <ScDetailAccordion title="Demo" init-show>
+              <template #demo>
+                <sc-text-area v-model="text2" maxlength="300" rows="12" />
+              </template>
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Template" >
+              <sc-code-highlight template='<sc-text-area v-model="text2" maxlength="300" rows="12" />' />
+            </ScDetailAccordion>
+          </ScDetailAccordionWrapper>
+        </sc-sample-box>
+        <!-- //maxlength -->
+      </sc-detail-tab-content>
+    </sc-detail-tab-box>
   </div>
 </template>
 
@@ -39,10 +83,14 @@ import ScSampleBox from '@/components/common/ScSampleBox.vue';
 import ScCodeHighlight from '@/components/common/ScCodeHighlight.vue';
 //import ScFormBox from '@/components/common/ScFormBox.vue';
 //import ScFormItem from '@/components/common/ScFormItem.vue';
+import ScDetailTabBox from '@/components/layout/ScDetailTabBox.vue';
+import ScDetailTabContent from '@/components/layout/ScDetailTabContent.vue';
+import ScDetailAccordionWrapper from '@/components/layout/ScDetailAccordionWrapper.vue';
+import ScDetailAccordion from '@/components/layout/ScDetailAccordion.vue';
 
 export default {
   name: 'SampleTextArea',
-  components: { ScTextArea, ScSampleBox, ScCodeHighlight },
+  components: { ScTextArea, ScSampleBox, ScCodeHighlight, ScDetailTabBox, ScDetailTabContent, ScDetailAccordionWrapper, ScDetailAccordion },
   data() {
     return {
       text: '안\n녕\n하\n세\n요',

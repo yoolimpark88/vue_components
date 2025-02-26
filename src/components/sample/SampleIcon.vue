@@ -1,76 +1,93 @@
 <template>
   <div>
-    <sc-sample-box>
-      <template #description>type과 color를 지정합니다</template>
-      <sc-icon type="star" color="yellow" />
-      <sc-icon type="star" color="yellow" />
-      <sc-icon type="star" color="yellow" />
-
-      <sc-code-highlight
-        template='<sc-icon type="star" color="yellow" />
-<sc-icon type="star" color="yellow" />
-<sc-icon type="star" color="yellow" />'
-      />
-    </sc-sample-box>
-
-    <sc-sample-box title="Type">
-      <template #description>아이콘 종류를 선택합니다.</template>
-      <sc-search-box>
-        <sc-search-item label="Search">
-          <sc-text-field
-            medium
-            searchable
-            clearable
-            v-model="searchText"
-            placeholder="Search icons..."
-          />
-        </sc-search-item>
-        <sc-search-item label="Color" span="2">
-          <div class="flex items-center">
-            <sc-radio v-model="isPreset" :value="true">Preset</sc-radio>
-            <sc-radio v-model="isPreset" :value="false">Code</sc-radio>
-            <sc-dropdown
-              :items="colors"
-              v-model="color"
-              medium
-              class="ml-3 w-[200px]"
-              :disabled="!isPreset"
+    <sc-detail-tab-box @click="onClick">
+      <sc-detail-tab-content label="Preview" :idx="1">
+        <!-- Basig Usage -->
+        <sc-sample-box>
+          <template #description>아이콘 종류를 선택합니다.</template>
+          <ScDetailAccordionWrapper>
+            <ScDetailAccordion title="Demo" init-show>
+              <template #demo>
+                <sc-icon type="star" color="yellow" />
+                <sc-icon type="star" color="blue" />
+                <sc-icon type="star" color="indigo" />
+              </template>
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Template">
+              <sc-code-highlight
+              template='<sc-icon type="star" color="yellow" />
+<sc-icon type="star" color="blue" />
+<sc-icon type="star" color="indigo" />'
             />
-            <sc-text-field
-              :disabled="isPreset"
-              v-model="colorCode"
-              class="ml-3 w-[200px]"
-              placeholder="#000"
-              medium
-            />
-          </div>
-        </sc-search-item>
-        <sc-search-item label="Size">
-          <div class="flex items-center">
-            <sc-radio v-model="size" value="small">small</sc-radio>
-            <sc-radio v-model="size" value="medium">medium</sc-radio>
-            <sc-radio v-model="size" value="large">large</sc-radio>
-          </div>
-        </sc-search-item>
-      </sc-search-box>
-      <div class="mb-5"></div>
-      <div class="flex flex-wrap gap-5">
-        <div
-          class="sc-icon-sample cursor-pointer"
-          v-for="icon in filteredIcons"
-          :key="icon"
-          @click="copyIcon(icon)"
-          @mouseleave="resetCopyTooltip(icon)"
-        >
-          <sc-icon :type="icon" :size="size" :color="calcColor" />
-          <span class="icon-name">{{ icon }}</span>
-          <div class="copy">
-            <div v-if="tooltips[icon]" class="text-amber-400">Copied!</div>
-            <div v-else>Copy Icon</div>
-          </div>
-        </div>
-      </div>
-    </sc-sample-box>
+            </ScDetailAccordion>
+          </ScDetailAccordionWrapper>
+        </sc-sample-box>
+        <!-- //Basig Usage -->
+        <!-- Type -->
+        <sc-sample-box title="Type">
+          <template #description>type과 color를 지정합니다</template>
+          <ScDetailAccordionWrapper>
+            <ScDetailAccordion title="Demo" init-show>
+              <sc-search-box>
+                <sc-search-item label="Search">
+                  <sc-text-field
+                    medium
+                    searchable
+                    clearable
+                    v-model="searchText"
+                    placeholder="Search icons..."
+                  />
+                </sc-search-item>
+                <sc-search-item label="Color" span="2">
+                  <div class="flex items-center">
+                    <sc-radio v-model="isPreset" :value="true">Preset</sc-radio>
+                    <sc-radio v-model="isPreset" :value="false">Code</sc-radio>
+                    <sc-dropdown
+                      :items="colors"
+                      v-model="color"
+                      medium
+                      class="ml-3 w-[200px]"
+                      :disabled="!isPreset"
+                    />
+                    <sc-text-field
+                      :disabled="isPreset"
+                      v-model="colorCode"
+                      class="ml-3 w-[200px]"
+                      placeholder="#000"
+                      medium
+                    />
+                  </div>
+                </sc-search-item>
+                <sc-search-item label="Size">
+                  <div class="flex items-center">
+                    <sc-radio v-model="size" value="small">small</sc-radio>
+                    <sc-radio v-model="size" value="medium">medium</sc-radio>
+                    <sc-radio v-model="size" value="large">large</sc-radio>
+                  </div>
+                </sc-search-item>
+              </sc-search-box>
+              <div class="flex flex-wrap gap-4 p-5">
+                <div
+                  class="sc-icon-sample cursor-pointer"
+                  v-for="icon in filteredIcons"
+                  :key="icon"
+                  @click="copyIcon(icon)"
+                  @mouseleave="resetCopyTooltip(icon)"
+                >
+                  <sc-icon :type="icon" :size="size" :color="calcColor" />
+                  <span class="icon-name">{{ icon }}</span>
+                  <div class="copy">
+                    <div v-if="tooltips[icon]" class="text-amber-400">Copied!</div>
+                    <div v-else>Copy Icon</div>
+                  </div>
+                </div>
+              </div>
+            </ScDetailAccordion>
+          </ScDetailAccordionWrapper>
+        </sc-sample-box>
+        <!-- //Type -->
+      </sc-detail-tab-content>
+    </sc-detail-tab-box>
   </div>
 </template>
 
@@ -83,6 +100,10 @@ import ScSearchBox from '@/components/common/ScSearchBox.vue';
 import ScSearchItem from '@/components/common/ScSearchItem.vue';
 import ScCodeHighlight from '@/components/common/ScCodeHighlight.vue';
 import ScDropdown from '@/components/common/ScDropdown.vue';
+import ScDetailTabBox from '@/components/layout/ScDetailTabBox.vue';
+import ScDetailTabContent from '@/components/layout/ScDetailTabContent.vue';
+import ScDetailAccordionWrapper from '@/components/layout/ScDetailAccordionWrapper.vue';
+import ScDetailAccordion from '@/components/layout/ScDetailAccordion.vue';
 
 export default {
   name: 'SampleIcon',
@@ -95,6 +116,10 @@ export default {
     ScSampleBox,
     ScCodeHighlight,
     ScDropdown,
+    ScDetailTabBox,
+    ScDetailTabContent,
+    ScDetailAccordionWrapper,
+    ScDetailAccordion
   },
   methods: {
     copyIcon(icon) {
@@ -104,6 +129,9 @@ export default {
     },
     resetCopyTooltip(icon) {
       this.tooltips[icon] = false;
+    },
+    onClick(idx) {
+      this.selectedTabId = idx;
     },
   },
   computed: {
@@ -227,7 +255,8 @@ export default {
         'rstr-btn',
         'exit',
         'login',
-      ],
+      ],      
+      selectedTabId: 1,
     };
   },
 };
