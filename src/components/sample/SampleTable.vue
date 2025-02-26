@@ -1,28 +1,36 @@
 <template>
   <div>
-    <sc-sample-box>
-      <sc-table>
-        <template #thead>
-          <tr>
-            <th style="width: 80px">번호</th>
-            <th style="width: 130px">이름</th>
-            <th>업체명</th>
-            <th style="width: 200px">E-mail</th>
-          </tr>
-        </template>
+    <sc-detail-tab-box @click="onClick">
+      <sc-detail-tab-content label="Preview" :idx="1">       
+        <!-- Basig Usage -->
+        <sc-sample-box>
+          <ScDetailAccordionWrapper>
+            <ScDetailAccordion title="Demo" init-show>
+              <template #demo>
+                <sc-table>
+                  <template #thead>
+                    <tr>
+                      <th style="width: 80px">번호</th>
+                      <th style="width: 130px">이름</th>
+                      <th>업체명</th>
+                      <th style="width: 200px">E-mail</th>
+                    </tr>
+                  </template>
 
-        <tr v-for="(item, idx) in items" :key="item.id">
-          <td class="text-center">{{ idx + 1 }}</td>
-          <td class="text-center">{{ item.name }}</td>
-          <td>
-            <a href="#">{{ item.enterprise }}</a>
-          </td>
-          <td>{{ item.email }}</td>
-        </tr>
-      </sc-table>
-
-      <sc-code-highlight
-        template='<sc-table>
+                  <tr v-for="(item, idx) in items" :key="item.id">
+                    <td class="text-center">{{ idx + 1 }}</td>
+                    <td class="text-center">{{ item.name }}</td>
+                    <td>
+                      <a href="#">{{ item.enterprise }}</a>
+                    </td>
+                    <td>{{ item.email }}</td>
+                  </tr>
+                </sc-table>
+              </template>
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Template" >
+              <sc-code-highlight
+              template='<sc-table>
 <template #thead>
   <tr>
     <th style="width: 80px">번호</th>
@@ -39,7 +47,11 @@
   <td><a href="#">{{ item.email }}</a></td>
 </tr>
 </sc-table>'
-        script="export default {
+                />
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Script" >
+              <sc-code-highlight
+              script="export default {
 data() {
   return {
     items: [
@@ -56,8 +68,13 @@ data() {
   };
 },
 };"
-      />
-    </sc-sample-box>
+                />
+            </ScDetailAccordion>
+          </ScDetailAccordionWrapper>
+        </sc-sample-box>
+        <!-- //Basig Usage -->
+      </sc-detail-tab-content>
+    </sc-detail-tab-box>
   </div>
 </template>
 
@@ -65,10 +82,14 @@ data() {
 import ScSampleBox from '@/components/common/ScSampleBox.vue';
 import ScTable from '@/components/common/ScTable.vue';
 import ScCodeHighlight from '@/components/common/ScCodeHighlight.vue';
+import ScDetailTabBox from '@/components/layout/ScDetailTabBox.vue';
+import ScDetailTabContent from '@/components/layout/ScDetailTabContent.vue';
+import ScDetailAccordionWrapper from '@/components/layout/ScDetailAccordionWrapper.vue';
+import ScDetailAccordion from '@/components/layout/ScDetailAccordion.vue';
 
 export default {
   name: 'SampleGrid',
-  components: { ScCodeHighlight, ScTable, ScSampleBox },
+  components: { ScCodeHighlight, ScTable, ScSampleBox, ScDetailTabBox, ScDetailTabContent, ScDetailAccordionWrapper, ScDetailAccordion },
   data() {
     return {
       items: [

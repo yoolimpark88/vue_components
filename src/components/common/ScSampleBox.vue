@@ -1,5 +1,5 @@
 <template>
-  <div class="sc-sample-box my-5">
+  <div class="sc-sample-box">
     <div class="title">{{ title }}</div>
     <div v-if="slots.description" class="description text-sm text-gray-500">
       <slot name="description"></slot>
@@ -33,18 +33,26 @@ export default {
 
 <style scoped lang="scss">
 .sc-sample-box {
-  border: 2px solid $SC-COLOR-GRAY-60;
-  padding: 20px;
   width: 100%;
-  max-width: 1532px;
+  max-width: 100%;
+  margin-bottom:30px;
   .title {
-    font-size: 2rem;
-    height: 40px;
-    line-height: 40px;
-    margin: 0 0 10px 0;
+    color: $SC-COLOR-TYPE2-GRAY-100;
+    font-size: $SC-FONT-SIZE-TYPE2-H5;
+    font-weight: $SC-FONT-WEIGHT-TYPE2-H5;
+    height: 30px;
+    line-height: 30px;
+    padding-left:16px;
+    + .sc-detail-accordion-wrapper {
+      margin-top:10px;
+    }
   }
   .description {
+    color: $SC-COLOR-TYPE2-GRAY-80;
+    font-size:$SC-FONT-SIZE-TYPE2-BODY-3;
+    font-weight: $SC-FONT-WEIGHT-TYPE2-BODY-3;
     margin-bottom: 20px;
+    padding-left:16px;
   }
   .result {
   }
@@ -55,6 +63,9 @@ export default {
     &:first-child {
       margin-top:0;
     }
+  }
+  &:first-child {
+    padding-top:0;
   }
 }
 </style>

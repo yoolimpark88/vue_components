@@ -1,7 +1,7 @@
 <template>
-  <div class="h-full">
+  <div class="h-full overflow-hidden">
     <div class="flex flex-1 /*h-[calc(100%-80px)]*/">
-      <ScLnbTree @navigate="handleNavigation" :showLnbToggleBtn="isLnbToggleBtnVisible" />
+      <ScLnbTree @navigate="handleNavigation" :showLnbToggleBtn="isLnbToggleBtnVisible" :showMenuSearch="isMenuSearchInput" />
       <div class="sc-main-container flex-grow">
         <h2 class="sc-breadcrumb">
           {{ fileName }}
@@ -25,6 +25,7 @@ export default {
   data() {
     return {
       isLnbToggleBtnVisible: true,
+      isMenuSearchInput: true,
     };
   },
   setup() {
@@ -38,9 +39,17 @@ export default {
       const parts = path.split("/").filter((part) => part !== "");
 
       if (parts.length > 0) {
-        fileName.value = parts.pop(); // 마지막 부분이 파일명
+        //fileName.value = parts.pop(); // 마지막 부분이 파일명
+        let rawFileName = parts.pop(); // 마지막 부분이 파일명
+
+        // 'sample-' 접두사 제거 후 첫 글자 대문자로 변환
+        fileName.value = rawFileName.replace(/^sample-/, "") // 'sample-' 제거
+                                    .split("-") // '-' 기준으로 단어 분리
+                                    .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // 각 단어 첫 글자 대문자 변환
+                                    .join(""); // CamelCase 변환
       } else {
-        fileName.value = "MainPage"; // 예시: 루트 경로일 경우 "홈페이지"로 표시
+        // fileName.value = "MainPage"; // 예시: 루트 경로일 경우 "홈페이지"로 표시
+        fileName.value = "Accordion"; 
       }
     };
 
