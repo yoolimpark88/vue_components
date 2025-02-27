@@ -70,6 +70,9 @@
         </sc-sample-box>
         <!-- //Basig Usage -->
       </sc-detail-tab-content>
+      <sc-detail-tab-content label="Props" :idx="2">
+        Props
+      </sc-detail-tab-content>
     </sc-detail-tab-box>
   </div>
 </template>
