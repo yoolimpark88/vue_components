@@ -71,7 +71,24 @@
         <!-- //Basig Usage -->
       </sc-detail-tab-content>
       <sc-detail-tab-content label="Props" :idx="2">
-        Props
+        <sc-table>
+          <template #thead>
+            <tr>
+              <th style="width: 130px">Name</th>
+              <th style="width: 200px">Type</th>
+              <th style="width: 150px">Default</th>
+              <th style="width: 250px">Value</th>
+              <th>Description</th>
+            </tr>
+          </template>
+          <tr v-for="item in propsItems" :key="item.name">
+            <td>{{ item.name }}</td>
+            <td>{{ item.type }}</td>
+            <td>{{ item.default }}</td>            
+            <td>{{ item.value }}</td>
+            <td>{{ item.description }}</td>
+          </tr>
+        </sc-table>
       </sc-detail-tab-content>
     </sc-detail-tab-box>
   </div>
@@ -85,6 +102,7 @@ import ScDetailTabContent from '@/components/layout/ScDetailTabContent.vue';
 import ScDetailAccordionWrapper from '@/components/layout/ScDetailAccordionWrapper.vue';
 import ScDetailAccordion from '@/components/layout/ScDetailAccordion.vue';
 import ScCodeHighlight from "@/components/common/ScCodeHighlight.vue";
+import ScTable from '@/components/common/ScTable.vue';
 import { useRoleStore } from "@/store/roleStore";
 
 export default {
@@ -96,7 +114,8 @@ export default {
     ScDetailTabBox,
     ScDetailTabContent,
     ScDetailAccordionWrapper,
-    ScDetailAccordion
+    ScDetailAccordion,
+    ScTable
   },
   setup() {
     const roleStore = useRoleStore();
@@ -107,6 +126,71 @@ export default {
   data() {
     return {
       selectedTabId: 1,
+      propsItems: [
+        {
+          name: 'type',
+          type: 'String',
+          default: 'default',
+          value: 'default, round',
+          description: '버튼의 모양을 나타냄',
+        },
+        {
+          name: 'color',
+          type: 'String',
+          default: '',
+          value: 'primary, indigo, mint',
+          description: '버튼의 컬러',
+        },
+        {
+          name: 'disabled',
+          type: 'Boolean',
+          default: 'false',
+          value: 'primary, indigo, mint',
+          description: '버튼 비활성화 상태 표시여부',
+        },
+        {
+          name: 'size',
+          type: 'String',
+          default: '',
+          value: 'small, medium, large',
+          description: '버튼 사이즈',
+        },
+        {
+          name: 'width',
+          type: 'String, Number',
+          default: 'undefined',
+          value: '',
+          description: '버튼 넓이 정의',
+        },
+        {
+          name: 'small',
+          type: 'Boolean',
+          default: 'false',
+          value: '',
+          description: '',
+        },
+        {
+          name: 'medium',
+          type: 'Boolean',
+          default: 'false',
+          value: '',
+          description: '',
+        },
+        {
+          name: 'large',
+          type: 'Boolean',
+          default: 'false',
+          value: '',
+          description: '',
+        },
+        {
+          name: 'role',
+          type: 'String',
+          default: 'undefined',
+          value: '',
+          description: '버튼 권한에 따른 활성화 여부',
+        },
+      ],
     };
   },
   methods: {

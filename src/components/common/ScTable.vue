@@ -32,48 +32,46 @@ export default {
   background: $SC-COLOR-WHITE;
   margin: 4px 0 0 0;
   outline: none;
-  font-size: $SC-FONT-SIZE-BODY-1;
-  font-weight: 400;
-  color: $SC-COLOR-GRAY-80;
-  border-top: 1px solid $SC-COLOR-GRAY-40;
-  border-bottom: 1px solid $SC-COLOR-GRAY-40;
+  font-size: $SC-FONT-SIZE-TYPE2-BODY-2;
+  font-weight: $SC-FONT-WEIGHT-TYPE2-BODY-2;
+  color: $SC-COLOR-TYPE2-GRAY-100;
+  border: 1px solid $SC-COLOR-GRAY-30;
+  border-radius: 8px;
   min-width: 453px;
   th {
-    text-align: center;
+    color:#575F6E;
+    text-align: left;
     font-weight: 400;
-    padding: 0 10px;
-    border-right: 1px solid $SC-COLOR-GRAY-30;
-    line-height: initial;
-    height: 30px; // table cell 최소높이
-    background: $SC-GRID-HEADER-COLOR;
+    padding: 0 12px;
+    height: 42px; // table cell 최소높이
     white-space: nowrap;
     &:hover {
-      background: $SC-GRID-HEADER-HOVER-COLOR;
+      background: $SC-COLOR-TYPE2-GRAY-50;
     }
   }
   td {
-    font-size: $SC-FONT-SIZE-BODY-1;
-    font-weight: 300;
-    color: $SC-COLOR-GRAY-90;
-    padding: 0 10px;
-    line-height: 18px;
+    padding: 6px 12px;
+    line-height: 22px;
     border-top: 1px solid $SC-COLOR-GRAY-30;
-    border-right: 1px solid $SC-COLOR-GRAY-30;
-    height: 25px; // table cell 최소높이
+    height: 42px; // table cell 최소높이
     a {
-      color: $SC-PRIMARY-COLOR-BLUE;
+      color: $SC-PRIMARY-COLOR-TYPE2;
       &:hover {
-        color: $SC-PRIMARY-COLOR-DEEP-BLUE;
+        color: $SC-SECONDARY-COLOR-TYPE2;
         text-decoration: underline;
       }
     }
   }
+  th:first-child,
+  td:first-child {
+    padding-left:20px;
+  }
   th:last-child,
   td:last-child {
-    border-right: 0 none;
+    padding-right:20px;
   }
   .sc-table-thead {
-    background-color: $SC-COLOR-GRAY-10;
+    background-color: #F7F7F8;
   }
   .sc-table-tbody {
     background-color: $SC-COLOR-WHITE;
