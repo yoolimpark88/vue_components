@@ -70,7 +70,7 @@
         </sc-sample-box>
         <!-- //Basig Usage -->
       </sc-detail-tab-content>
-      <sc-detail-tab-content label="Props" :idx="2">
+      <sc-detail-tab-content label="Prop" :idx="2">
         <sc-table>
           <template #thead>
             <tr>
@@ -81,12 +81,46 @@
               <th>Description</th>
             </tr>
           </template>
-          <tr v-for="item in propsItems" :key="item.name">
+          <tr v-for="item in propItems" :key="item.name">
             <td>{{ item.name }}</td>
             <td>{{ item.type }}</td>
             <td>{{ item.default }}</td>            
             <td>{{ item.value }}</td>
             <td>{{ item.description }}</td>
+          </tr>
+        </sc-table>
+      </sc-detail-tab-content>
+      <sc-detail-tab-content label="Slot" :idx="3">
+        <sc-table>
+          <template #thead>
+            <tr>
+              <th style="width: 200px">Name</th>
+              <th>Description</th>
+              <th style="width: 250px">Directive</th>
+            </tr>
+          </template>
+          <tr v-for="item in slotItems" :key="item.name">
+            <td>{{ item.name }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.directive }}</td>
+          </tr>
+        </sc-table>
+      </sc-detail-tab-content>
+      <sc-detail-tab-content label="Method" :idx="4">
+        <sc-table>
+          <template #thead>
+            <tr>
+              <th style="width: 130px">Name</th>
+              <th>Description</th>
+              <th style="width: 250px">Return</th>
+              <th style="width: 250px">Arguments</th>
+            </tr>
+          </template>
+          <tr v-for="item in methodItems" :key="item.name">
+            <td>{{ item.name }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.return }}</td>
+            <td>{{ item.arguments }}</td>
           </tr>
         </sc-table>
       </sc-detail-tab-content>
@@ -126,7 +160,7 @@ export default {
   data() {
     return {
       selectedTabId: 1,
-      propsItems: [
+      propItems: [
         {
           name: 'type',
           type: 'String',
@@ -189,6 +223,21 @@ export default {
           default: 'undefined',
           value: '',
           description: '버튼 권한에 따른 활성화 여부',
+        },
+      ],
+      slotItems: [
+        {
+          name: 'default',
+          description: '버튼 내부에 위치하는 영역입니다. 일반적으로는 버튼 텍스트가 사용된다.',
+          directive: 'v-scope',
+        },
+      ],
+      methodItems: [
+        {
+          name: 'onChange',
+          description: '버튼의 상태가 변경될때 호출 되며, 변경 상태에 따라 modelvalue를 업데이트 한다. ',
+          return: 'string, boolean, number, array, object',
+          arguments: '',
         },
       ],
     };
