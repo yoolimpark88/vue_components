@@ -118,6 +118,7 @@ export default {
                 { name: 'Badge', routerUrl:'sampleBadge' },
                 { name: 'Confirm', routerUrl:'sampleConfirm' },
                 { name: 'Modal', routerUrl:'sampleModal' },
+                { name: 'Tooltip', routerUrl:'sampleTooltip' },
               ],
             },
             {
