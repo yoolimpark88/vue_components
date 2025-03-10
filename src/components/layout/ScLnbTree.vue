@@ -97,6 +97,7 @@ export default {
               name: 'Navi & Pagination',
               isOpen: false,
               subsubmenus: [
+                { name: 'Navigation', routerUrl:'sampleGnb' },
                 { name: 'Pagination', routerUrl:'samplePagination' },
                 { name: 'Tab', routerUrl:'sampleTab' },
               ],
@@ -118,6 +119,7 @@ export default {
                 { name: 'Badge', routerUrl:'sampleBadge' },
                 { name: 'Confirm', routerUrl:'sampleConfirm' },
                 { name: 'Modal', routerUrl:'sampleModal' },
+                { name: 'Tooltip', routerUrl:'sampleTooltip' },
               ],
             },
             {

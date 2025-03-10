@@ -41,6 +41,7 @@ import SamplePagination from '@/components/sample/SamplePagination.vue';
 import SampleScrollSpy from '@/components/sample/SampleScrollSpy.vue';
 import SampleTree from '@/components/sample/SampleTree.vue';
 import SampleValidator from '@/components/sample/SampleValidator.vue';
+import SampleGnb from '@/components/sample/SampleGnb.vue';
 
 const routes = [
   {
@@ -237,6 +238,11 @@ const routes = [
         path: 'sample-validator',
         name: 'sampleValidator',
         component: SampleValidator,
+      },
+      {
+        path: 'sample-gnb',
+        name: 'sampleGnb',
+        component: SampleGnb,
       },
     ],
   },
