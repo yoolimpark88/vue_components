@@ -186,6 +186,10 @@ export default {
   &:hover {
     background: $SC-COLOR-GRAY-10;
   }
+  &.active {
+    background: $SC-PRIMARY-COLOR-TYPE2;
+    color: $SC-COLOR-TYPE2-WHITE;
+  }
   &.round {
     border-radius: 5px;
   }
@@ -229,7 +233,8 @@ export default {
     background: $SC-PRIMARY-COLOR-TYPE2;
     color: $SC-COLOR-WHITE;
     border: 1px solid $SC-SECONDARY-COLOR-TYPE2-80;
-    &:hover {
+    &:hover,
+    &.active {
       background: $SC-SECONDARY-COLOR-TYPE2-80;
     }
   }
@@ -237,8 +242,18 @@ export default {
     background: $SC-PRIMARY-COLOR-INDIGO;
     color: $SC-COLOR-WHITE;
     border: 1px solid $SC-PRIMARY-COLOR-INDIGO;
-    &:hover {
+    &:hover,
+    &.active {
       background: $SC-PRIMARY-HOVER-COLOR-INDIGO;
+    }
+  }
+  &.mint {
+    background: $SC-PRIMARY-COLOR-MINT;
+    color: $SC-COLOR-WHITE;
+    border: 1px solid $SC-PRIMARY-COLOR-MINT;
+    &:hover,
+    &.active {
+      background: $SC-SUB-COLOR-MINT-TINT-05;
     }
   }
   &:not(.active) {
@@ -273,6 +288,14 @@ export default {
 }
 .sc-button + .sc-button {
   margin-left: 5px;
+}
+.sc-button-wrapper {
+  .sc-button {
+    +.sc-button {
+      margin-left:0;
+      border-left:0;
+    }
+  }
 }
 img + .sc-button {
   margin-left: 5px;

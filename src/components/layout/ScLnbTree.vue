@@ -86,6 +86,7 @@ export default {
               isOpen: false,
               subsubmenus: [
                 { name: 'Button', routerUrl:'sampleButton' },
+                { name: 'ButtonWrapper', routerUrl:'sampleButtonWrapper' },
                 { name: 'Checkbox', routerUrl:'sampleCheckbox' },
                 { name: 'CheckboxWrapper', routerUrl:'sampleCheckboxWrapper' },
                 { name: 'InputChip', routerUrl:'sampleInputChip' },

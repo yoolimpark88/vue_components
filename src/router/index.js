@@ -8,6 +8,7 @@ import SampleOverview from '@/layouts/sampleOverview.vue';
 import SampleQueryInfo from '@/components/sample/SampleQueryInfo.vue';
 import SampleModal from '@/components/sample/SampleModal.vue';
 import SampleButton from '@/components/sample/SampleButton.vue';
+import SampleButtonWrapper from '@/components/sample/SampleButtonWrapper.vue';
 import SampleCheckbox from '@/components/sample/SampleCheckbox.vue';
 import SampleCheckboxWrapper from '@/components/sample/SampleCheckboxWrapper.vue';
 import SampleFormBox from '@/components/sample/SampleFormBox.vue';
@@ -42,7 +43,6 @@ import SamplePagination from '@/components/sample/SamplePagination.vue';
 import SampleScrollSpy from '@/components/sample/SampleScrollSpy.vue';
 import SampleTree from '@/components/sample/SampleTree.vue';
 import SampleValidator from '@/components/sample/SampleValidator.vue';
-import SampleGnb from '@/components/sample/SampleGnb.vue';
 
 const routes = [
   {
@@ -65,6 +65,11 @@ const routes = [
         path: 'sample-button',
         name: 'sampleButton',
         component: SampleButton,
+      },
+      {
+        path: 'sample-button-wrapper',
+        name: 'sampleButtonWrapper',
+        component: SampleButtonWrapper,
       },
       {
         path: 'sample-query-info',
@@ -245,11 +250,6 @@ const routes = [
         path: 'sample-validator',
         name: 'sampleValidator',
         component: SampleValidator,
-      },
-      {
-        path: 'sample-gnb',
-        name: 'sampleGnb',
-        component: SampleGnb,
       },
     ],
   },
