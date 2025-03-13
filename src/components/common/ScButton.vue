@@ -226,11 +226,11 @@ export default {
     opacity: 0.6;
   }
   &.primary {
-    background: $SC-PRIMARY-COLOR-LIGHT-BLUE;
+    background: $SC-PRIMARY-COLOR-TYPE2;
     color: $SC-COLOR-WHITE;
-    border: 1px solid $SC-PRIMARY-COLOR-LIGHT-BLUE;
+    border: 1px solid $SC-SECONDARY-COLOR-TYPE2-80;
     &:hover {
-      background: $SC-PRIMARY-HOVER-COLOR-LIGHT-BLUE;
+      background: $SC-SECONDARY-COLOR-TYPE2-80;
     }
   }
   &.indigo {
