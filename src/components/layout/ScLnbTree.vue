@@ -22,15 +22,15 @@
     </div>
     <ul class="sc-lnb-list">
       <li v-for="(menu, index) in filteredMenus" :key="index">
-        <div :class="['sc-lnb-tree-item', { 'active': menu.isOpen }]" @click="toggleSubmenu(index)">
+        <div :class="['sc-lnb-tree-item', { 'active': menu.isOpen }]" @click="handleMenuClick(menu, index)">
           {{ menu.name }}
-          <span v-if="menu.submenus.length" :class="['sc-lnb-arrow', { 'rotate': menu.isOpen }]"></span>
+          <span v-if="menu.submenus && menu.submenus.length" :class="['sc-lnb-arrow', { 'rotate': menu.isOpen }]"></span>
         </div>
-        <ul v-if="menu.isOpen" class="sc-lnb-subtree">
+        <ul v-if="menu.isOpen && menu.submenus && menu.submenus.length" class="sc-lnb-subtree">
           <li v-for="(submenu, subIndex) in menu.submenus" :key="subIndex">
             <div class="sc-lnb-subtree-item" @click="submenu.routerUrl ? navigateToRoute(submenu.routerUrl) : toggleSubSubmenu(index, subIndex)">
               {{ submenu.name }}
-              <span v-if="submenu.subsubmenus.length" :class="['sc-lnb-sub-arrow', { 'rotate': submenu.isOpen }]"></span>
+              <span v-if="submenu.subsubmenus && submenu.subsubmenus.length" :class="['sc-lnb-sub-arrow', { 'rotate': submenu.isOpen }]"></span>
             </div>
             <ul v-if="submenu.isOpen && submenu.subsubmenus && submenu.subsubmenus.length" class="sc-lnb-sub-in-tree">
               <li v-for="(subsubmenu, subSubIndex) in submenu.subsubmenus" :key="subSubIndex" @click="subsubmenu.routerUrl && navigateToRoute(subsubmenu.routerUrl)">
@@ -73,6 +73,11 @@ export default {
       // onMenu: [],
       menus: [
         {
+          name: 'Overview',
+          isOpen: false,
+          routerUrl:'sampleOverview'
+        },
+        {
           name: 'Components',
           isOpen: false,
           submenus: [
@@ -97,7 +102,6 @@ export default {
               name: 'Navi & Pagination',
               isOpen: false,
               subsubmenus: [
-                { name: 'Navigation', routerUrl:'sampleGnb' },
                 { name: 'Pagination', routerUrl:'samplePagination' },
                 { name: 'Tab', routerUrl:'sampleTab' },
               ],
@@ -166,11 +170,11 @@ export default {
         let menuMatch = menu.name.toLowerCase().includes(searchText);
         let newMenu = { ...menu, submenus: [], isOpen: menuMatch || menu.isOpen };
 
-        menu.submenus.forEach(submenu => {
+        (menu.submenus || []).forEach(submenu => {
           let submenuMatch = submenu.name.toLowerCase().includes(searchText);
           let newSubmenu = { ...submenu, subsubmenus: [], isOpen: submenuMatch || submenu.isOpen };
 
-          submenu.subsubmenus.forEach(subsubmenu => {
+          (submenu.subsubmenus || []).forEach(subsubmenu => {
             if (subsubmenu.name.toLowerCase().includes(searchText)) {
               newSubmenu.subsubmenus.push(subsubmenu);
               newSubmenu.isOpen = true;
@@ -191,11 +195,22 @@ export default {
     toggleMenu() {
       this.isCollapsed = !this.isCollapsed;
     },
+    // 메뉴 클릭 처리
+    handleMenuClick (menu, index) {
+      if (menu.routerUrl) {
+        this.navigateToRoute(menu.routerUrl);
+      } else if (menu.submenus && menu.submenus.length) {
+        this.toggleSubmenu(index);
+      }
+    },
     toggleSubmenu(index) {
+      this.menus.forEach((menu, i) => {
+        if (i !== index) menu.isOpen = false;
+      });
       this.menus[index].isOpen = !this.menus[index].isOpen;
     },
-    toggleSubSubmenu(menuIndex, submenuIndex) {
-      this.menus[menuIndex].submenus[submenuIndex].isOpen = !this.menus[menuIndex].submenus[submenuIndex].isOpen;
+    toggleSubSubmenu(index, subIndex) {
+      this.menus[index].submenus[subIndex].isOpen = !this.menus[index].submenus[subIndex].isOpen;
     },
     navigateToRoute(routerUrl) {
       console.log(`Navigating to: ${routerUrl}`);

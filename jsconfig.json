@@ -18,6 +18,6 @@
   },
   "vueCompilerOptions": {
     "target": "ESNext",
-    "strictTemplates": true
-  }
+    "strictTemplates": true,
+  },
 }

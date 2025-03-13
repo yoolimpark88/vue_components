@@ -4,6 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 // import BasicLayout from '@/layouts/BasicLayout.vue';
 //import DashboardMain from '@/layouts/DashboardMain.vue';
 import DashboardLayout from '@/layouts/DashboardLayout.vue';
+import SampleOverview from '@/layouts/sampleOverview.vue';
 import SampleQueryInfo from '@/components/sample/SampleQueryInfo.vue';
 import SampleModal from '@/components/sample/SampleModal.vue';
 import SampleButton from '@/components/sample/SampleButton.vue';
@@ -48,10 +49,16 @@ const routes = [
     path: '/',
     name: 'dashboardLayout',
     component: DashboardLayout,
+    redirect: '/sample-overview',
     children: [
       {
-        path: '',
-        name: 'home',
+        path: 'sample-overview',
+        name: 'sampleOverview',
+        component: SampleOverview,
+      },
+      {
+        path: 'sample-accordion',
+        name: 'sampleAccordion',
         component: SampleAccordion,
       },
       {
