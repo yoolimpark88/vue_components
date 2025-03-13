@@ -30,10 +30,12 @@
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
+    "@types/vue": "^1.0.31",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "^5.0.0",
     "@vue/cli-service": "^5.0.0",
     "@vue/eslint-config-prettier": "^10.1.0",
+    "@vue/runtime-core": "^3.5.13",
     "eslint": "^8.57.1",
     "eslint-plugin-vue": "^9.3.0",
     "prettier": "^3.4.1",

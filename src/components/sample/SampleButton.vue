@@ -8,27 +8,27 @@
           <ScDetailAccordionWrapper>
             <ScDetailAccordion title="Demo" init-show>
               <template #demo>
-                <div class="mt-5 mb-3">size : small</div>
+                <div class="mb-3">size : small</div>
                 <sc-button @click="onClick">일반 버튼</sc-button>
                 <sc-button @click="onClick" disabled>비활성화 버튼</sc-button>
-                <sc-button @click="onClick" type="round">둥글둥글 버튼</sc-button>
+                <sc-button @click="onClick" shape="round">둥글둥글 버튼</sc-button>
                 <sc-button @click="onClick" color="primary">일반 버튼</sc-button>
                 <sc-button @click="onClick" disabled color="primary">비활성화 버튼</sc-button>
-                <sc-button @click="onClick" type="round" color="primary">둥글둥글 버튼</sc-button>
+                <sc-button @click="onClick" shape="round" color="primary">둥글둥글 버튼</sc-button>
                 <div class="mt-5 mb-3">size : medium</div>
                 <sc-button size="medium" @click="onClick">일반 버튼</sc-button>
                 <sc-button size="medium" @click="onClick" disabled>비활성화 버튼</sc-button>
-                <sc-button size="medium" @click="onClick" type="round">둥글둥글 버튼</sc-button>
+                <sc-button size="medium" @click="onClick" shape="round">둥글둥글 버튼</sc-button>
                 <sc-button size="medium" @click="onClick" color="primary">일반 버튼</sc-button>
                 <sc-button size="medium" @click="onClick" disabled color="primary">비활성화 버튼</sc-button>
-                <sc-button size="medium" @click="onClick" type="round" color="primary">둥글둥글 버튼</sc-button>
+                <sc-button size="medium" @click="onClick" shape="round" color="primary">둥글둥글 버튼</sc-button>
                 <div class="mt-5 mb-3">size : large</div>
                 <sc-button size="large" @click="onClick">일반 버튼</sc-button>
                 <sc-button size="large" @click="onClick" disabled>비활성화 버튼</sc-button>
-                <sc-button size="large" @click="onClick" type="round">둥글둥글 버튼</sc-button>
+                <sc-button size="large" @click="onClick" shape="round">둥글둥글 버튼</sc-button>
                 <sc-button size="large" @click="onClick" color="primary">일반 버튼</sc-button>
                 <sc-button size="large" @click="onClick" disabled color="primary">비활성화 버튼</sc-button>
-                <sc-button size="large" @click="onClick" type="round" color="primary">둥글둥글 버튼</sc-button>
+                <sc-button size="large" @click="onClick" shape="round" color="primary">둥글둥글 버튼</sc-button>
               </template>
             </ScDetailAccordion>
             <ScDetailAccordion title="Template">
@@ -69,6 +69,199 @@
           </ScDetailAccordionWrapper>
         </sc-sample-box>
         <!-- //Basig Usage -->
+        <!-- Icon -->
+        <sc-sample-box title="Icon">
+          <template #description>아이콘 단독 유형(디폴트, 원)으로 사용하거나 텍스트와 함께 사용할 수 있다.</template>
+          <ScDetailAccordionWrapper>
+            <ScDetailAccordion title="Demo" init-show>
+              <template #demo>
+                <div class="flex flex-row">
+                  <div class="basis-1/3">
+                    <div class="mb-3">Default</div>
+                    <div class="mt-5 mb-3 text-xs">Small</div>
+                    <sc-button @click="onClick" type="icon" icon="check" />
+                    <sc-button @click="onClick" type="icon" icon="cog" color="primary" />
+                    <div class="mt-5 mb-3 text-xs">Medium</div>
+                    <sc-button size="medium" @click="onClick" type="icon" icon="check" />
+                    <sc-button size="medium" @click="onClick" type="icon" icon="cog" color="primary" />
+                    <div class="mt-5 mb-3 text-xs">Large</div>
+                    <sc-button size="large" @click="onClick" type="icon" icon="check" />
+                    <sc-button size="large" @click="onClick" type="icon" icon="cog" color="primary" />
+                  </div>
+                  <div class="basis-1/3">
+                    <div class="mb-3">Circle</div>
+                    <div class="mt-5 mb-3 text-xs">Small</div>
+                    <sc-button @click="onClick" type="icon" shape="circle" icon="check" />
+                    <sc-button @click="onClick" type="icon" shape="circle" icon="cog" color="primary" />
+                    <div class="mt-5 mb-3 text-xs">Medium</div>
+                    <sc-button size="medium" @click="onClick" type="icon" shape="circle" icon="check" />
+                    <sc-button size="medium" @click="onClick" type="icon" shape="circle" icon="cog" color="primary" />
+                    <div class="mt-5 mb-3 text-xs">Large</div>
+                    <sc-button size="large" @click="onClick" type="icon" shape="circle" icon="check" />
+                    <sc-button size="large" @click="onClick" type="icon" shape="circle" icon="cog" color="primary" />
+                  </div>
+                  <div class="basis-1/3">
+                    <div class="mb-3">Icon+Text</div>
+                    <div class="mt-5 mb-3 text-xs">Small</div>
+                    <sc-button @click="onClick" icon="check" iconPosition="left">L-Icon Text</sc-button>
+                    <sc-button @click="onClick" icon="check" iconPosition="right">R-Icon Text</sc-button>
+                    <div class="mt-5 mb-3 text-xs">Medium</div>
+                    <sc-button size="medium" @click="onClick" icon="check" iconPosition="left">L-Icon Text</sc-button>
+                    <sc-button size="medium" @click="onClick" icon="check" iconPosition="right">R-Icon Text</sc-button>
+                    <div class="mt-5 mb-3 text-xs">Large</div>
+                    <sc-button size="large" @click="onClick" icon="check" iconPosition="left">L-Icon Text</sc-button>
+                    <sc-button size="large" @click="onClick" icon="check" iconPosition="right">R-Icon Text</sc-button>
+                  </div>
+                </div>
+              </template>
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Template">
+              <sc-code-highlight
+            template='<div class="flex flex-row">
+  <div class="basis-1/3">
+    <div class="mb-3">Default</div>
+    <div class="mt-5 mb-3 text-xs">Small</div>
+    <sc-button @click="onClick" type="icon" icon="check" />
+    <sc-button @click="onClick" type="icon" icon="cog" color="primary" />
+    <div class="mt-5 mb-3 text-xs">Medium</div>
+    <sc-button size="medium" @click="onClick" type="icon" icon="check" />
+    <sc-button size="medium" @click="onClick" type="icon" icon="cog" color="primary" />
+    <div class="mt-5 mb-3 text-xs">Large</div>
+    <sc-button size="large" @click="onClick" type="icon" icon="check" />
+    <sc-button size="large" @click="onClick" type="icon" icon="cog" color="primary" />
+  </div>
+  <div class="basis-1/3">
+    <div class="mb-3">Circle</div>
+    <div class="mt-5 mb-3 text-xs">Small</div>
+    <sc-button @click="onClick" type="icon" shape="circle" icon="check" />
+    <sc-button @click="onClick" type="icon" shape="circle" icon="cog" color="primary" />
+    <div class="mt-5 mb-3 text-xs">Medium</div>
+    <sc-button size="medium" @click="onClick" type="icon" shape="circle" icon="check" />
+    <sc-button size="medium" @click="onClick" type="icon" shape="circle" icon="cog" color="primary" />
+    <div class="mt-5 mb-3 text-xs">Large</div>
+    <sc-button size="large" @click="onClick" type="icon" shape="circle" icon="check" />
+    <sc-button size="large" @click="onClick" type="icon" shape="circle" icon="cog" color="primary" />
+  </div>
+  <div class="basis-1/3">
+    <div class="mb-3">Icon+Text</div>
+    <div class="mt-5 mb-3 text-xs">Small</div>
+    <sc-button @click="onClick" icon="check" iconPosition="left">L-Icon Text</sc-button>
+    <sc-button @click="onClick" icon="check" iconPosition="right">R-Icon Text</sc-button>
+    <div class="mt-5 mb-3 text-xs">Medium</div>
+    <sc-button size="medium" @click="onClick" icon="check" iconPosition="left">L-Icon Text</sc-button>
+    <sc-button size="medium" @click="onClick" icon="check" iconPosition="right">R-Icon Text</sc-button>
+    <div class="mt-5 mb-3 text-xs">Large</div>
+    <sc-button size="large" @click="onClick" icon="check" iconPosition="left">L-Icon Text</sc-button>
+    <sc-button size="large" @click="onClick" icon="check" iconPosition="right">R-Icon Text</sc-button>
+  </div>
+</div>'
+      />
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Script">
+              <sc-code-highlight
+            script="
+    export default {
+      methods: {
+        onClick() {};
+      }
+    }" />
+            </ScDetailAccordion>
+          </ScDetailAccordionWrapper>
+        </sc-sample-box>
+        <!-- //Icon -->
+        <!-- Variants Button -->
+        <sc-sample-box title="Variants Button">
+          <template #description>텍스트 버튼, 백그라운드 버튼, 그림자 버튼 등 다양한 버튼 스타일을 적용할 수 있다. </template>
+          <ScDetailAccordionWrapper>
+            <ScDetailAccordion title="Demo" init-show>
+              <template #demo>
+                <div class="flex flex-row">
+                  <div class="basis-1/3">
+                    <div class="mb-3">Text Button</div>
+                    <sc-button @click="onClick" type="text">Text Default</sc-button>
+                    <sc-button @click="onClick" type="text" disabled>Disabled Text</sc-button>
+                    <sc-button @click="onClick" type="text" color="primary">Primary Text</sc-button>
+                  </div>
+                  <div class="basis-1/3">
+                    <div class="mb-3">Background</div>
+                    <sc-button @click="onClick" type="text" variants="background">Text Default</sc-button>
+                    <sc-button @click="onClick" type="text" variants="background" disabled>Disabled Text</sc-button>
+                    <sc-button @click="onClick" type="text" variants="background" color="primary">Primary Text</sc-button>
+                  </div>
+                  <div class="basis-1/3">
+                    <div class="mb-3">Shadow</div>
+                    <sc-button @click="onClick" type="text" variants="shadow">Text Default</sc-button>
+                    <sc-button @click="onClick" type="text" variants="shadow" disabled>Disabled Text</sc-button>
+                    <sc-button @click="onClick" type="text" variants="shadow" color="primary">Primary Text</sc-button>
+                  </div>
+                </div>
+              </template>
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Template">
+              <sc-code-highlight
+            template='<div class="flex flex-row">
+  <div class="basis-1/3">
+    <div class="mb-3">Text Button</div>
+    <sc-button @click="onClick" type="text">Text Default</sc-button>
+    <sc-button @click="onClick" type="text" disabled>Disabled Text</sc-button>
+    <sc-button @click="onClick" type="text" color="primary">Primary Text</sc-button>
+  </div>
+  <div class="basis-1/3">
+    <div class="mb-3">Background</div>
+    <sc-button @click="onClick" type="text" variants="background">Text Default</sc-button>
+    <sc-button @click="onClick" type="text" variants="background" disabled>Disabled Text</sc-button>
+    <sc-button @click="onClick" type="text" variants="background" color="primary">Primary Text</sc-button>
+  </div>
+  <div class="basis-1/3">
+    <div class="mb-3">Shadow</div>
+    <sc-button @click="onClick" type="text" variants="shadow">Text Default</sc-button>
+    <sc-button @click="onClick" type="text" variants="shadow" disabled>Disabled Text</sc-button>
+    <sc-button @click="onClick" type="text" variants="shadow" color="primary">Primary Text</sc-button>
+  </div>
+</div>'
+      />
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Script">
+              <sc-code-highlight
+            script="
+    export default {
+      methods: {
+        onClick() {};
+      }
+    }" />
+            </ScDetailAccordion>
+          </ScDetailAccordionWrapper>
+        </sc-sample-box>
+        <!-- //Variants Button -->
+         <!-- Hidden Button -->
+        <sc-sample-box title="Hidden Button">
+          <template #description>버튼 숨김 처리를 적용한다. 단, 숨김처리를 해도 버튼의 영역은 차지하므로 화면 디자인 시, 고려해서 적용해야 한다.</template>
+          <ScDetailAccordionWrapper>
+            <ScDetailAccordion title="Demo" init-show>
+              <template #demo>
+                <div class="flex flex-row">
+                  <sc-checkbox v-model="isChecked">체크박스</sc-checkbox>
+                  <sc-button :class="isChecked === 'y'? 'hiddenBtn' : ''">hidden button</sc-button>
+                </div>
+              </template>
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Template">
+              <sc-code-highlight
+            :template="codeTemplate"
+      />
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Script">
+              <sc-code-highlight
+            script="export default {
+  data() {
+    return {
+      isChecked: 'n',
+    }
+  }" />
+            </ScDetailAccordion>
+          </ScDetailAccordionWrapper>
+        </sc-sample-box>
+        <!-- //Variants Button -->
       </sc-detail-tab-content>
       <sc-detail-tab-content label="Prop" :idx="2">
         <sc-table>
@@ -137,6 +330,7 @@ import ScDetailAccordionWrapper from '@/components/layout/ScDetailAccordionWrapp
 import ScDetailAccordion from '@/components/layout/ScDetailAccordion.vue';
 import ScCodeHighlight from "@/components/common/ScCodeHighlight.vue";
 import ScTable from '@/components/common/ScTable.vue';
+import ScCheckbox from "@/components/common/ScCheckbox.vue";
 import { useRoleStore } from "@/store/roleStore";
 
 export default {
@@ -149,7 +343,8 @@ export default {
     ScDetailTabContent,
     ScDetailAccordionWrapper,
     ScDetailAccordion,
-    ScTable
+    ScTable,
+    ScCheckbox,
   },
   setup() {
     const roleStore = useRoleStore();
@@ -159,6 +354,7 @@ export default {
   },
   data() {
     return {
+      isChecked: 'n',
       selectedTabId: 1,
       propItems: [
         {
@@ -224,6 +420,48 @@ export default {
           value: '',
           description: '버튼 권한에 따른 활성화 여부',
         },
+        {
+          name: 'icon',
+          type: 'String',
+          default: 'null',
+          value: '',
+          description: '아이콘 타입 값을 받아와 적용한다.예)arrow, close, setting',
+        },
+        {
+          name: 'iconPosition',
+          type: 'String',
+          default: 'left',
+          value: 'left, right',
+          description: '아이콘의 위치를 지정한다.',
+        },
+        {
+          name: 'type',
+          type: 'String',
+          default: 'default',
+          value: 'default, text, icon',
+          description: '버튼의 타입(일반, 텍스트, 아이콘)을 정의. *기존의 모양은 shape으로 이동.',
+        },
+        {
+          name: 'type',
+          type: 'String',
+          default: 'default',
+          value: 'default, text, icon',
+          description: '버튼의 타입(일반, 텍스트, 아이콘)을 정의. *기존의 모양은 shape으로 이동.',
+        },
+        {
+          name: 'Variants',
+          type: 'String',
+          default: 'default',
+          value: 'default, background, shadow',
+          description: '텍스트 버튼, 백그라운드 버튼, 그림자 버튼 등 다양한 버튼 유형을 적용할 수 있다.',
+        },
+        {
+          name: 'shape',
+          type: 'String',
+          default: 'null',
+          value: 'circle, round',
+          description: '버튼의 모양을 지정. *기존 type에서 정의하던 round를 shape으로 이동하고 type을 재정의',
+        },
       ],
       slotItems: [
         {
@@ -240,12 +478,17 @@ export default {
           arguments: '',
         },
       ],
+      codeTemplate: `<sc-checkbox v-model="isChecked">체크박스</sc-checkbox>
+<sc-button :class="isChecked === 'y'? 'hiddenBtn' : ''">hidden button</sc-button>`,
     };
   },
   methods: {
     onClick(idx) {
       this.selectedTabId = idx;
-    }
+    },
+    // toggleButton() {
+    //   this.isChecked = this.isChecked ? y : n;
+    // }
   },
   mounted() {
     this.addRole("sample-component-button", [

@@ -1,24 +1,49 @@
 <template>
   <button
-    :class="['sc-button', buttonType, color, size, customProps]"
+    :class="['sc-button', buttonType, color, size, customProps, shape, variants]"
     :disabled="disabled || roleDisabled"
     @click="onClick">
+    <!-- 왼쪽에 아이콘 표시 -->
+    <sc-icon 
+      v-if="icon && iconPosition === 'left'" 
+      :type="icon" 
+      :color="color ? 'white' : undfined "
+      class="btn-icon-left" 
+    />
     <slot></slot>
+    <!-- 오른쪽에 아이콘 표시 -->
+    <sc-icon 
+      v-if="icon && iconPosition === 'right'" 
+      :type="icon" 
+      :color="color ? 'white' : undfined "
+      class="btn-icon-right" 
+    />
   </button>
 </template>
 
 <script>
 import { useRoleStore } from "@/store/roleStore";
 import { storeToRefs } from "pinia";
+import ScIcon from '@/components/common/ScIcon.vue';
 
 export default {
   name: "ScButton",
+  components: {ScIcon},
   emits: ["click"],
   props: {
     type: {
       type: String,
       default: "default",
-      validator: (value) => ["default", "round"].includes(value),
+      validator: (value) => ["default", "text", "icon"].includes(value),
+    },
+    icon: {
+      type: String,
+      default: null
+    },
+    iconPosition: {
+      type: String,
+      default: 'left',
+      validator: (value) => ['left', 'right'].includes(value)
     },
     color: {
       type: String,
@@ -54,6 +79,20 @@ export default {
       type: String,
       default: undefined,
     },
+    shape: {
+      type: String,
+      default: "",
+      validator: (value) => ["", "circle", "round"].includes(value),
+    },
+    variants: {
+      type: String,
+      default: "",
+      validator: (value) => ["", "background", "shadow"].includes(value),
+    },
+    // hidden: {
+    //   type: Boolean,
+    //   default: false,
+    // }
   },
   setup() {
     const roleStore = useRoleStore();
@@ -64,7 +103,16 @@ export default {
   },
   computed: {
     buttonType() {
-      return this.type === "round" ? "round-button" : "default-button";
+      // return this.type === "round" ? "round-button" : "default-button";
+      switch(this.type) {
+        case "text":
+          return "text-button";
+        case "icon":
+          return "icon-button";
+        default :
+          return "default-button";
+
+      }
     },
     customProps() {
       const size = [];
@@ -138,8 +186,40 @@ export default {
   &:hover {
     background: $SC-COLOR-GRAY-10;
   }
-  &.round-button {
+  &.round {
     border-radius: 5px;
+  }
+  &.icon-button {
+    padding: 0 0 0 3px;
+    &.small {
+      min-width: 26px;
+    }
+    &.medium {
+      min-width: 32px;
+    }
+    &.large {
+      min-width: 38px;
+    }
+  }
+  &.circle {
+    border-radius: 50%;
+  }
+  &.text-button {
+    background: none;
+    border:none;
+    &.primary {
+      background: none;
+      border:none;
+      color: $SC-PRIMARY-COLOR-TYPE2;
+    }
+    &.background {
+      background: $SC-COLOR-TYPE2-GRAY-20;
+    }
+    &.shadow {
+      background: $SC-COLOR-TYPE2-WHITE;
+      border: 1px solid $SC-COLOR-GRAY-50;
+      box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.25);
+    }
   }
   &[disabled] {
     cursor: not-allowed;
@@ -181,6 +261,13 @@ export default {
         margin: 0 3px 0 0;
         fill: $COLOR-STATUS-WARNING !important;
       }
+    }
+  }
+  &.hiddenBtn {
+    color:#fff;
+    border:0;
+    &:hover {
+      background:#fff;
     }
   }
 }

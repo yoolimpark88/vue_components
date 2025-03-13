@@ -49,9 +49,16 @@ export default {
                                     .join(""); // CamelCase 변환
       } else {
         // fileName.value = "MainPage"; // 예시: 루트 경로일 경우 "홈페이지"로 표시
-        fileName.value = "Accordion"; 
+        fileName.value = "Overview"; 
       }
     };
+
+    const getFileRedirect = () => {
+      // 경로가 루트('/')일 때 sample-overview로 강제 이동
+      if (route.path === '/') {
+        router.replace('/sample-overview');
+      };
+    }
 
     onMounted(() => {
       getFileName(); // 컴포넌트가 마운트된 후 파일명 추출
@@ -67,6 +74,7 @@ export default {
     return {
       fileName,
       handleNavigation,
+      getFileRedirect,
     };
   },
 };
