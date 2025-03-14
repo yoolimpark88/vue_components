@@ -29,12 +29,11 @@
                     </sc-button-wrapper>
                     <div class="mt-5 mb-3">Basic Disabled(Opacity50%)</div>
                     <sc-button-wrapper :initialActiveIndex="0" disabled>
-                      <template #default="{ onActiveClick, activeIndex }">
+                      <template #default="{  activeIndex }">
                         <sc-button 
                           v-for="(label, index) in labelGroup" 
                           :key="index" 
                           :class="{ active: activeIndex === index }"
-                          @click="onActiveClick(index)" 
                           class="sc-button"
                         >
                           {{ label }}
@@ -62,43 +61,267 @@
                       </template>
                     </sc-button-wrapper>
                     <div class="mt-5 mb-3">Round+Color조합 Disabled(Opacity50%)</div>
+                    <sc-button-wrapper :initialActiveIndex="2" disabled>
+                      <template #default="{ activeIndex }">
+                        <sc-button 
+                          v-for="(label, index) in labelGroup" 
+                          :key="index" 
+                          :class="{ active: activeIndex === index }"
+                          :color="colorGroup[index]" 
+                          class="sc-button"
+                        >
+                          {{ label }}
+                        </sc-button>
+                      </template>
+                    </sc-button-wrapper>
                   </div>
                 </div>
               </template>
               <template #demodescription>
                 <div class="description-wrap">
-                  <div class="title">Basic</div>
-                  <div class="box mb-3">
+                  <div class="title">Value</div>
+                  <div class="box">
+                    <p class="list mt-3">Basic</p>
                     <p class="list">결과 : {{ activeLabel }}</p>
-                  </div>
-                  <div class="title">Basic Disabled</div>
-                  <div class="box mb-3">
+                    <p class="list mt-3">Basic Disabled</p>
                     <p class="list">결과 : {{ activeLabel2 }}</p>
-                  </div>
-                  <div class="title">Round + Color 조합</div>
-                  <div class="box mb-3">
+                    <p class="list mt-3">Round + Color 조합</p>
                     <p class="list">결과 : {{ activeLabel3 }}</p>
+                    <p class="list mt-3">Round + Color 조합 Disabled</p>
+                    <p class="list">결과 : {{ activeLabel4 }}</p>
                   </div>
                 </div>
               </template>
             </ScDetailAccordion>
             <ScDetailAccordion title="Template">
               <sc-code-highlight
-            template=''
+            template='<div class="flex flex-row">
+  <div class="basis-1/2">
+    <div class="mb-3">Basic</div>
+    <sc-button-wrapper>
+      <template #default="{ onActiveClick, activeIndex }">
+        <sc-button 
+          v-for="(label, index) in labelGroup" 
+          :key="index" 
+          :class="{ active: activeIndex === index }" 
+          @click="
+            onActiveClick(index);
+            activeLabel = label;
+          "
+          class="sc-button"
+        >
+          {{ label }}
+        </sc-button>
+      </template>
+    </sc-button-wrapper>
+    <div class="mt-5 mb-3">Basic Disabled(Opacity50%)</div>
+    <sc-button-wrapper :initialActiveIndex="0" disabled>
+      <template #default="{  activeIndex }">
+        <sc-button 
+          v-for="(label, index) in labelGroup" 
+          :key="index" 
+          :class="{ active: activeIndex === index }"
+          class="sc-button"
+        >
+          {{ label }}
+        </sc-button>
+      </template>
+    </sc-button-wrapper>
+  </div>
+  <div class="basis-1/2">
+    <div class="mb-3">Round+Color조합</div>
+    <sc-button-wrapper>
+      <template #default="{ onActiveClick, activeIndex }">
+        <sc-button 
+          v-for="(label, index) in labelGroup" 
+          :key="index" 
+          :class="{ active: activeIndex === index }"
+          :color="colorGroup[index]" 
+          @click="
+            onActiveClick(index);
+            activeLabel3 = label;
+          "
+          class="sc-button"
+        >
+          {{ label }}
+        </sc-button>
+      </template>
+    </sc-button-wrapper>
+    <div class="mt-5 mb-3">Round+Color조합 Disabled(Opacity50%)</div>
+    <sc-button-wrapper :initialActiveIndex="2" disabled>
+      <template #default="{ activeIndex }">
+        <sc-button 
+          v-for="(label, index) in labelGroup" 
+          :key="index" 
+          :class="{ active: activeIndex === index }"
+          :color="colorGroup[index]" 
+          class="sc-button"
+        >
+          {{ label }}
+        </sc-button>
+      </template>
+    </sc-button-wrapper>
+  </div>
+</div> 
+<div class="description-wrap">
+  <div class="title">Basic</div>
+  <div class="box mb-3">
+    <p class="list">결과 : {{ activeLabel }}</p>
+  </div>
+  <div class="title">Basic Disabled</div>
+  <div class="box mb-3">
+    <p class="list">결과 : {{ activeLabel2 }}</p>
+  </div>
+  <div class="title">Round + Color 조합</div>
+  <div class="box mb-3">
+    <p class="list">결과 : {{ activeLabel3 }}</p>
+  </div>
+  <div class="title">Round + Color 조합 Disabled</div>
+  <div class="box mb-3">
+    <p class="list">결과 : {{ activeLabel4 }}</p>
+  </div>
+</div>'
       />
             </ScDetailAccordion>
             <ScDetailAccordion title="Script">
               <sc-code-highlight
-            script="
-    export default {
-      methods: {
-        onClick() {};
-      }
-    }" />
+            script="export default defineComponent({
+  props: {
+    initialActiveIndex: {
+      type: Number,
+      default: 0,
+    },
+  },
+  components: {
+    ScButtonWrapper,
+    ScButton,
+  },
+  setup(props) {
+    const labelGroup = ref(['Basic1', 'Basic2', 'Basic3']);
+    const colorGroup = ref(['primary', 'indigo', 'mint']);
+    const activeIndex = ref(null);
+    const activeLabel = ref('Basic1');
+    const activeLabel2 = ref(labelGroup.value[props.initialActiveIndex]);
+    const activeLabel3 = ref('Basic1');
+    const activeLabel4 = ref('Basic3');
+    const onActiveClick = (index) => {
+      activeIndex.value = activeIndex.value === index ? null : index
+    };
+    return {
+      labelGroup,
+      colorGroup,
+      activeIndex,
+      activeLabel,
+      activeLabel2,
+      activeLabel3,
+      activeLabel4,
+      onActiveClick,
+    };
+  },
+})" />
             </ScDetailAccordion>
           </ScDetailAccordionWrapper>
         </sc-sample-box>
         <!-- //Basig Usage -->
+        <!-- Multiple -->
+        <sc-sample-box title="Multiple">
+          <template #description>여러 옵션을 제공하고 사용자가 다중 선택을 할 수 있는 기능르 제공한다. 다중 선택일 경우 v-model을 사용한다.</template>
+          <ScDetailAccordionWrapper>
+            <ScDetailAccordion title="Demo" init-show>
+              <template #demo> 
+                <div class="mb-3">다중선택</div>
+                <sc-button-wrapper>
+                  <template #default="{ onActiveClick, activeIndexes }">
+                    <sc-button 
+                      v-for="(label, index) in labelGroup" 
+                      :key="index" 
+                      :class="{ active: activeIndexes.includes(index) }"
+                      @click="
+                        onActiveClick(index);
+                        toggleLabel(label);
+                      "
+                      class="sc-button"
+                    >
+                      {{ label }}
+                    </sc-button>
+                  </template>
+                </sc-button-wrapper>
+              </template>
+              <template #demodescription>
+                <div class="description-wrap">
+                  <div class="title">Value</div>
+                  <div class="box mb-3">
+                    <p class="list">결과 : {{ activeLabel5 }}</p>
+                  </div>
+                </div>
+              </template>
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Template">
+              <sc-code-highlight
+            template='<div class="mb-3">다중선택</div>
+<sc-button-wrapper>
+  <template #default="{ onActiveClick, activeIndexes }">
+    <sc-button 
+      v-for="(label, index) in labelGroup" 
+      :key="index" 
+      :class="{ active: activeIndexes.includes(index) }"
+      @click="
+        onActiveClick(index);
+        toggleLabel(label);
+      "
+      class="sc-button"
+    >
+      {{ label }}
+    </sc-button>
+  </template>
+</sc-button-wrapper>'
+      />
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Script">
+              <sc-code-highlight
+            script="export default defineComponent({
+  props: {
+    initialActiveIndex: {
+      type: Number,
+      default: 0,
+    },
+  },
+  components: {
+    ScButtonWrapper,
+    ScButton,
+  },
+  setup(props) {  
+  const activeIndexes = ref([]);
+  const activeLabel5 = ref([]);	const onActiveClick = (index) => {
+    activeIndex.value = activeIndex.value === index ? null : index
+    const idx = activeIndexes.value.indexOf(index);
+    if (idx === -1) {
+      activeIndexes.value.push(index);
+    } else {
+      activeIndexes.value.splice(idx, 1);
+    }
+  };
+  const toggleLabel = (label) => {
+    const index = activeLabel5.value.indexOf(label);
+    if (index === -1) {
+      activeLabel5.value.push(label);
+    } else {
+      activeLabel5.value.splice(index, 1);
+    }
+  };
+  return {
+    labelGroup,
+    activeIndex,
+    activeLabel5,
+    onActiveClick,
+    toggleLabel,
+  };
+  }
+})" />
+            </ScDetailAccordion>
+          </ScDetailAccordionWrapper>
+        </sc-sample-box>
+        <!-- //Multiple -->
       </sc-detail-tab-content>
       <sc-detail-tab-content label="Prop" :idx="2">
         <sc-table>
@@ -194,11 +417,28 @@ export default defineComponent({
     const labelGroup = ref(['Basic1', 'Basic2', 'Basic3']);
     const colorGroup = ref(['primary', 'indigo', 'mint']);
     const activeIndex = ref(null);
+    const activeIndexes = ref([]);
     const activeLabel = ref('Basic1');
     const activeLabel2 = ref(labelGroup.value[props.initialActiveIndex]);
     const activeLabel3 = ref('Basic1');
+    const activeLabel4 = ref('Basic3');
+    const activeLabel5 = ref([]);
     const onActiveClick = (index) => {
       activeIndex.value = activeIndex.value === index ? null : index
+      const idx = activeIndexes.value.indexOf(index);
+      if (idx === -1) {
+        activeIndexes.value.push(index);
+      } else {
+        activeIndexes.value.splice(idx, 1);
+      }
+    };
+    const toggleLabel = (label) => {
+      const index = activeLabel5.value.indexOf(label);
+      if (index === -1) {
+        activeLabel5.value.push(label);
+      } else {
+        activeLabel5.value.splice(index, 1);
+      }
     };
     const roleStore = useRoleStore();
     return {
@@ -208,7 +448,10 @@ export default defineComponent({
       activeLabel,
       activeLabel2,
       activeLabel3,
+      activeLabel4,
+      activeLabel5,
       onActiveClick,
+      toggleLabel,
       addRole: roleStore.addRole,
     };
   },

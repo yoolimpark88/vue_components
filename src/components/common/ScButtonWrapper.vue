@@ -6,6 +6,7 @@
     <slot 
       :onActiveClick="handleClick" 
       :activeIndex="disabled ? props.initialActiveIndex : activeIndex" 
+      :activeIndexes="disabled ? props.initialActiveIndexes : activeIndexes" 
     />
   </div>
 </template>
@@ -19,6 +20,10 @@ const props = defineProps({
   initialActiveIndex: {
     type: Number,
     default: 0,
+  },
+  initialActiveIndexes: {
+    type: Array,
+    default: () => [],
   },
   disabled: {
     type: Boolean,
@@ -64,19 +69,37 @@ const props = defineProps({
 });
 //선택된 그룹 버튼 index를 체크하고 반영
 const activeIndex = ref(props.initialActiveIndex);
+const activeIndexes = ref(props.initialActiveIndexes);
 onMounted(() => {
   if (activeIndex.value === null) {
     activeIndex.value = 0; 
+  }
+  if (!activeIndexes.value.length) {
+    activeIndexes.value = [];
   }
 });
 const handleClick = (index) => {
   if (!props.disabled) {
     activeIndex.value = activeIndex.value === index ? null : index;
+    const idx = activeIndexes.value.indexOf(index);
+    if (idx === -1) {
+      activeIndexes.value.push(index);
+    } else {
+      activeIndexes.value.splice(idx, 1);
+    }
   }
 };
-watch(() => props.initialActiveIndex, (newValue) => {
-  activeIndex.value = newValue;
-});
+watch(
+  () => [props.initialActiveIndex, props.initialActiveIndexes],
+  ([newIndex, newIndexes]) => {
+    if (props.isMultiple) {
+      activeIndexes.value = newIndexes;
+    } else {
+      activeIndex.value = newIndex;
+    }
+  }
+);
+
 
 const roleStore = useRoleStore();
 const { getCurrentRoles } = storeToRefs(roleStore);
@@ -98,6 +121,7 @@ const customProps = computed(() => {
 
 defineExpose({
   activeIndex,
+  activeIndexes,
   handleClick,
   customProps,
   getCurrentRoles: getCurrentRoles,
