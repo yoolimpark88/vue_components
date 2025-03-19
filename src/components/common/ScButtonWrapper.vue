@@ -1,129 +1,119 @@
 <template>
   <div 
     class="sc-button-wrapper"
-    :class="disabled ? 'disable': ''"
+    :class="[{ disabled }, shape]"
   >
-    <slot 
-      :onActiveClick="handleClick" 
-      :activeIndex="disabled ? props.initialActiveIndex : activeIndex" 
-      :activeIndexes="disabled ? props.initialActiveIndexes : activeIndexes" 
-    />
+    <sc-button 
+      v-for="(label, index) in labelGroup" 
+      :key="index" 
+      :class="{ active: isActive(label) }"
+      :color="colorGroup[index]"
+      :icon="iconGroup[index]"
+      :iconPosition="iconPositionGroup[index]"
+      :size="size"
+      @click="handleClick(index, label)"
+      class="sc-button"
+    >
+      {{ label }}
+    </sc-button>
   </div>
 </template>
 
 <script setup>
+import ScButton from "@/components/common/ScButton.vue";
 import { useRoleStore } from "@/store/roleStore";
 import { storeToRefs } from "pinia";
-import { ref, watch, defineProps, computed, onMounted } from 'vue'
+import { ref, watch, defineProps, defineEmits } from 'vue'
 
 const props = defineProps({
+  labelGroup: {
+    type: Array,
+    required: true,
+  },
   initialActiveIndex: {
     type: Number,
     default: 0,
   },
-  initialActiveIndexes: {
+  activeLabel: {
+    type: String,
+    default: '',
+  },
+  activeLabels: {
     type: Array,
-    default: () => [],
+    default: () => []
+  },
+  multiSelect: {
+    type: Boolean,
+    default: false
   },
   disabled: {
     type: Boolean,
     default: false
   },
-  type: {
-    type: String,
-    default: "default",
-    validator: (value) => ["default", "text", "icon"].includes(value),
-  },
-  color: {
-    type: String,
-    default: "",
-    validator: (value) => ["", "primary", "indigo", "mint"].includes(value),
+  colorGroup: {
+    type: Array,
+    default: () => []
+  },  
+  iconGroup: {
+    type: Array,
+    default: () => []
+  }, 
+  iconPositionGroup: {
+    type: Array,
+    default: () => []
   },
   size: {
     type: String,
     default: "small",
     validator: (value) => ["small", "medium", "large"].includes(value),
   },
-  small: {
-    type: Boolean,
-    default: false,
-  },
-  medium: {
-    type: Boolean,
-    default: false,
-  },
-  large: {
-    type: Boolean,
-    default: false,
-  },
   shape: {
     type: String,
     default: "",
-    validator: (value) => ["", "circle", "round"].includes(value),
-  },
-  variants: {
-    type: String,
-    default: "",
-    validator: (value) => ["", "background", "shadow"].includes(value),
+    validator: (value) => ["", "round"].includes(value),
   },
 });
-//선택된 그룹 버튼 index를 체크하고 반영
-const activeIndex = ref(props.initialActiveIndex);
-const activeIndexes = ref(props.initialActiveIndexes);
-onMounted(() => {
-  if (activeIndex.value === null) {
-    activeIndex.value = 0; 
-  }
-  if (!activeIndexes.value.length) {
-    activeIndexes.value = [];
-  }
-});
-const handleClick = (index) => {
-  if (!props.disabled) {
-    activeIndex.value = activeIndex.value === index ? null : index;
-    const idx = activeIndexes.value.indexOf(index);
-    if (idx === -1) {
-      activeIndexes.value.push(index);
+const emit = defineEmits(['update:activeLabel', 'update:activeLabels']);
+const selectedLabels = ref(props.multiSelect ? [...props.activeLabels] : props.activeLabel);
+const handleClick = (index, label) => {
+  if (props.multiSelect) {
+    // 다중 선택 모드
+    if (selectedLabels.value.includes(label)) {
+      selectedLabels.value = selectedLabels.value.filter((item) => item !== label);
     } else {
-      activeIndexes.value.splice(idx, 1);
+      selectedLabels.value.push(label);
     }
+    emit('update:activeLabels', selectedLabels.value);
+  } else {
+    // 단일 선택 모드
+    selectedLabels.value = label;
+    emit('update:activeLabel', label);
   }
 };
-watch(
-  () => [props.initialActiveIndex, props.initialActiveIndexes],
-  ([newIndex, newIndexes]) => {
-    if (props.isMultiple) {
-      activeIndexes.value = newIndexes;
-    } else {
-      activeIndex.value = newIndex;
-    }
-  }
-);
 
+const isActive = (label) => {
+  if (props.multiSelect) {
+    return selectedLabels.value.includes(label);
+  }
+  return selectedLabels.value === label;
+};
+
+watch(() => props.activeLabels, (newLabels) => {
+  if (props.multiSelect) {
+    selectedLabels.value = newLabels;
+  }
+});
+
+watch(() => props.activeLabel, (newLabel) => {
+  if (!props.multiSelect) {
+    selectedLabels.value = newLabel;
+  }
+});
 
 const roleStore = useRoleStore();
 const { getCurrentRoles } = storeToRefs(roleStore);
 
-//사이즈 prop반영
-const customProps = computed(() => {
-  const size = [];
-  if (props.small) {
-    size.push("small");
-  }
-  if (props.medium) {
-    size.push("medium");
-  }
-  if (props.large) {
-    size.push("large");
-  }
-  return size.join(" ");
-});
-
 defineExpose({
-  activeIndex,
-  activeIndexes,
-  handleClick,
-  customProps,
   getCurrentRoles: getCurrentRoles,
 });
 </script>
@@ -136,8 +126,18 @@ defineExpose({
       margin-left:0;
     }
   }
-  &.disable {
+  &.disabled {
     opacity:50%;
+  }
+  &.round {
+    .sc-button {
+      &:first-child {
+        border-radius: 8px 0 0 8px;
+      }
+      &:last-child {
+        border-radius: 0 8px 8px 0;
+      }
+    }
   }
 }
 </style>

@@ -190,9 +190,6 @@ export default {
     background: $SC-PRIMARY-COLOR-TYPE2;
     color: $SC-COLOR-TYPE2-WHITE;
   }
-  &.round {
-    border-radius: 5px;
-  }
   &.icon-button {
     padding: 0 0 0 3px;
     &.small {
@@ -235,6 +232,7 @@ export default {
     border: 1px solid $SC-SECONDARY-COLOR-TYPE2-80;
     &:hover,
     &.active {
+      color: $SC-COLOR-WHITE;
       background: $SC-SECONDARY-COLOR-TYPE2-80;
     }
   }

@@ -11,69 +11,38 @@
                 <div class="flex flex-row">
                   <div class="basis-1/2">
                     <div class="mb-3">Basic</div>
-                    <sc-button-wrapper>
-                      <template #default="{ onActiveClick, activeIndex }">
-                        <sc-button 
-                          v-for="(label, index) in labelGroup" 
-                          :key="index" 
-                          :class="{ active: activeIndex === index }" 
-                          @click="
-                            onActiveClick(index);
-                            activeLabel = label;
-                          "
-                          class="sc-button"
-                        >
-                          {{ label }}
-                        </sc-button>
-                      </template>
-                    </sc-button-wrapper>
+                    <sc-button-wrapper 
+                      :label-group="labelGroup"
+                      :active-label="activeLabels[0]"
+                      @update:activeLabel="(label) => updateActiveLabel(0, label)"
+                    />
                     <div class="mt-5 mb-3">Basic Disabled(Opacity50%)</div>
-                    <sc-button-wrapper :initialActiveIndex="0" disabled>
-                      <template #default="{  activeIndex }">
-                        <sc-button 
-                          v-for="(label, index) in labelGroup" 
-                          :key="index" 
-                          :class="{ active: activeIndex === index }"
-                          class="sc-button"
-                        >
-                          {{ label }}
-                        </sc-button>
-                      </template>
-                    </sc-button-wrapper>
+                    <sc-button-wrapper 
+                      :label-group="labelGroup"
+                      :active-label="activeLabels[1]"
+                      :initial-active-index="initialActiveIndex"
+                      @update:activeLabel="(label) => updateActiveLabel(1, label)"
+                      disabled
+                    />
                   </div>
                   <div class="basis-1/2">
                     <div class="mb-3">Round+Color조합</div>
-                    <sc-button-wrapper>
-                      <template #default="{ onActiveClick, activeIndex }">
-                        <sc-button 
-                          v-for="(label, index) in labelGroup" 
-                          :key="index" 
-                          :class="{ active: activeIndex === index }"
-                          :color="colorGroup[index]" 
-                          @click="
-                            onActiveClick(index);
-                            activeLabel3 = label;
-                          "
-                          class="sc-button"
-                        >
-                          {{ label }}
-                        </sc-button>
-                      </template>
-                    </sc-button-wrapper>
+                    <sc-button-wrapper 
+                      :label-group="labelGroup"
+                      :active-label="activeLabels[2]"
+                      @update:activeLabel="(label) => updateActiveLabel(2, label)"
+                      shape="round"
+                      :color-group="colorGroup"
+                    />
                     <div class="mt-5 mb-3">Round+Color조합 Disabled(Opacity50%)</div>
-                    <sc-button-wrapper :initialActiveIndex="2" disabled>
-                      <template #default="{ activeIndex }">
-                        <sc-button 
-                          v-for="(label, index) in labelGroup" 
-                          :key="index" 
-                          :class="{ active: activeIndex === index }"
-                          :color="colorGroup[index]" 
-                          class="sc-button"
-                        >
-                          {{ label }}
-                        </sc-button>
-                      </template>
-                    </sc-button-wrapper>
+                    <sc-button-wrapper 
+                      :label-group="labelGroup"
+                      :active-label="activeLabels[3]"
+                      @update:activeLabel="(label) => updateActiveLabel(2, label)"
+                      shape="round"
+                      :color-group="colorGroup"
+                      disabled
+                    />
                   </div>
                 </div>
               </template>
@@ -82,13 +51,13 @@
                   <div class="title">Value</div>
                   <div class="box">
                     <p class="list mt-3">Basic</p>
-                    <p class="list">결과 : {{ activeLabel }}</p>
+                    <p class="list">결과 : {{ activeLabels[0] }}</p>
                     <p class="list mt-3">Basic Disabled</p>
-                    <p class="list">결과 : {{ activeLabel2 }}</p>
+                    <p class="list">결과 : {{ activeLabels[1] }}</p>
                     <p class="list mt-3">Round + Color 조합</p>
-                    <p class="list">결과 : {{ activeLabel3 }}</p>
+                    <p class="list">결과 : {{ activeLabels[2] }}</p>
                     <p class="list mt-3">Round + Color 조합 Disabled</p>
-                    <p class="list">결과 : {{ activeLabel4 }}</p>
+                    <p class="list">결과 : {{ activeLabels[3] }}</p>
                   </div>
                 </div>
               </template>
@@ -98,94 +67,54 @@
             template='<div class="flex flex-row">
   <div class="basis-1/2">
     <div class="mb-3">Basic</div>
-    <sc-button-wrapper>
-      <template #default="{ onActiveClick, activeIndex }">
-        <sc-button 
-          v-for="(label, index) in labelGroup" 
-          :key="index" 
-          :class="{ active: activeIndex === index }" 
-          @click="
-            onActiveClick(index);
-            activeLabel = label;
-          "
-          class="sc-button"
-        >
-          {{ label }}
-        </sc-button>
-      </template>
-    </sc-button-wrapper>
+    <sc-button-wrapper 
+      :label-group="labelGroup"
+      :active-label="activeLabels[0]"
+      @update:activeLabel="(label) => updateActiveLabel(0, label)"
+    />
     <div class="mt-5 mb-3">Basic Disabled(Opacity50%)</div>
-    <sc-button-wrapper :initialActiveIndex="0" disabled>
-      <template #default="{  activeIndex }">
-        <sc-button 
-          v-for="(label, index) in labelGroup" 
-          :key="index" 
-          :class="{ active: activeIndex === index }"
-          class="sc-button"
-        >
-          {{ label }}
-        </sc-button>
-      </template>
-    </sc-button-wrapper>
+    <sc-button-wrapper 
+      :label-group="labelGroup"
+      :active-label="activeLabels[1]"
+      :initial-active-index="initialActiveIndex"
+      @update:activeLabel="(label) => updateActiveLabel(1, label)"
+      disabled
+    />
   </div>
   <div class="basis-1/2">
     <div class="mb-3">Round+Color조합</div>
-    <sc-button-wrapper>
-      <template #default="{ onActiveClick, activeIndex }">
-        <sc-button 
-          v-for="(label, index) in labelGroup" 
-          :key="index" 
-          :class="{ active: activeIndex === index }"
-          :color="colorGroup[index]" 
-          @click="
-            onActiveClick(index);
-            activeLabel3 = label;
-          "
-          class="sc-button"
-        >
-          {{ label }}
-        </sc-button>
-      </template>
-    </sc-button-wrapper>
+    <sc-button-wrapper 
+      :label-group="labelGroup"
+      :active-label="activeLabels[2]"
+      @update:activeLabel="(label) => updateActiveLabel(2, label)"
+      shape="round"
+      :color-group="colorGroup"
+    />
     <div class="mt-5 mb-3">Round+Color조합 Disabled(Opacity50%)</div>
-    <sc-button-wrapper :initialActiveIndex="2" disabled>
-      <template #default="{ activeIndex }">
-        <sc-button 
-          v-for="(label, index) in labelGroup" 
-          :key="index" 
-          :class="{ active: activeIndex === index }"
-          :color="colorGroup[index]" 
-          class="sc-button"
-        >
-          {{ label }}
-        </sc-button>
-      </template>
-    </sc-button-wrapper>
+    <sc-button-wrapper 
+      :label-group="labelGroup"
+      :active-label="activeLabels[3]"
+      @update:activeLabel="(label) => updateActiveLabel(2, label)"
+      shape="round"
+      :color-group="colorGroup"
+      disabled
+    />
   </div>
-</div> 
-<div class="description-wrap">
-  <div class="title">Basic</div>
-  <div class="box mb-3">
-    <p class="list">결과 : {{ activeLabel }}</p>
-  </div>
-  <div class="title">Basic Disabled</div>
-  <div class="box mb-3">
-    <p class="list">결과 : {{ activeLabel2 }}</p>
-  </div>
-  <div class="title">Round + Color 조합</div>
-  <div class="box mb-3">
-    <p class="list">결과 : {{ activeLabel3 }}</p>
-  </div>
-  <div class="title">Round + Color 조합 Disabled</div>
-  <div class="box mb-3">
-    <p class="list">결과 : {{ activeLabel4 }}</p>
-  </div>
-</div>'
-      />
+</div>
+<p class="list mt-3">Basic</p>
+<p class="list">결과 : {{ activeLabels[0] }}</p>
+<p class="list mt-3">Basic Disabled</p>
+<p class="list">결과 : {{ activeLabels[1] }}</p>
+<p class="list mt-3">Round + Color 조합</p>
+<p class="list">결과 : {{ activeLabels[2] }}</p>
+<p class="list mt-3">Round + Color 조합 Disabled</p>
+<p class="list">결과 : {{ activeLabels[3] }}</p>
+              '/>
             </ScDetailAccordion>
             <ScDetailAccordion title="Script">
               <sc-code-highlight
-            script="export default defineComponent({
+            script="
+export default defineComponent({
   props: {
     initialActiveIndex: {
       type: Number,
@@ -194,28 +123,19 @@
   },
   components: {
     ScButtonWrapper,
-    ScButton,
   },
-  setup(props) {
+  setup() {
     const labelGroup = ref(['Basic1', 'Basic2', 'Basic3']);
+    const activeLabels = ref(['Basic1', 'Basic1', 'Basic1', 'Basic3']);
     const colorGroup = ref(['primary', 'indigo', 'mint']);
-    const activeIndex = ref(null);
-    const activeLabel = ref('Basic1');
-    const activeLabel2 = ref(labelGroup.value[props.initialActiveIndex]);
-    const activeLabel3 = ref('Basic1');
-    const activeLabel4 = ref('Basic3');
-    const onActiveClick = (index) => {
-      activeIndex.value = activeIndex.value === index ? null : index
+    const updateActiveLabel = (index, label) => {
+      activeLabels.value[index] = label;
     };
     return {
       labelGroup,
+      activeLabels,
       colorGroup,
-      activeIndex,
-      activeLabel,
-      activeLabel2,
-      activeLabel3,
-      activeLabel4,
-      onActiveClick,
+      updateActiveLabel,
     };
   },
 })" />
@@ -225,33 +145,23 @@
         <!-- //Basig Usage -->
         <!-- Multiple -->
         <sc-sample-box title="Multiple">
-          <template #description>여러 옵션을 제공하고 사용자가 다중 선택을 할 수 있는 기능르 제공한다. 다중 선택일 경우 v-model을 사용한다.</template>
+          <template #description>여러 옵션을 제공하고 사용자가 다중 선택을 할 수 있는 기능을 제공한다. 다중 선택일 경우 v-model을 사용한다.</template>
           <ScDetailAccordionWrapper>
             <ScDetailAccordion title="Demo" init-show>
               <template #demo> 
                 <div class="mb-3">다중선택</div>
-                <sc-button-wrapper>
-                  <template #default="{ onActiveClick, activeIndexes }">
-                    <sc-button 
-                      v-for="(label, index) in labelGroup" 
-                      :key="index" 
-                      :class="{ active: activeIndexes.includes(index) }"
-                      @click="
-                        onActiveClick(index);
-                        toggleLabel(label);
-                      "
-                      class="sc-button"
-                    >
-                      {{ label }}
-                    </sc-button>
-                  </template>
-                </sc-button-wrapper>
+                <sc-button-wrapper 
+                  :label-group="labelGroup"
+                  :active-label="multiActiveLabels"
+                  :multi-select="true"
+                  @update:activeLabels="updateMultiActiveLabels"
+                />
               </template>
               <template #demodescription>
                 <div class="description-wrap">
                   <div class="title">Value</div>
                   <div class="box mb-3">
-                    <p class="list">결과 : {{ activeLabel5 }}</p>
+                    <p class="list">결과 : {{ multiActiveLabels }}</p>
                   </div>
                 </div>
               </template>
@@ -259,22 +169,12 @@
             <ScDetailAccordion title="Template">
               <sc-code-highlight
             template='<div class="mb-3">다중선택</div>
-<sc-button-wrapper>
-  <template #default="{ onActiveClick, activeIndexes }">
-    <sc-button 
-      v-for="(label, index) in labelGroup" 
-      :key="index" 
-      :class="{ active: activeIndexes.includes(index) }"
-      @click="
-        onActiveClick(index);
-        toggleLabel(label);
-      "
-      class="sc-button"
-    >
-      {{ label }}
-    </sc-button>
-  </template>
-</sc-button-wrapper>'
+<sc-button-wrapper 
+  :label-group="labelGroup"
+  :active-label="multiActiveLabels"
+  :multi-select="true"
+  @update:activeLabels="updateMultiActiveLabels"
+/>'
       />
             </ScDetailAccordion>
             <ScDetailAccordion title="Script">
@@ -288,40 +188,218 @@
   },
   components: {
     ScButtonWrapper,
-    ScButton,
   },
-  setup(props) {  
-  const activeIndexes = ref([]);
-  const activeLabel5 = ref([]);	const onActiveClick = (index) => {
-    activeIndex.value = activeIndex.value === index ? null : index
-    const idx = activeIndexes.value.indexOf(index);
-    if (idx === -1) {
-      activeIndexes.value.push(index);
-    } else {
-      activeIndexes.value.splice(idx, 1);
-    }
-  };
-  const toggleLabel = (label) => {
-    const index = activeLabel5.value.indexOf(label);
-    if (index === -1) {
-      activeLabel5.value.push(label);
-    } else {
-      activeLabel5.value.splice(index, 1);
-    }
-  };
-  return {
-    labelGroup,
-    activeIndex,
-    activeLabel5,
-    onActiveClick,
-    toggleLabel,
-  };
-  }
+  setup() {
+    const labelGroup = ref(['Basic1', 'Basic2', 'Basic3']);
+    const multiActiveLabels = ref([]);
+    const updateActiveLabel = (index, label) => {
+      activeLabels.value[index] = label;
+    };
+    const updateMultiActiveLabels = (labels) => {
+      multiActiveLabels.value = labels;
+    };
+    return {
+      labelGroup,
+      multiActiveLabels,
+      updateActiveLabel,
+      updateMultiActiveLabels,
+    };
+  },
 })" />
             </ScDetailAccordion>
           </ScDetailAccordionWrapper>
         </sc-sample-box>
         <!-- //Multiple -->
+        <!-- Icon -->
+        <sc-sample-box title="Icon">
+          <template #description>버튼별 아이콘 타입과 위치를 설정할 수 있습니다.</template>
+          <ScDetailAccordionWrapper>
+            <ScDetailAccordion title="Demo" init-show>
+              <template #demo>
+                <sc-button-wrapper 
+                  :label-group="labelGroup"
+                  :active-label="activeLabels[4]"
+                  @update:activeLabel="(label) => updateActiveLabel(4, label)"
+                  :icon-group="iconGroup"
+                  :icon-position-Group="iconPositionGroup"
+                />
+              </template>
+              <template #demodescription>
+                <div class="description-wrap">
+                  <div class="title">Value</div>
+                  <div class="box">
+                    <p class="list">결과 : {{ activeLabels[4] }}</p>
+                  </div>
+                </div>
+              </template>
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Template">
+              <sc-code-highlight
+            template='<sc-button-wrapper 
+  :label-group="labelGroup"
+  :active-label="activeLabels[4]"
+  @update:activeLabel="(label) => updateActiveLabel(4, label)"
+  :icon-group="iconGroup"
+  :icon-position-Group="iconPositionGroup"
+/>
+<p class="list">결과 : {{ activeLabels[4] }}</p>
+              '/>
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Script">
+              <sc-code-highlight
+            script="
+export default defineComponent({
+  components: {
+    ScButtonWrapper,
+  },
+  setup() {
+    const labelGroup = ref(['Basic1', 'Basic2', 'Basic3']);
+    const activeLabels = ref(['Basic1', 'Basic1', 'Basic1', 'Basic3','']);
+    const iconGroup = ref(['cog', 'home', 'hashtag']);
+    const iconPositionGroup = ref(['left', 'right', 'left']);
+    const updateActiveLabel = (index, label) => {
+      activeLabels.value[index] = label;
+    };
+    return {
+      labelGroup,
+      activeLabels,
+      iconGroup,
+      iconPositionGroup,
+      updateActiveLabel,
+    };
+  },
+})" />
+            </ScDetailAccordion>
+          </ScDetailAccordionWrapper>
+        </sc-sample-box>
+        <!-- //Icon -->
+        <!-- Size -->
+        <sc-sample-box title="Size">
+          <template #description>버튼 그룹의 사이즈를 전달할 수 있습니다.</template>
+          <ScDetailAccordionWrapper>
+            <ScDetailAccordion title="Demo" init-show>
+              <template #demo>
+                <div class="mb-3">Size: Large</div>
+                <sc-button-wrapper 
+                  :label-group="labelGroup"
+                  :active-label="activeLabels[5]"
+                  @update:activeLabel="(label) => updateActiveLabel(1, label)"
+                  size="large"
+                />
+              </template>
+              <template #demodescription>
+                <div class="description-wrap">
+                  <div class="title">Value</div>
+                  <div class="box">
+                    <p class="list">결과 : {{ activeLabels[5] }}</p>
+                  </div>
+                </div>
+              </template>
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Template">
+              <sc-code-highlight
+            template='<div class="mb-3">Size: Large</div>
+<sc-button-wrapper 
+  :label-group="labelGroup"
+  :active-label="activeLabels[5]"
+  @update:activeLabel="(label) => updateActiveLabel(1, label)"
+  size="large"
+/>
+<p class="list">결과 : {{ activeLabels[5] }}</p>
+              '/>
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Script">
+              <sc-code-highlight
+            script="
+export default defineComponent({
+  components: {
+    ScButtonWrapper,
+  },
+  setup() {
+    const labelGroup = ref(['Basic1', 'Basic2', 'Basic3']);
+    const activeLabels = ref(['Basic1', 'Basic1', 'Basic1', 'Basic3','', 'Basic1']);
+    const size = ref('');
+    const updateActiveLabel = (index, label) => {
+      activeLabels.value[index] = label;
+    };
+    return {
+      labelGroup,
+      activeLabels,
+      size,
+      updateActiveLabel,
+    };
+  },
+})" />
+            </ScDetailAccordion>
+          </ScDetailAccordionWrapper>
+        </sc-sample-box>
+        <!-- //Size -->
+        <!-- Object Uniq Key -->
+        <sc-sample-box title="Object Uniq Key">
+          <template #description>object-uniq-key값을 이용하여 button을 사용할 수 있습니다.</template>
+          <ScDetailAccordionWrapper>
+            <ScDetailAccordion title="Demo" init-show>
+              <template #demo>
+                <sc-button-wrapper 
+                  :label-group="labelGroupKey.map(item => item.name)"
+                  :active-label="activeLabels[6]"
+                  @update:activeLabel="(label) => updateActiveLabel(6, label)"
+                  :object-uniq-key="getObjectUniqKey(activeLabels[6])"
+                />
+              </template>
+              <template #demodescription>
+                <div class="description-wrap">
+                  <div class="title">Value</div>
+                  <div class="box">
+                    <p class="list">결과 : Object Uniq Key [id : {{ getObjectUniqKey(activeLabels[6]) }}]</p>
+                  </div>
+                </div>
+              </template>
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Template">
+              <sc-code-highlight
+            template='<sc-button-wrapper 
+  :label-group="labelGroupKey.map(item => item.name)"
+  :active-label="activeLabels[6]"
+  @update:activeLabel="(label) => updateActiveLabel(6, label)"
+  :object-uniq-key="getObjectUniqKey(activeLabels[6])"
+/>
+<p class="list">결과 : Object Uniq Key [id : {{ getObjectUniqKey(activeLabels[6]) }}]</p>
+              '/>
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Script">
+              <sc-code-highlight
+            script="
+export default defineComponent({
+  components: {
+    ScButtonWrapper,
+  },
+  setup() {
+    const activeLabels = ref(['Basic1', 'Basic1', 'Basic1', 'Basic3','', 'Basic1']);
+    const labelGroupKey = [
+      { id: 1, name: 'Basic1' },
+      { id: 2, name: 'Basic2' },
+      { id: 3, name: 'Basic3' },
+    ];
+    const updateActiveLabel = (index, label) => {
+      activeLabels.value[index] = label;
+    };
+    const getObjectUniqKey = (label) => {
+      const item = labelGroupKey.find(item => item.name === label);
+      return item ? item.id : null;
+    };
+    return {
+      activeLabels,
+      updateActiveLabel,
+      labelGroupKey,
+      getObjectUniqKey,
+    };
+  },
+})" />
+            </ScDetailAccordion>
+          </ScDetailAccordionWrapper>
+        </sc-sample-box>
+        <!-- //Object Uniq Key -->
       </sc-detail-tab-content>
       <sc-detail-tab-content label="Prop" :idx="2">
         <sc-table>
@@ -376,14 +454,13 @@
             <td>{{ item.arguments }}</td>
           </tr>
         </sc-table>
-      </sc-detail-tab-content>
+      </sc-detail-tab-content>      
     </sc-detail-tab-box>
   </div>
 </template>
 
 <script>
 import ScButtonWrapper from "@/components/common/ScButtonWrapper.vue";
-import ScButton from "@/components/common/ScButton.vue";
 import ScSampleBox from "@/components/common/ScSampleBox.vue";
 import ScDetailTabBox from '@/components/layout/ScDetailTabBox.vue';
 import ScDetailTabContent from '@/components/layout/ScDetailTabContent.vue';
@@ -404,7 +481,6 @@ export default defineComponent({
   },
   components: {
     ScButtonWrapper,
-    ScButton,
     ScSampleBox,
     ScCodeHighlight,
     ScDetailTabBox,
@@ -413,157 +489,115 @@ export default defineComponent({
     ScDetailAccordion,
     ScTable,
   },
-  setup(props) {
+  setup() {
     const labelGroup = ref(['Basic1', 'Basic2', 'Basic3']);
+    const activeLabels = ref(['Basic1', 'Basic1', 'Basic1', 'Basic3', '', 'Basic1', 'Basic1']);
+    const multiActiveLabels = ref([]);
     const colorGroup = ref(['primary', 'indigo', 'mint']);
-    const activeIndex = ref(null);
-    const activeIndexes = ref([]);
-    const activeLabel = ref('Basic1');
-    const activeLabel2 = ref(labelGroup.value[props.initialActiveIndex]);
-    const activeLabel3 = ref('Basic1');
-    const activeLabel4 = ref('Basic3');
-    const activeLabel5 = ref([]);
-    const onActiveClick = (index) => {
-      activeIndex.value = activeIndex.value === index ? null : index
-      const idx = activeIndexes.value.indexOf(index);
-      if (idx === -1) {
-        activeIndexes.value.push(index);
-      } else {
-        activeIndexes.value.splice(idx, 1);
-      }
+    const iconGroup = ref(['cog', 'home', 'hashtag']);
+    const iconPositionGroup = ref(['left', 'right', 'left']);
+    const size = ref('');
+    const labelGroupKey = [
+      { id:1, name:"Basic1" },
+      { id:2, name:"Basic2" },
+      { id:3, name:"Basic3" },
+    ];
+    // 단일 선택된 라벨 입력
+    const updateActiveLabel = (index, label) => {
+      activeLabels.value[index] = label;
     };
-    const toggleLabel = (label) => {
-      const index = activeLabel5.value.indexOf(label);
-      if (index === -1) {
-        activeLabel5.value.push(label);
-      } else {
-        activeLabel5.value.splice(index, 1);
-      }
+    // 멀티 선택된 라벨 입력
+    const updateMultiActiveLabels = (labels) => {
+      multiActiveLabels.value = labels;
+    };
+    // 라벨에 해당하는 id 값 찾기
+    const getObjectUniqKey = (label) => {
+      const item = labelGroupKey.find(item => item.name === label);
+      return item ? item.id : null;
+      
     };
     const roleStore = useRoleStore();
     return {
       labelGroup,
+      activeLabels,
       colorGroup,
-      activeIndex,
-      activeLabel,
-      activeLabel2,
-      activeLabel3,
-      activeLabel4,
-      activeLabel5,
-      onActiveClick,
-      toggleLabel,
+      iconGroup,
+      iconPositionGroup,
+      multiActiveLabels,
+      size,
+      labelGroupKey,
+      updateActiveLabel,
+      updateMultiActiveLabels,
+      getObjectUniqKey,
       addRole: roleStore.addRole,
     };
   },
   data() {
     return {
       selectedTabId: 1,
-      // labelGroup: ['Basic1', 'Basic2', 'Basic3'],
       propItems: [
         {
-          name: 'type',
-          type: 'String',
-          default: 'default',
-          value: 'default, round',
-          description: '버튼의 모양을 나타냄',
+          name: 'labelGroup',
+          type: 'Array',
+          default: '',
+          value: '',
+          description: '버튼그룹 라벨들 저장',
         },
         {
-          name: 'color',
-          type: 'String',
-          default: '',
-          value: 'primary, indigo, mint',
-          description: '버튼의 컬러',
+          name: 'initialActiveIndex',
+          type: 'Number',
+          default: '0',
+          value: '',
+          description: '버튼그룹 선택된 라벨 고정시 사용',
         },
         {
           name: 'disabled',
           type: 'Boolean',
           default: 'false',
-          value: 'primary, indigo, mint',
+          value: '',
           description: '버튼 비활성화 상태 표시여부',
+        },
+        {
+          name: 'activeLabel',
+          type: 'String',
+          default: '',
+          value: '',
+          description: '선택된 라벨 값 받아오기',
+        },
+        {
+          name: 'activeLabels',
+          type: 'Array',
+          default: '',
+          value: '',
+          description: '선택된 여러 라벨 값 받아오기',
+        },
+        {
+          name: 'multiSelect',
+          type: 'Boolean',
+          default: 'false',
+          value: '',
+          description: 'Multiple 다중 선택 모드 실행',
+        },
+        {
+          name: 'colorGroup',
+          type: 'Array',
+          default: '',
+          value: 'primary, indigo, mint',
+          description: '컬러저장',
+        },
+        {
+          name: 'shape',
+          type: 'String',
+          default: 'null',
+          value: ', round',
+          description: '버튼의 모양 중 모서리 라운드 모양 추가 제공',
         },
         {
           name: 'size',
           type: 'String',
           default: '',
           value: 'small, medium, large',
-          description: '버튼 사이즈',
-        },
-        {
-          name: 'width',
-          type: 'String, Number',
-          default: 'undefined',
-          value: '',
-          description: '버튼 넓이 정의',
-        },
-        {
-          name: 'small',
-          type: 'Boolean',
-          default: 'false',
-          value: '',
-          description: '',
-        },
-        {
-          name: 'medium',
-          type: 'Boolean',
-          default: 'false',
-          value: '',
-          description: '',
-        },
-        {
-          name: 'large',
-          type: 'Boolean',
-          default: 'false',
-          value: '',
-          description: '',
-        },
-        {
-          name: 'role',
-          type: 'String',
-          default: 'undefined',
-          value: '',
-          description: '버튼 권한에 따른 활성화 여부',
-        },
-        {
-          name: 'icon',
-          type: 'String',
-          default: 'null',
-          value: '',
-          description: '아이콘 타입 값을 받아와 적용한다.예)arrow, close, setting',
-        },
-        {
-          name: 'iconPosition',
-          type: 'String',
-          default: 'left',
-          value: 'left, right',
-          description: '아이콘의 위치를 지정한다.',
-        },
-        {
-          name: 'type',
-          type: 'String',
-          default: 'default',
-          value: 'default, text, icon',
-          description: '버튼의 타입(일반, 텍스트, 아이콘)을 정의. *기존의 모양은 shape으로 이동.',
-        },
-        {
-          name: 'type',
-          type: 'String',
-          default: 'default',
-          value: 'default, text, icon',
-          description: '버튼의 타입(일반, 텍스트, 아이콘)을 정의. *기존의 모양은 shape으로 이동.',
-        },
-        {
-          name: 'Variants',
-          type: 'String',
-          default: 'default',
-          value: 'default, background, shadow',
-          description: '텍스트 버튼, 백그라운드 버튼, 그림자 버튼 등 다양한 버튼 유형을 적용할 수 있다.',
-        },
-        {
-          name: 'shape',
-          type: 'String',
-          default: 'null',
-          value: 'circle, round',
-          description: '버튼의 모양을 지정. *기존 type에서 정의하던 round를 shape으로 이동하고 type을 재정의',
+          description: '버튼의 사이즈 지정',
         },
       ],
       slotItems: [
@@ -575,12 +609,12 @@ export default defineComponent({
       ],
       methodItems: [
         {
-          name: 'onChange',
-          description: '버튼의 상태가 변경될때 호출 되며, 변경 상태에 따라 modelvalue를 업데이트 한다. ',
+          name: 'handleClick',
+          description: '클릭한 버튼의 index값을 받아와 선택한다.',
           return: 'string, boolean, number, array, object',
           arguments: '',
         },
-      ],
+      ],      
     };
   },
   methods: {
