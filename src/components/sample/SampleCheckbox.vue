@@ -209,6 +209,26 @@
         </sc-sample-box>
         <!-- //Object Uniq Key -->      
       </sc-detail-tab-content>
+      <sc-detail-tab-content label="Prop" :idx="2">
+        <sc-table>
+          <template #thead>
+            <tr>
+              <th style="width: 130px">Name</th>
+              <th style="width: 200px">Type</th>
+              <th style="width: 150px">Default</th>
+              <th style="width: 250px">Value</th>
+              <th>Description</th>
+            </tr>
+          </template>
+          <tr v-for="item in propItems" :key="item.name">
+            <td>{{ item.name }}</td>
+            <td>{{ item.type }}</td>
+            <td>{{ item.default }}</td>            
+            <td>{{ item.value }}</td>
+            <td>{{ item.description }}</td>
+          </tr>
+        </sc-table>
+      </sc-detail-tab-content>      
     </sc-detail-tab-box>
   </div>
 </template>
@@ -221,9 +241,10 @@ import ScDetailTabContent from '@/components/layout/ScDetailTabContent.vue';
 import ScDetailAccordionWrapper from '@/components/layout/ScDetailAccordionWrapper.vue';
 import ScDetailAccordion from '@/components/layout/ScDetailAccordion.vue';
 import ScCodeHighlight from "@/components/common/ScCodeHighlight.vue";
+import ScTable from '@/components/common/ScTable.vue';
 export default {
   name: "SampleCheckbox",
-  components: { ScCheckbox, ScCodeHighlight, ScSampleBox, ScDetailTabBox, ScDetailTabContent, ScDetailAccordionWrapper, ScDetailAccordion },
+  components: { ScCheckbox, ScCodeHighlight, ScSampleBox, ScDetailTabBox, ScDetailTabContent, ScDetailAccordionWrapper, ScDetailAccordion, ScTable },
   data() {
     return {
       keys: ["Ace", "Boss", "Carrot", "Dice"],
@@ -241,6 +262,71 @@ export default {
         { id: 2, name: "B" },
       ],
       selectedTabId: 1,
+      propItems: [
+        {
+          name: 'modelValue',
+          type: 'string, boolean, number, array, object',
+          default: '',
+          value: '',
+          description: '버튼의 값을 나타냄.',
+        },
+        {
+          name: 'value',
+          type: 'string, object',
+          default: 'undefined',
+          value: '',
+          description: '체크 버튼의 고유 값으로 이 값은 modelValue와 연동되며, 버튼 선택 시, 어떤 값을 전달될지 결정한다.',
+        },
+        {
+          name: 'objectUniqKey',
+          type: 'boolean',
+          default: '',
+          value: '',
+          description: '버튼의 값을 나타냄.',
+        },
+        {
+          name: 'disabled',
+          type: 'boolean',
+          default: 'false',
+          value: '',
+          description: '버튼 비활성화 상태 표시여부',
+        },
+        {
+          name: 'size',
+          type: 'boolean',
+          default: '',
+          value: 'small, medium, large',
+          description: '버튼 사이즈',
+        },
+        {
+          name: 'width',
+          type: 'string, number',
+          default: 'undefined',
+          value: '',
+          description: '버튼의 넓이 wjddml',
+        },
+        {
+          name: 'small',
+          type: 'boolean',
+          default: 'false',
+          value: '',
+          description: '작은 사이즈의 버튼',
+        },
+        {
+          name: 'medium',
+          type: 'boolean',
+          default: 'false',
+          value: '',
+          description: '중간 사이즈의 버튼',
+        },
+        {
+          name: 'large',
+          type: 'boolean',
+          default: 'false',
+          value: '',
+          description: '큰 사이즈의 버튼',
+        },
+      ],
     };
   },
   methods: {

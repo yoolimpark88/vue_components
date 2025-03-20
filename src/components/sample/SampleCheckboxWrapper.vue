@@ -262,6 +262,50 @@
           </ScDetailAccordionWrapper>
         </sc-sample-box>
         <!-- //check/uncheck all -->
+         <!-- max items checked -->
+        <sc-sample-box title="Max items Checked">
+          <template #description>체크된 항목의 수를 제한하여 사용할 수 있다. (sample: Max2)</template>
+          <ScDetailAccordionWrapper>
+            <ScDetailAccordion title="Demo" init-show>
+              <template #demo>
+                <div>
+                  <sc-checkbox-wrapper v-model="dummy5">
+                    <sc-checkbox
+                      v-for="item in checkboxItems"
+                      :key="item.value"
+                      :value="item.value"
+                      :max="max"
+                      :checked="dummy5.includes(item.value)"
+                      :disabled="isDisabled(item.value)"
+                    >
+                      {{ item.label }}
+                    </sc-checkbox>
+                  </sc-checkbox-wrapper>
+                </div>
+              </template>
+              <template #demodescription>
+                <div class="description-wrap">
+                  <div class="title">Value</div>
+                  <div class="box">
+                    결과 : {{ dummy5 }}
+                  </div>
+                </div>
+              </template>
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Template" >
+              <sc-code-highlight
+              template=''
+              />
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Script" >
+              <sc-code-highlight
+              script="export default {
+};"
+                />
+            </ScDetailAccordion>
+          </ScDetailAccordionWrapper>
+        </sc-sample-box>
+        <!-- //max items checked -->
       </sc-detail-tab-content>
     </sc-detail-tab-box>
   </div>
@@ -298,6 +342,12 @@ export default {
     ScDetailAccordionWrapper,
     ScDetailAccordion
   },
+  props: {
+    value: {
+      type: Number,
+      required: true,
+    },
+  },
   setup() {
     const { ruleRequired, ruleNotEmpty } = useRules();
     return {
@@ -311,7 +361,9 @@ export default {
       dummy2: ["1", "2"],
       dummy3: [],
       dummy4: [],
+      dummy5: [],
       items: [],
+      max: 2,
       selectedTabId: 1,
       isAllChecked: false,
       checkboxItems: [
@@ -370,6 +422,12 @@ export default {
       }
       this.isAllChecked = this.dummy4.length === this.allValues.length;
     },
+    isDisabled(value) {
+      if(this.dummy5.length >= this.max && !this.dummy5.includes(value)) {
+        return true;
+      }
+      return false;
+    }
   },
   created() {
     for (let i = 0; i < 100; i++) {
