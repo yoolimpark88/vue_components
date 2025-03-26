@@ -250,21 +250,74 @@
             </ScDetailAccordion>
             <ScDetailAccordion title="Template" >
               <sc-code-highlight
-              template=''
+              template='<div class="sc-ck-all">
+  <label for="sc-ck-all-checked">
+    <input
+      id="sc-ck-all-checked" 
+      type="checkbox"
+      name="allChecked"
+      :checked="isAllChecked" 
+      @change="toggleAll"
+    />
+    <div class="sc-ck-custom"></div>
+    전체선택
+  </label>
+</div>
+<sc-checkbox-wrapper v-model="dummy4">
+  <sc-checkbox
+    v-for="item in checkboxItems"
+    :key="item.value"
+    :value="item.value"
+  >
+    {{ item.label }}
+  </sc-checkbox>
+</sc-checkbox-wrapper>
+<div class="box">
+  결과 : {{ dummy4 }}
+</div>'
               />
             </ScDetailAccordion>
             <ScDetailAccordion title="Script" >
               <sc-code-highlight
               script="export default {
+data() {
+	return {
+      dummy4: [],
+      isAllChecked: false,
+      checkboxItems: [
+        { value: 'value1', label: '---1---' },
+        { value: 'value2', label: '---2---' },
+        { value: 'value3', label: '---3---' },
+        { value: 'value4', label: '---4---' }
+      ],	
+	  }
+  },
+  watch: {
+    dummy4(newValue) {
+      this.isAllChecked = newValue.length === this.allValues.length;
+      if (newValue.length === 0) {
+        this.isAllChecked = false;
+      }
+    }
+  },
+  methods: {  
+    toggleAll() {
+      if (this.isAllChecked) {
+        this.dummy4 = [];
+      } else {
+        this.dummy4 = [...this.allValues];
+      }
+    },
+  }
 };"
                 />
             </ScDetailAccordion>
           </ScDetailAccordionWrapper>
         </sc-sample-box>
         <!-- //check/uncheck all -->
-         <!-- max items checked -->
-        <sc-sample-box title="Max items Checked">
-          <template #description>체크된 항목의 수를 제한하여 사용할 수 있다. (sample: Max2)</template>
+         <!-- min/max items checked -->
+        <sc-sample-box title="Min/Max items Checked">
+          <template #description>체크된 항목의 수를 제한하여 사용할 수 있다. (sample: Min[1], Max[2])</template>
           <ScDetailAccordionWrapper>
             <ScDetailAccordion title="Demo" init-show>
               <template #demo>
@@ -274,6 +327,7 @@
                       v-for="item in checkboxItems"
                       :key="item.value"
                       :value="item.value"
+                      :min="min"
                       :max="max"
                       :checked="dummy5.includes(item.value)"
                       :disabled="isDisabled(item.value)"
@@ -294,18 +348,95 @@
             </ScDetailAccordion>
             <ScDetailAccordion title="Template" >
               <sc-code-highlight
-              template=''
+              template='<sc-checkbox-wrapper v-model="dummy5">
+  <sc-checkbox
+    v-for="item in checkboxItems"
+    :key="item.value"
+    :value="item.value"
+    :min="min"
+    :max="max"
+    :checked="dummy5.includes(item.value)"
+    :disabled="isDisabled(item.value)"
+  >
+    {{ item.label }}
+  </sc-checkbox>
+</sc-checkbox-wrapper>
+<div class="box">
+  결과 : {{ dummy5 }}
+</div>'
               />
             </ScDetailAccordion>
             <ScDetailAccordion title="Script" >
               <sc-code-highlight
               script="export default {
+  data() {
+  	return {
+      dummy5: ['value1', 'value2'],
+      min:1,
+      max: 2,
+      checkboxItems: [
+        { value: 'value1', label: '---1---' },
+        { value: 'value2', label: '---2---' },
+        { value: 'value3', label: '---3---' },
+        { value: 'value4', label: '---4---' }
+      ],	
+  	}
+  },
+  methods: {  
+    isDisabled(value) {
+      if(this.dummy5.length <= this.min && this.dummy5.includes(value)) {
+        return true;
+      }
+      if(this.dummy5.length >= this.max && !this.dummy5.includes(value)) {
+        return true;
+      }
+      return false;
+    }
+  }
 };"
                 />
             </ScDetailAccordion>
           </ScDetailAccordionWrapper>
         </sc-sample-box>
         <!-- //max items checked -->
+      </sc-detail-tab-content>
+      <sc-detail-tab-content label="Prop" :idx="2">
+        <sc-table>
+          <template #thead>
+            <tr>
+              <th style="width: 130px">Name</th>
+              <th style="width: 200px">Type</th>
+              <th style="width: 150px">Default</th>
+              <th style="width: 250px">Value</th>
+              <th>Description</th>
+            </tr>
+          </template>
+          <tr v-for="item in propItems" :key="item.name">
+            <td>{{ item.name }}</td>
+            <td>{{ item.type }}</td>
+            <td>{{ item.default }}</td>            
+            <td>{{ item.value }}</td>
+            <td>{{ item.description }}</td>
+          </tr>
+        </sc-table>
+      </sc-detail-tab-content>
+      <sc-detail-tab-content label="Method" :idx="3">
+        <sc-table>
+          <template #thead>
+            <tr>
+              <th style="width: 130px">Name</th>
+              <th>Description</th>
+              <th style="width: 250px">Return</th>
+              <th style="width: 250px">Arguments</th>
+            </tr>
+          </template>
+          <tr v-for="item in methodItems" :key="item.name">
+            <td>{{ item.name }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.return }}</td>
+            <td>{{ item.arguments }}</td>
+          </tr>
+        </sc-table>
       </sc-detail-tab-content>
     </sc-detail-tab-box>
   </div>
@@ -325,6 +456,7 @@ import ScDetailTabBox from '@/components/layout/ScDetailTabBox.vue';
 import ScDetailTabContent from '@/components/layout/ScDetailTabContent.vue';
 import ScDetailAccordionWrapper from '@/components/layout/ScDetailAccordionWrapper.vue';
 import ScDetailAccordion from '@/components/layout/ScDetailAccordion.vue';
+import ScTable from '@/components/common/ScTable.vue';
 
 export default {
   name: "SampleCheckboxWrapper",
@@ -340,7 +472,8 @@ export default {
     ScDetailTabBox,
     ScDetailTabContent,
     ScDetailAccordionWrapper,
-    ScDetailAccordion
+    ScDetailAccordion,
+    ScTable
   },
   props: {
     value: {
@@ -361,8 +494,9 @@ export default {
       dummy2: ["1", "2"],
       dummy3: [],
       dummy4: [],
-      dummy5: [],
+      dummy5: ["value1", "value2"],
       items: [],
+      min:1,
       max: 2,
       selectedTabId: 1,
       isAllChecked: false,
@@ -371,6 +505,77 @@ export default {
         { value: 'value2', label: '---2---' },
         { value: 'value3', label: '---3---' },
         { value: 'value4', label: '---4---' }
+      ],
+      propItems: [
+        {
+          name: 'modelValue',
+          type: 'string, boolean, number, array',
+          default: 'false',
+          value: '',
+          description: '체크박스의 값(부모에서 v-model로 바인딩된 값)',
+        },
+        {
+          name: 'lazy',
+          type: 'boolean',
+          default: 'false',
+          value: '',
+          description: '유효성 검사를 지연시킬지 여부를 결정하는 boolean 값',
+        },
+        {
+          name: 'rules',
+          type: 'Array',
+          default: '',
+          value: '',
+          description: '체크박스에 대한 유효성 검사 규칙을 담고 있는 배열로 이 규칙을 통해 체크박스가 유효한지 검증할 수 있다',
+        },
+        {
+          name: 'vertical',
+          type: 'boolean',
+          default: 'false',
+          value: '',
+          description: '체크박스를 세로로 배치할지 여부를 결정하는 boolean 값',
+        },
+        {
+          name: 'isAllChecked',
+          type: 'boolean',
+          default: 'false',
+          value: '',
+          description: '체크박스 전체 선택/해제',
+        },
+        {
+          name: 'min',
+          type: 'Number',
+          default: '1',
+          value: '',
+          description: '최소선택값',
+        },
+        {
+          name: 'max',
+          type: 'Number',
+          default: '',
+          value: '',
+          description: '최대선택값',
+        },
+      ],
+      methodItems: [
+        {
+          name: 'toggleAll',
+          description: 'chackebox wrapper안의 checkbox들을 전체 선택 및 해제하는 기능',
+          return: 'array',
+          arguments: '',
+        },
+        {
+          name: 'toggleItem',
+          description: 'checkbox item을 배열 안에 넣어주는 기능',
+          return: '',
+          arguments: '',
+        },
+        {
+          name: 'isDisabled',
+          description: '최대, 최소값을 유지하면서 선택된 값 외에 선택되지 않도록 처리',
+          return: '',
+          arguments: '',
+        },
       ],
     };
   },  
@@ -423,6 +628,9 @@ export default {
       this.isAllChecked = this.dummy4.length === this.allValues.length;
     },
     isDisabled(value) {
+      if(this.dummy5.length <= this.min && this.dummy5.includes(value)) {
+        return true;
+      }
       if(this.dummy5.length >= this.max && !this.dummy5.includes(value)) {
         return true;
       }

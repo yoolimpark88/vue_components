@@ -279,21 +279,27 @@ export default defineComponent({
           <ScDetailAccordionWrapper>
             <ScDetailAccordion title="Demo" init-show>
               <template #demo>
-                <div class="mb-3">Size: Large</div>
+                <div class="mb-3">Size: small</div>
+                <sc-button-wrapper 
+                  :label-group="labelGroup"
+                  :active-label="activeLabels[5]"
+                  @update:activeLabel="(label) => updateActiveLabel(1, label)"
+                  size="small"
+                />
+                <div class="mb-3 mt-5">Size: medium</div>
+                <sc-button-wrapper 
+                  :label-group="labelGroup"
+                  :active-label="activeLabels[5]"
+                  @update:activeLabel="(label) => updateActiveLabel(1, label)"
+                  size="medium"
+                />
+                <div class="mb-3 mt-5">Size: Large</div>
                 <sc-button-wrapper 
                   :label-group="labelGroup"
                   :active-label="activeLabels[5]"
                   @update:activeLabel="(label) => updateActiveLabel(1, label)"
                   size="large"
                 />
-              </template>
-              <template #demodescription>
-                <div class="description-wrap">
-                  <div class="title">Value</div>
-                  <div class="box">
-                    <p class="list">결과 : {{ activeLabels[5] }}</p>
-                  </div>
-                </div>
               </template>
             </ScDetailAccordion>
             <ScDetailAccordion title="Template">

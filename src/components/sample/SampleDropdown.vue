@@ -166,6 +166,65 @@
           </ScDetailAccordionWrapper>
         </sc-sample-box>
         <!-- //borderless -->
+        <!-- Type -->
+        <sc-sample-box title="Type">
+          <template #description>Combobox의 다양한 스타일을 적용할 수 있다. 라운딩 스타일, 언더라인 스타일의 콤보박스를 제공한다. </template>
+          <ScDetailAccordionWrapper>
+            <ScDetailAccordion title="Demo" init-show>
+              <template #demo>
+                <div class="h-32">
+                  <div class="w-[150px] float-left">
+                    <div class="mb-3">Type: Round</div>
+                    <sc-dropdown :items="pageItems" v-model="pageValue2" round />
+                  </div>
+                  <div class="w-[150px] float-left ml-2.5">
+                    <div class="mb-3">Type: Underline</div>
+                    <sc-dropdown :items="pageItems" v-model="pageValue2" underline />
+                  </div>
+                </div>
+              </template>
+              <template #demodescription>
+                <div class="description-wrap">
+                  <div class="title">Value</div>
+                  <div class="box">
+                    <p class="list">결과 : {{ pageValue2 }}</p>
+                  </div>
+                </div>
+              </template>
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Template">
+              <sc-code-highlight
+                template='<div class="w-[150px] float-left">
+  <div class="mb-3">Type: Round</div>
+  <sc-dropdown :items="pageItems" v-model="pageValue2" round />
+</div>
+<div class="w-[150px] float-left ml-2.5">
+  <div class="mb-3">Type: Underline</div>
+  <sc-dropdown :items="pageItems" v-model="pageValue2" underline />
+</div>
+<p class="list">결과 : {{ pageValue2 }}</p>'
+              />
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Script" >
+              <sc-code-highlight
+                script="export default {
+  date() {
+    return {
+      pageItems: [
+        { value: '100', text: '100개' },
+        { value: '300', text: '300개' },
+        { value: '500', text: '500개' },
+        { value: '1000', text: '1000개' },
+      ],
+      pageValue: '100',
+    };
+  },
+};"
+              />
+            </ScDetailAccordion>
+          </ScDetailAccordionWrapper>
+        </sc-sample-box>
+        <!-- //type -->
         <!-- item 항목이 Object 형태인 경우 -->
         <sc-sample-box title="item 항목이 Object 형태인 경우">
           <template #description>Item의 키 값인 value와 라벨 값인 text로 select 영역을 만듭니다.</template>
@@ -336,6 +395,69 @@
           </ScDetailAccordionWrapper>
         </sc-sample-box>
         <!-- //searchable -->
+        <!-- label, Help text -->
+        <sc-sample-box title="With Label & Help Text">
+          <template #description>기본 콤보박스에 라벨과 도움말 콘텐츠를 추가할 수 있는 슬롯을 적용할 수 있다.<br />라벨은 top, left적용이 가능하며, 도움말은 bottom, right적용이 가능하다.</template>
+          <ScDetailAccordionWrapper>
+            <ScDetailAccordion title="Demo" init-show>
+              <template #demo>
+                <div class="w-full h-72">
+                  <div class="mb-3"><b>Label and Help Text위치 적용</b></div>
+                  <div class="w-[300px]">
+                    <sc-dropdown class="mb-2.5" :items="pageItems" v-model="pageValue3" :label="labelTop">
+                      <template #hintMessage>{{ hintMessage }}</template>
+                    </sc-dropdown>
+                  </div>
+                  <div class="w-[600px]">
+                    <sc-dropdown :items="pageItems" v-model="pageValue3" :label="labelLeft" leftLabel>
+                      <template #hintMessage>{{ hintMessage }}</template>
+                    </sc-dropdown>
+                  </div>
+                  <div class="mb-3 mt-5"><b>Help text style</b></div>
+                  <div class="w-[300px]">
+                    <sc-dropdown class="mb-2.5" :items="pageItems" v-model="pageValue4" :helpStyle="'info icon'">
+                      <template #hintMessage>{{ hintMessage }}</template>
+                    </sc-dropdown>
+                    <sc-dropdown :items="pageItems" v-model="pageValue4" :helpStyle="'caution icon'">
+                      <template #hintMessage>{{ hintMessage }}</template>
+                    </sc-dropdown>
+                  </div>
+                </div>
+              </template>
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Template">
+              <sc-code-highlight
+                template='<div class="w-[150px] float-left">
+  <div class="mb-3">Type: Round</div>
+  <sc-dropdown :items="pageItems" v-model="pageValue2" round />
+</div>
+<div class="w-[150px] float-left ml-2.5">
+  <div class="mb-3">Type: Underline</div>
+  <sc-dropdown :items="pageItems" v-model="pageValue2" underline />
+</div>
+<p class="list">결과 : {{ pageValue2 }}</p>'
+              />
+            </ScDetailAccordion>
+            <ScDetailAccordion title="Script" >
+              <sc-code-highlight
+                script="export default {
+  date() {
+    return {
+      pageItems: [
+        { value: '100', text: '100개' },
+        { value: '300', text: '300개' },
+        { value: '500', text: '500개' },
+        { value: '1000', text: '1000개' },
+      ],
+      pageValue: '100',
+    };
+  },
+};"
+              />
+            </ScDetailAccordion>
+          </ScDetailAccordionWrapper>
+        </sc-sample-box>
+        <!-- //label, Help text -->
       </sc-detail-tab-content>
     </sc-detail-tab-box>
   </div>
@@ -389,7 +511,13 @@ export default {
         { value: '1000', text: '1000개' },
       ],
       pageValue: '100',
+      pageValue2: '',
+      pageValue3: '',
+      pageValue4: '',
       selectedTabId: 1,
+      labelTop:'Top Label',
+      labelLeft:'Left Label',
+      hintMessage: '도움말 텍스트는 설명이나 특정 가이드를 제공한다.'
     };
   },
 };
