@@ -157,6 +157,44 @@
         </sc-sample-box>
         <!-- //removable -->
       </sc-detail-tab-content>
+      <sc-detail-tab-content label="Prop" :idx="2">
+        <sc-table>
+          <template #thead>
+            <tr>
+              <th style="width: 130px">Name</th>
+              <th style="width: 200px">Type</th>
+              <th style="width: 150px">Default</th>
+              <th style="width: 250px">Value</th>
+              <th>Description</th>
+            </tr>
+          </template>
+          <tr v-for="item in propItems" :key="item.name">
+            <td>{{ item.name }}</td>
+            <td>{{ item.type }}</td>
+            <td>{{ item.default }}</td>            
+            <td>{{ item.value }}</td>
+            <td>{{ item.description }}</td>
+          </tr>
+        </sc-table>
+      </sc-detail-tab-content>
+      <sc-detail-tab-content label="Method" :idx="3">
+        <sc-table>
+          <template #thead>
+            <tr>
+              <th style="width: 130px">Name</th>
+              <th>Description</th>
+              <th style="width: 250px">Return</th>
+              <th style="width: 250px">Arguments</th>
+            </tr>
+          </template>
+          <tr v-for="item in methodItems" :key="item.name">
+            <td>{{ item.name }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.return }}</td>
+            <td>{{ item.arguments }}</td>
+          </tr>
+        </sc-table>
+      </sc-detail-tab-content>
     </sc-detail-tab-box>
   </div>
 </template>
@@ -169,10 +207,11 @@ import ScDetailTabBox from '@/components/layout/ScDetailTabBox.vue';
 import ScDetailTabContent from '@/components/layout/ScDetailTabContent.vue';
 import ScDetailAccordionWrapper from '@/components/layout/ScDetailAccordionWrapper.vue';
 import ScDetailAccordion from '@/components/layout/ScDetailAccordion.vue';
+import ScTable from '@/components/common/ScTable.vue';
 
 export default {
   name: 'SampleInputChip',
-  components: { ScCodeHighlight, ScInputChip, ScSampleBox, ScDetailTabBox, ScDetailTabContent, ScDetailAccordionWrapper, ScDetailAccordion },
+  components: { ScCodeHighlight, ScInputChip, ScSampleBox, ScDetailTabBox, ScDetailTabContent, ScDetailAccordionWrapper, ScDetailAccordion, ScTable },
   data() {
     return {
       chips: [
@@ -182,6 +221,51 @@ export default {
         { color: 'red', value: 'red chip' },
         { color: 'orange', value: 'orange chip' },
         { color: 'green', value: 'green chip' },
+      ],
+      propItems: [
+        {
+          name: 'color',
+          type: 'string',
+          default: 'default',
+          value: 'primary(blue),point(green),red, grange,green',
+          description: 'default(gray),primary(blue),point(green)과 status를 나타내는 컬러로는 red(error), orange(waring),green(success)을 적용할 수 있다.',
+        },
+        {
+          name: 'size',
+          type: 'string',
+          default: 'small',
+          value: 'small, medium',
+          description: 'chip의 사이즈로 스몰과 미디움 2가지 사이즈를 제공한다.',
+        },
+        {
+          name: 'removable',
+          type: 'boolean',
+          default: 'false',
+          value: '',
+          description: '칩의 삭제 기능',
+        },
+        {
+          name: 'disabled',
+          type: 'boolean',
+          default: 'false',
+          value: '',
+          description: '비활성화 기능',
+        },
+        {
+          name: 'item',
+          type: 'object',
+          default: '()=>[]',
+          value: '',
+          description: '객체 형태로, 기본값은 빈 객체이다. 이 값은 삭제 이벤트가 발생할 때, 해당 아이템을 외부로 전달하는 데 사용된다.',
+        },
+      ],
+      methodItems: [
+        {
+          name: 'onClickDelete',
+          description: '아이템의 삭제 버튼이 클릭되었을 때 호출된다. onClickDelete 메소드가 실행되면, "click-delete" 이벤트가 발생하고, 부모 컴포넌트로 item 객체를 전달한다.',
+          return: '',
+          arguments: '',
+        },
       ],
     };
   },

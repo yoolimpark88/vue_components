@@ -375,7 +375,7 @@ export default {
           name: 'disabled',
           type: 'Boolean',
           default: 'false',
-          value: 'primary, indigo, mint',
+          value: '',
           description: '버튼 비활성화 상태 표시여부',
         },
         {
@@ -442,18 +442,18 @@ export default {
           description: '버튼의 타입(일반, 텍스트, 아이콘)을 정의. *기존의 모양은 shape으로 이동.',
         },
         {
-          name: 'type',
-          type: 'String',
-          default: 'default',
-          value: 'default, text, icon',
-          description: '버튼의 타입(일반, 텍스트, 아이콘)을 정의. *기존의 모양은 shape으로 이동.',
-        },
-        {
           name: 'Variants',
           type: 'String',
           default: 'default',
           value: 'default, background, shadow',
           description: '텍스트 버튼, 백그라운드 버튼, 그림자 버튼 등 다양한 버튼 유형을 적용할 수 있다.',
+        },
+        {
+          name: 'Hidden',
+          type: 'Boolean',
+          default: 'false',
+          value: '',
+          description: '버튼 숨김처리 적용, 단 버튼 영역은 차지한다.',
         },
         {
           name: 'shape',

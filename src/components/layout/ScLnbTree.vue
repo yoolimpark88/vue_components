@@ -70,7 +70,6 @@ export default {
     return {
       isCollapsed: false,
       menuSearchText: '',
-      // onMenu: [],
       menus: [
         {
           name: 'Overview',
@@ -86,6 +85,7 @@ export default {
               isOpen: false,
               subsubmenus: [
                 { name: 'Button', routerUrl:'sampleButton' },
+                { name: 'ButtonWrapper', routerUrl:'sampleButtonWrapper' },
                 { name: 'Checkbox', routerUrl:'sampleCheckbox' },
                 { name: 'CheckboxWrapper', routerUrl:'sampleCheckboxWrapper' },
                 { name: 'InputChip', routerUrl:'sampleInputChip' },
@@ -122,6 +122,7 @@ export default {
                 { name: 'Alert', routerUrl:'sampleAlert' },
                 { name: 'Badge', routerUrl:'sampleBadge' },
                 { name: 'Confirm', routerUrl:'sampleConfirm' },
+                { name: 'HelpText', routerUrl:'sampleHelpText' },
                 { name: 'Modal', routerUrl:'sampleModal' },
                 { name: 'Tooltip', routerUrl:'sampleTooltip' },
               ],

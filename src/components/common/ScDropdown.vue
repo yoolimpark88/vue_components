@@ -1,14 +1,17 @@
 <template>
-  <div :class="['sc-dropdown-wrap', { invalid: !isValid }]">
+  <div :class="['sc-dropdown-wrap', { invalid: !isValid, leftLabel: leftLabel }]">
+    <div class="sc-dropdown-label">
+      {{ label }}
+    </div>
     <div
-      :class="['sc-dropdown sc-item', size, customProps]"
+      :class="['sc-dropdown sc-item', size, customProps, typeProps, { roundHover: isOpen }]"
       v-shake="isValid"
       @click="toggleDropdown"
       v-out-side-click="handleClickOutside"
     >
       <div class="flex items-center justify-between">
         <div class="selected-item" v-if="searchable">
-          <input
+          <input 
             ref="search"
             type="text"
             class="search-input"
@@ -39,7 +42,7 @@
           </svg>
         </div>
       </div>
-      <div v-show="isOpen" class="select-layer z-50" :style="customLayerStyle">
+      <div v-show="isOpen" :class="['select-layer z-50', typeProps]" :style="customLayerStyle">
         <div
           v-for="(item, index) in filteredItems"
           :key="index"
@@ -61,15 +64,23 @@
     <div v-if="!isValid" class="error">
       <span class="message">{{ errorMessage }}</span>
     </div>
+    <ScHelpText v-if="slots.hintMessage" :size="helpSize" :type="helpType" :icon="helpIcon">
+      <slot name="hintMessage"></slot>
+    </ScHelpText>
+    <!-- <div v-if="slots.hintMessage" :class="['hintMessage', helpStyle]">
+      <slot name="hintMessage"></slot>
+    </div> -->
   </div>
 </template>
 
 <script>
-import { ref, watch } from 'vue';
+import ScHelpText from '@/components/common/ScHelpText.vue';
+import { ref, watch, useSlots } from 'vue';
 import { useValidation } from '@/hooks/common/useValidation';
 
 export default {
   name: 'ScDropdown',
+  components: {ScHelpText},
   emits: ['update:modelValue', 'change'],
   props: {
     items: {
@@ -121,6 +132,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    round: {
+      type: Boolean,
+      default: false,
+    },
+    underline: {
+      type: Boolean,
+      default: false,
+    },
     lazy: {
       type: Boolean,
       default: false,
@@ -133,6 +152,28 @@ export default {
       type: Array,
       default: () => [],
     },
+    label: {
+      type: String,
+      default: '',
+    },
+    leftLabel: {      
+      type: Boolean,
+      default: false,
+    },
+    helpSize: {
+      type: String,
+      default: 'small',
+      validator: (value) => ['small', 'medium', 'large'].includes(value),
+    },
+    helpType: {
+      type: String,
+      default:'',
+      validator: (value) => ['', 'info', 'caution'].includes(value),
+    },
+    helpIcon: {
+      type: Boolean,
+      default:false
+    }
   },
   setup(props) {
     // modelValue를 ref로 감싸서 반응형으로 만듦
@@ -141,6 +182,7 @@ export default {
       props.rules,
       valueModel,
     );
+    const slots = useSlots();
     // 부모 컴포넌트로 부터 modelValue의 변화를 감지
     watch(
       () => props.modelValue,
@@ -155,6 +197,7 @@ export default {
       isValid,
       errorMessage,
       validate,
+      slots,
     };
   },
   data() {
@@ -214,6 +257,16 @@ export default {
       }
       if (this.borderless) {
         css.push('borderless');
+      }
+      return css.join(' ');
+    },
+    typeProps() {
+      const css = [];
+      if (this.round) {
+        css.push('round');
+      }
+      if (this.underline) {
+        css.push('boxUnderline');
       }
       return css.join(' ');
     },
@@ -352,6 +405,53 @@ export default {
 <style scoped lang="scss">
 .sc-dropdown-wrap {
   position: relative;
+  &.leftLabel {
+    display: flex;
+    justify-content: space-between;
+    .sc-dropdown {
+      flex:auto;
+      margin-left:20px;
+    }
+  }
+  .sc-dropdown-label {
+    font-size:14px;
+    font-weight: 500;
+  }
+  .hintMessage {
+    position:relative;
+    font-size:12px;
+    color: $SC-COLOR-TYPE2-GRAY-80;
+    margin: 3px 0 0 3px;
+    &.icon {
+      padding-left: 16px;
+      &::after {
+        content: "?";        
+        position:absolute;
+        left:0;
+        top:0;
+        width:12px;
+        height:12px;
+        border-radius:50%;
+        background-color: #5A5A5A;
+        color:#fff;
+        font-size:8px;
+        padding: 0 0 0 4px;
+        margin: 3px 0 0 0;
+      }
+    }
+    &.info {
+      color:#2584DA;
+      &::after {
+        background-color: #2584DA;
+      }
+    }
+    &.caution {
+      color:#ff2300;
+      &::after {
+        background-color: #ff2300;
+      }
+    }
+  }
 }
 .sc-item {
   padding: 2px 10px;
@@ -392,8 +492,12 @@ export default {
     border: 1px solid transparent;
     background: transparent;
   }
-  &:hover {
+  &:hover,
+  &.roundHover {
     border: 1px solid $SC-PRIMARY-COLOR-LIGHT-BLUE;
+    &.round {
+      border-radius: 8px 8px 0 0;
+    }
   }
   &.disabled {
     cursor: default;
@@ -404,6 +508,23 @@ export default {
     &.borderless {
       border: 1px solid transparent !important;
     }
+  }
+  &.round {
+    &:has(.select-layer[style*="display: none"]) {
+      border-radius:8px;
+    }
+    &:hover, 
+    &:active {
+      border-radius: 8px 8px 0 0;
+      border: 1px solid $SC-PRIMARY-COLOR-LIGHT-BLUE;
+    }
+    .select-layer {
+      border-radius: 0 0 8px 8px;
+    }
+  }
+  &.boxUnderline {
+    border-width: 0 0 1px 0;
+    text-decoration-line: none;
   }
 }
 

@@ -26,4 +26,14 @@
       }
     }
   }
+  .sc-button {
+    &.active {      
+      .sc-icon {
+        svg {
+          display:inline-block;
+          fill: $SC-COLOR-TYPE2-WHITE;
+        }
+      }
+    }
+  }
 }

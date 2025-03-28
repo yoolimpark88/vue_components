@@ -185,6 +185,7 @@ export default {
   }
   &.disabled {
     color: $SC-COLOR-GRAY-50;
+    cursor:no-drop;
   }
   &.medium {
     height: 20px;

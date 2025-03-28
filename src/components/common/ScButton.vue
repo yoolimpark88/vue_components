@@ -186,8 +186,9 @@ export default {
   &:hover {
     background: $SC-COLOR-GRAY-10;
   }
-  &.round {
-    border-radius: 5px;
+  &.active {
+    background: $SC-PRIMARY-COLOR-TYPE2;
+    color: $SC-COLOR-TYPE2-WHITE;
   }
   &.icon-button {
     padding: 0 0 0 3px;
@@ -226,19 +227,31 @@ export default {
     opacity: 0.6;
   }
   &.primary {
-    background: $SC-PRIMARY-COLOR-LIGHT-BLUE;
+    background: $SC-PRIMARY-COLOR-TYPE2;
     color: $SC-COLOR-WHITE;
-    border: 1px solid $SC-PRIMARY-COLOR-LIGHT-BLUE;
-    &:hover {
-      background: $SC-PRIMARY-HOVER-COLOR-LIGHT-BLUE;
+    border: 1px solid $SC-SECONDARY-COLOR-TYPE2-80;
+    &:hover,
+    &.active {
+      color: $SC-COLOR-WHITE;
+      background: $SC-SECONDARY-COLOR-TYPE2-80;
     }
   }
   &.indigo {
     background: $SC-PRIMARY-COLOR-INDIGO;
     color: $SC-COLOR-WHITE;
     border: 1px solid $SC-PRIMARY-COLOR-INDIGO;
-    &:hover {
+    &:hover,
+    &.active {
       background: $SC-PRIMARY-HOVER-COLOR-INDIGO;
+    }
+  }
+  &.mint {
+    background: $SC-PRIMARY-COLOR-MINT;
+    color: $SC-COLOR-WHITE;
+    border: 1px solid $SC-PRIMARY-COLOR-MINT;
+    &:hover,
+    &.active {
+      background: $SC-SUB-COLOR-MINT-TINT-05;
     }
   }
   &:not(.active) {
@@ -273,6 +286,14 @@ export default {
 }
 .sc-button + .sc-button {
   margin-left: 5px;
+}
+.sc-button-wrapper {
+  .sc-button {
+    +.sc-button {
+      margin-left:0;
+      border-left:0;
+    }
+  }
 }
 img + .sc-button {
   margin-left: 5px;
