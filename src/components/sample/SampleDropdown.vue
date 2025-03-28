@@ -404,21 +404,21 @@
                 <div class="w-full h-72">
                   <div class="mb-3"><b>Label and Help Text위치 적용</b></div>
                   <div class="w-[300px]">
-                    <sc-dropdown class="mb-2.5" :items="pageItems" v-model="pageValue3" :label="labelTop">
+                    <sc-dropdown class="mb-2.5" :items="pageItems" v-model="pageValue3" :helpSize="'medium'" :label="labelTop">
                       <template #hintMessage>{{ hintMessage }}</template>
                     </sc-dropdown>
                   </div>
                   <div class="w-[600px]">
-                    <sc-dropdown :items="pageItems" v-model="pageValue3" :label="labelLeft" leftLabel>
+                    <sc-dropdown :items="pageItems" v-model="pageValue3" :helpSize="'medium'" :label="labelLeft" leftLabel>
                       <template #hintMessage>{{ hintMessage }}</template>
                     </sc-dropdown>
                   </div>
                   <div class="mb-3 mt-5"><b>Help text style</b></div>
                   <div class="w-[300px]">
-                    <sc-dropdown class="mb-2.5" :items="pageItems" v-model="pageValue4" :helpStyle="'info icon'">
+                    <sc-dropdown class="mb-2.5" :items="pageItems" v-model="pageValue4" :helpSize="'medium'" :helpType="'info'" :helpIcon="true">
                       <template #hintMessage>{{ hintMessage }}</template>
                     </sc-dropdown>
-                    <sc-dropdown :items="pageItems" v-model="pageValue4" :helpStyle="'caution icon'">
+                    <sc-dropdown :items="pageItems" v-model="pageValue4" :helpSize="'medium'" :helpType="'caution'" :helpIcon="true">
                       <template #hintMessage>{{ hintMessage }}</template>
                     </sc-dropdown>
                   </div>

@@ -64,18 +64,23 @@
     <div v-if="!isValid" class="error">
       <span class="message">{{ errorMessage }}</span>
     </div>
-    <div v-if="slots.hintMessage" :class="['hintMessage', helpStyle]">
+    <ScHelpText v-if="slots.hintMessage" :size="helpSize" :type="helpType" :icon="helpIcon">
       <slot name="hintMessage"></slot>
-    </div>
+    </ScHelpText>
+    <!-- <div v-if="slots.hintMessage" :class="['hintMessage', helpStyle]">
+      <slot name="hintMessage"></slot>
+    </div> -->
   </div>
 </template>
 
 <script>
+import ScHelpText from '@/components/common/ScHelpText.vue';
 import { ref, watch, useSlots } from 'vue';
 import { useValidation } from '@/hooks/common/useValidation';
 
 export default {
   name: 'ScDropdown',
+  components: {ScHelpText},
   emits: ['update:modelValue', 'change'],
   props: {
     items: {
@@ -155,9 +160,19 @@ export default {
       type: Boolean,
       default: false,
     },
-    helpStyle: {
+    helpSize: {
       type: String,
-      default:''
+      default: 'small',
+      validator: (value) => ['small', 'medium', 'large'].includes(value),
+    },
+    helpType: {
+      type: String,
+      default:'',
+      validator: (value) => ['', 'info', 'caution'].includes(value),
+    },
+    helpIcon: {
+      type: Boolean,
+      default:false
     }
   },
   setup(props) {

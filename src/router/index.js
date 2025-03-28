@@ -13,6 +13,7 @@ import SampleCheckbox from '@/components/sample/SampleCheckbox.vue';
 import SampleCheckboxWrapper from '@/components/sample/SampleCheckboxWrapper.vue';
 import SampleFormBox from '@/components/sample/SampleFormBox.vue';
 import SampleFormItem from '@/components/sample/SampleFormItem.vue';
+import SampleHelpText from '@/components/sample/SampleHelpText.vue';
 import SampleTextField from '@/components/sample/SampleTextField.vue';
 import SampleTextArea from '@/components/sample/SampleTextArea.vue';
 import SampleIcon from '@/components/sample/SampleIcon.vue';
@@ -100,6 +101,11 @@ const routes = [
         path: 'sample-form-item',
         name: 'sampleFormItem',
         component: SampleFormItem,
+      },
+      {
+        path: 'sample-help-text',
+        name: 'sampleHelpText',
+        component: SampleHelpText,
       },
       {
         path: 'sample-text-field',

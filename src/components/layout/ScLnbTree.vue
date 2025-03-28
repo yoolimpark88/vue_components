@@ -70,7 +70,6 @@ export default {
     return {
       isCollapsed: false,
       menuSearchText: '',
-      // onMenu: [],
       menus: [
         {
           name: 'Overview',
@@ -123,6 +122,7 @@ export default {
                 { name: 'Alert', routerUrl:'sampleAlert' },
                 { name: 'Badge', routerUrl:'sampleBadge' },
                 { name: 'Confirm', routerUrl:'sampleConfirm' },
+                { name: 'HelpText', routerUrl:'sampleHelpText' },
                 { name: 'Modal', routerUrl:'sampleModal' },
                 { name: 'Tooltip', routerUrl:'sampleTooltip' },
               ],
